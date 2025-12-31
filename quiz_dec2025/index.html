@@ -1,1 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Islam &amp; Qur&#x27;an Q&amp;A (Kids) — One by One</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.04);
+      --text: #eef2ff;
+      --muted: #c7d2fe;
+      --border: rgba(255,255,255,.12);
+      --accent: #7c3aed;
+      --good: #22c55e;
+      --bad: #ef4444;
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(1000px 500px at 80% 10%, rgba(34,197,94,.22), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100svh;
+    }
+    .safe {
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    header {
+      padding: 18px 14px 10px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: 750;
+      letter-spacing: .2px;
+    }
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.35;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 10px 12px 22px;
+    }
+    .topbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0 12px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary {
+      background: linear-gradient(180deg, rgba(124,58,237,.75), rgba(124,58,237,.50));
+      border-color: rgba(124,58,237,.65);
+    }
+    .btn.good {
+      background: rgba(34,197,94,.16);
+      border-color: rgba(34,197,94,.45);
+    }
+    .btn.bad {
+      background: rgba(239,68,68,.16);
+      border-color: rgba(239,68,68,.45);
+    }
+    .btn:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none;
+    }
 
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+    .qhead {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .qnum {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .q {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 650;
+      flex: 1;
+    }
+    .opts {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .opt {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      cursor: pointer;
+    }
+    .opt input {
+      margin-top: 2px;
+      accent-color: var(--accent);
+      transform: scale(1.1);
+    }
+    .opt.selected {
+      border-color: rgba(124,58,237,.65);
+      background: rgba(124,58,237,.14);
+    }
+    .opt.correct {
+      border-color: rgba(34,197,94,.55);
+      background: rgba(34,197,94,.13);
+    }
+    .opt.wrong {
+      border-color: rgba(239,68,68,.55);
+      background: rgba(239,68,68,.13);
+    }
+    .opt span {
+      line-height: 1.25;
+      font-size: 14.5px;
+    }
+    .helper {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.35;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .nav3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(124,58,237,.85), rgba(34,197,94,.75));
+    }
+
+    /* Results */
+    .results {
+      display: none;
+    }
+    .results.show {
+      display: block;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .stat {
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px;
+    }
+    .stat .label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .stat .value {
+      font-size: 18px;
+      font-weight: 750;
+      margin-top: 4px;
+    }
+    .table {
+      overflow: auto;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+    }
+    th, td {
+      padding: 10px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      vertical-align: top;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-weight: 700;
+      background: rgba(255,255,255,.04);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .tag {
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .tag.good {
+      border-color: rgba(34,197,94,.45);
+      background: rgba(34,197,94,.12);
+    }
+    .tag.bad {
+      border-color: rgba(239,68,68,.45);
+      background: rgba(239,68,68,.12);
+    }
+
+    @media (max-width: 420px) {
+      .stats { grid-template-columns: 1fr; }
+      .nav { grid-template-columns: 1fr; }
+      .nav3 { grid-template-columns: 1fr; }
+      h1 { font-size: 17px; }
+      .q { font-size: 15.5px; }
+    }
+
+    @media print {
+      body { background: white; color: black; }
+      header, .topbar, .nav, .nav3, .helper, .progress { display: none !important; }
+      .card { box-shadow: none; background: white; border: 1px solid #ddd; }
+      .results { display: block !important; }
+      th, td { border-bottom: 1px solid #ddd; }
+      th { background: #f3f4f6; color: #111; }
+      .tag.good, .tag.bad { border: 1px solid #ddd; background: transparent; }
+    }
+  </style>
+</head>
+
+<body class="safe">
+  <header>
+    <h1>Islam &amp; Qur&#x27;an Q&amp;A (Kids) — One by One</h1>
+    <p class="sub">Answer each question. When you finish, you’ll see your choices, the correct answers, and your score.</p>
+  </header>
+
+  <div class="wrap">
+
+    <div class="topbar">
+      <span class="pill" id="pillPos">Question 1 / 66</span>
+      <span class="pill" id="pillAnswered">Answered: 0 / 66</span>
+      <button class="btn" id="btnReset" title="Start over">Reset</button>
+    </div>
+
+    <div class="progress" aria-hidden="true">
+      <div class="bar" id="bar"></div>
+    </div>
+
+    <div class="card" id="quizCard">
+      <div class="qhead">
+        <p class="q" id="qText">—</p>
+        <div class="qnum" id="qNum">Q—</div>
+      </div>
+
+      <div class="opts" id="opts"></div>
+
+      <div class="helper">
+        <span id="hint">Pick one answer, then press Next.</span>
+        <span id="saved">Not answered yet.</span>
+      </div>
+
+      <div class="nav">
+        <button class="btn" id="btnPrev">◀ Previous</button>
+        <button class="btn primary" id="btnNext">Next ▶</button>
+      </div>
+
+      <div class="nav3">
+        <button class="btn" id="btnCheck">Check this answer</button>
+        <button class="btn" id="btnJumpUnanswered">Go to next unanswered</button>
+        <button class="btn good" id="btnFinish">Finish & see results</button>
+      </div>
+    </div>
+
+    <div class="card results" id="resultsCard" style="margin-top: 12px;">
+      <div class="qhead" style="margin-bottom: 0;">
+        <p class="q">Results</p>
+        <div class="qnum" id="scoreLine">—</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="label">Right ✅</div>
+          <div class="value" id="statRight">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Wrong ❌</div>
+          <div class="value" id="statWrong">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Answered</div>
+          <div class="value" id="statAnswered">0</div>
+        </div>
+      </div>
+
+      <div class="table" id="resultsTableWrap">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Question</th>
+              <th>Your answer</th>
+              <th>Correct answer</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="nav" style="margin-top: 12px;">
+        <button class="btn" id="btnBackToQuiz">◀ Back to quiz</button>
+        <button class="btn primary" id="btnPrint">Print / Save as PDF</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const QUIZ = {"title": "Islam & Qur'an Q&A (Kids)", "version": 2, "count": 66, "questions": [{"id": 1, "question": "Which Surah does NOT start with Bismillah?", "options": ["Al-Anfal", "Al-Hashr", "Al-Mumtahanah", "At-Tawbah"], "answer": "At-Tawbah", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 2, "question": "Which Surah is the longest in the Quran?", "options": ["Al-Baqarah", "Al-Imran", "An-Nisa", "Al-Araf"], "answer": "Al-Baqarah", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 3, "question": "Rajab prepares Muslims spiritually for ____?", "options": ["Hajj", "Ramadan", "Eid", "Muharram"], "answer": "Ramadan", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 4, "question": "What is the Quranic name of Hellfire’s gatekeeper?", "options": ["Ridwan", "Zabaniyah", "Malik", "Harut"], "answer": "Malik", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 5, "question": "Which is the last Surah of the Quran?", "options": ["An-Nas", "Al-Falaq", "Al-Ikhlas", "Al-Kawthar"], "answer": "An-Nas", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 6, "question": "Which Surah begins with the word “Tabāraka”?", "options": ["Al-Kahf", "Al-Jinn", "Al-Furqan", "Al-Mulk"], "answer": "Al-Mulk", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 7, "question": "Who was the enemy of Prophet Musa?", "options": ["Namrood", "Firawn", "Abu Lahab", "Qarun"], "answer": "Firawn", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 8, "question": "Which Surah has exactly 3 verses?", "options": ["Al-Nasr", "Al-Asr", "Al-Ikhlas", "Al-Kawthar"], "answer": "Al-Kawthar", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 9, "question": "In which city was Prophet Muhammad ﷺ born?", "options": ["Madinah", "Makkah", "Taif", "Jerusalem"], "answer": "Makkah", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 10, "question": "Which miracle is especially associated with Prophet Sulaiman?", "options": ["Splitting sea", "Healing blind", "Speaking birds", "Building ark"], "answer": "Speaking birds", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 11, "question": "Isra refers to the night journey from Makkah to ____?", "options": ["Madinah", "Taif", "Sinai", "Jerusalem"], "answer": "Jerusalem", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 12, "question": "Which prophet was swallowed by a fish?", "options": ["Nuh", "Musa", "Yunus", "Ayub"], "answer": "Yunus", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 13, "question": "In which language was the Quran revealed?", "options": ["Arabic", "Hebrew", "Persian", "Syriac"], "answer": "Arabic", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 14, "question": "What is the first word revealed in the Quran?", "options": ["Allah", "Rabb", "Qalam", "Iqra"], "answer": "Iqra", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 17, "question": "Which prophet is mentioned only once in the Qur'an?", "options": ["Idris", "Dhul-Kifl", "Ilyas", "Uzair"], "answer": "Uzair", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 18, "question": "Which prophet received the Quran?", "options": ["Isa", "Muhammad", "Musa", "Ibrahim"], "answer": "Muhammad", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 19, "question": "Which angel is NOT mentioned by name in the Quran?", "options": ["Jibreel", "Mikaeel", "Malik", "Israfeel"], "answer": "Israfeel", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 20, "question": "Which angel brought revelation to Prophet Muhammad ﷺ?", "options": ["Jibreel", "Mikaeel", "Israfeel", "Malik"], "answer": "Jibreel", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 21, "question": "Which prophet split the sea by Allah’s command?", "options": ["Ibrahim", "Musa", "Nuh", "Isa"], "answer": "Musa", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 22, "question": "Which Surah is called Umm-ul-Quran?", "options": ["Al-Fatiha", "Al-Baqarah", "Ya-Sin", "Al-Ikhlas"], "answer": "Al-Fatiha", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 23, "question": "Which Surah is known as The Heart of the Quran?", "options": ["Al-Baqarah", "Ar-Rahman", "Ya-Sin", "Al-Waqiah"], "answer": "Ya-Sin", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 24, "question": "Which prophet is called Kaleemullah in the Quran?", "options": ["Isa", "Ibrahim", "Musa", "Nuh"], "answer": "Musa", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 25, "question": "Where did Isra end?", "options": ["Madinah", "Taif", "Mina", "Masjid al-Aqsa"], "answer": "Masjid al-Aqsa", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 26, "question": "Which Surah contains the verse of light (Ayat-un-Noor)?", "options": ["Al-Isra", "Al-Ahzab", "An-Nur", "Al-Furqan"], "answer": "An-Nur", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 27, "question": "Which ability was given to Prophet Yusuf?", "options": ["Control wind", "Interpret dreams", "Heal sick", "Split sea"], "answer": "Interpret dreams", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 28, "question": "Which Surah is named after an insect?", "options": ["Al-Ankabut", "Al-Baqarah", "Al-Fil", "Al-Naml"], "answer": "Al-Naml", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 29, "question": "Which prophet advised reducing the number of prayers?", "options": ["Ibrahim", "Isa", "Musa", "Nuh"], "answer": "Musa", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 30, "question": "How many Surahs are in the Quran?", "options": ["114", "112", "113", "115"], "answer": "114", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 31, "question": "Which prophet was thrown into a well?", "options": ["Musa", "Yusuf", "Isa", "Nuh"], "answer": "Yusuf", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 32, "question": "Rajab comes before which month?", "options": ["Ramadan", "Safar", "Shaban", "Dhul-Hijjah"], "answer": "Shaban", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 33, "question": "Which ability was given to Prophet Yusuf?", "options": ["Control wind", "Heal sick", "Interpret dreams", "Split sea"], "answer": "Interpret dreams", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 34, "question": "Which miracle is especially associated with Prophet Isa?", "options": ["Healing blind", "Splitting sea", "Speaking birds", "Building ark"], "answer": "Healing blind", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 35, "question": "In which Surah does Ayat-ul-Kursi appear?", "options": ["Al-Imran", "An-Nisa", "Al-Araf", "Al-Baqarah"], "answer": "Al-Baqarah", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 36, "question": "How many daily prayers were finally made obligatory during Mi‘raj?", "options": ["10", "20", "5", "50"], "answer": "5", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 37, "question": "The journey of Isra started from which mosque?", "options": ["Masjid an-Nabawi", "Masjid al-Aqsa", "Quba", "Masjid al-Haram"], "answer": "Masjid al-Haram", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 38, "question": "Which Surah is known as Qul-Huwallahu-Ahad?", "options": ["Al-Ikhlas", "Al-Falaq", "An-Nas", "Al-Kawthar"], "answer": "Al-Ikhlas", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 39, "question": "Which prophet could interpret dreams?", "options": ["Musa", "Dawood", "Sulaiman", "Yusuf"], "answer": "Yusuf", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 40, "question": "Rajab comes after which month?", "options": ["Rabi-ul-Awwal", "Shaban", "Ramadan", "Jumada-al-Akhirah"], "answer": "Jumada-al-Akhirah", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 41, "question": "How many verses (Ayat) are in Surah Al-Fatiha?", "options": ["7", "5", "6", "10"], "answer": "7", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 42, "question": "Who was the mother of Prophet Isa?", "options": ["Aasiya", "Maryam", "Khadijah", "Safiya"], "answer": "Maryam", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 43, "question": "What is the longest Surah in the Quran?", "options": ["Al-Araf", "Al-Nisa", "Al-Anam", "Al-Baqarah"], "answer": "Al-Baqarah", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 44, "question": "Which word occurs most frequently in the Qur'an?", "options": ["Rahman", "Rabb", "Allah", "Deen"], "answer": "Allah", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 45, "question": "Which city is mentioned most in the Quran?", "options": ["Makkah", "Madinah", "Jerusalem", "Taif"], "answer": "Makkah", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 46, "question": "Which Surah mentions all five pillars of Islam indirectly?", "options": ["Al-Baqarah", "An-Nur", "Al-Hajj", "Al-Anfal"], "answer": "Al-Hajj", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 47, "question": "Fighting was ____ in the month of Rajab in pre-Islamic times.?", "options": ["Allowed", "Encouraged", "Ordered", "Forbidden"], "answer": "Forbidden", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 48, "question": "Which prophet spoke as a baby?", "options": ["Isa", "Musa", "Yusuf", "Muhammad"], "answer": "Isa", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 49, "question": "Which animal carried the Prophet ﷺ during Isra?", "options": ["Horse", "Buraq", "Camel", "Mule"], "answer": "Buraq", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 50, "question": "In which city was Prophet Muhammad ﷺ born?", "options": ["Madinah", "Taif", "Makkah", "Jerusalem"], "answer": "Makkah", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 51, "question": "Which is the first Surah of the Quran?", "options": ["Al-Fatiha", "Al-Ikhlas", "Al-Baqarah", "An-Nas"], "answer": "Al-Fatiha", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 52, "question": "Mi‘raj was a journey to the ____?", "options": ["Desert", "Ocean", "Heavens", "Cave"], "answer": "Heavens", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 53, "question": "Rajab is one of the ____ sacred months.?", "options": ["Two", "Four", "Three", "Five"], "answer": "Four", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 54, "question": "What is Mi‘raj?", "options": ["Night prayer", "Ascension", "Migration", "Battle"], "answer": "Ascension", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 55, "question": "Which important Islamic event is commonly associated with Rajab?", "options": ["Hijrah", "Badr", "Isra", "Fath"], "answer": "Isra", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 56, "question": "Which prophet received the Quran?", "options": ["Isa", "Muhammad", "Musa", "Ibrahim"], "answer": "Muhammad", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 57, "question": "Rajab is the ____ month of the Islamic calendar.?", "options": ["Fifth", "Sixth", "Seventh", "Eighth"], "answer": "Seventh", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 58, "question": "Which obligation was gifted to Muslims during Mi‘raj?", "options": ["Zakah", "Salah", "Fasting", "Hajj"], "answer": "Salah", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 59, "question": "Which sacred month comes immediately before Ramadan?", "options": ["Muharram", "Safar", "Shaban", "Rajab"], "answer": "Rajab", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 1001, "question": "What is the name of the place Muslims face when praying", "options": ["Madinah", "Masjid", "Ka‘bah", "Mina"], "answer": "Ka‘bah", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1002, "question": "How many pillars of Islam are there", "options": ["Three", "Four", "Five", "Six"], "answer": "Five", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1003, "question": "What is the meaning of the word “Qur’an”", "options": ["To write", "To read silently", "To recite", "To memorise"], "answer": "To recite", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1004, "question": "Which Surah is equivalent to one-third of the Qur’an", "options": ["Surah Al-Falaq", "Surah An-Naas", "Surah Al-Ikhlas", "Surah Al-Kawthar"], "answer": "Surah Al-Ikhlas", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1005, "question": "What is the greatest Ayah in the Qur’an", "options": ["Ayat An-Noor", "Ayat Al-Ifk", "Ayat Ad-Dayn", "Ayat Al-Kursi"], "answer": "Ayat Al-Kursi", "answer_index": 3, "source": "all_qsn.txt (✅ section)"}, {"id": 1006, "question": "Which Surah has the word “Allah” in every Ayah", "options": ["Surah Al-Ikhlas", "Surah Al-Falaq", "Surah An-Naas", "Surah Al-Mujadalah"], "answer": "Surah Al-Mujadalah", "answer_index": 3, "source": "all_qsn.txt (✅ section)"}, {"id": 1007, "question": "Who was the first Hafiz of the Qur’an", "options": ["Angel Jibreel (AS)", "Prophet Musa (AS)", "Prophet Muhammad ﷺ", "Prophet Ibrahim (AS)"], "answer": "Prophet Muhammad ﷺ", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1008, "question": "How many Prophets are mentioned by name in the Qur’an", "options": ["20", "24", "25", "26"], "answer": "25", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1009, "question": "Which Surah of the Qur’an is named after a woman", "options": ["Surah An-Nisa", "Surah Maryam", "Surah Al-Ahzab", "Surah Al-Mumtahanah"], "answer": "Surah Maryam", "answer_index": 1, "source": "all_qsn.txt (✅ section)"}]};
+  const total = QUIZ.questions.length;
+
+  const els = {
+    pillPos: document.getElementById("pillPos"),
+    pillAnswered: document.getElementById("pillAnswered"),
+    bar: document.getElementById("bar"),
+    qText: document.getElementById("qText"),
+    qNum: document.getElementById("qNum"),
+    opts: document.getElementById("opts"),
+    hint: document.getElementById("hint"),
+    saved: document.getElementById("saved"),
+    btnPrev: document.getElementById("btnPrev"),
+    btnNext: document.getElementById("btnNext"),
+    btnCheck: document.getElementById("btnCheck"),
+    btnFinish: document.getElementById("btnFinish"),
+    btnReset: document.getElementById("btnReset"),
+    btnJumpUnanswered: document.getElementById("btnJumpUnanswered"),
+    quizCard: document.getElementById("quizCard"),
+    resultsCard: document.getElementById("resultsCard"),
+    resultsBody: document.querySelector("#resultsTable tbody"),
+    statRight: document.getElementById("statRight"),
+    statWrong: document.getElementById("statWrong"),
+    statAnswered: document.getElementById("statAnswered"),
+    scoreLine: document.getElementById("scoreLine"),
+    btnBackToQuiz: document.getElementById("btnBackToQuiz"),
+    btnPrint: document.getElementById("btnPrint"),
+  };
+
+  // answers[idx] = chosen option index (number) or null
+  const answers = Array(total).fill(null);
+
+  let idx = 0;
+  let checkedThis = false;
+
+  function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+
+  function answeredCount() {
+    return answers.filter(v => typeof v === "number").length;
+  }
+
+  function computeScore() {
+    let right = 0, wrong = 0, answered = 0;
+    QUIZ.questions.forEach((q, i) => {
+      const a = answers[i];
+      if (typeof a === "number") {
+        answered++;
+        if (a === q.answer_index) right++;
+        else wrong++;
+      }
+    });
+    return { right, wrong, answered };
+  }
+
+  function setTop() {
+    els.pillPos.textContent = `Question ${idx + 1} / ${total}`;
+    els.pillAnswered.textContent = `Answered: ${answeredCount()} / ${total}`;
+    els.bar.style.width = `${((idx + 1) / total) * 100}%`;
+
+    els.btnPrev.disabled = idx === 0;
+    els.btnNext.disabled = idx === total - 1;
+
+    const score = computeScore();
+    const allAnswered = score.answered === total;
+    els.btnFinish.textContent = allAnswered ? "Finish & see results" : `Finish (answered ${score.answered}/${total})`;
+  }
+
+  function renderQuestion() {
+    checkedThis = false;
+    const q = QUIZ.questions[idx];
+    els.qText.textContent = q.question;
+    els.qNum.textContent = `Q${q.id}`;
+
+    els.opts.innerHTML = "";
+    const name = "q_" + idx;
+
+    const current = answers[idx];
+
+    q.options.forEach((opt, oi) => {
+      const label = document.createElement("label");
+      label.className = "opt";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = name;
+      input.value = String(oi);
+
+      if (current === oi) {
+        input.checked = true;
+        label.classList.add("selected");
+      }
+
+      const span = document.createElement("span");
+      span.textContent = opt;
+
+      label.appendChild(input);
+      label.appendChild(span);
+
+      label.addEventListener("click", () => {
+        // Save answer
+        answers[idx] = oi;
+        // Visual selected state
+        Array.from(els.opts.querySelectorAll(".opt")).forEach(o => o.classList.remove("selected", "correct", "wrong"));
+        label.classList.add("selected");
+
+        els.saved.textContent = "Saved ✅";
+        els.hint.textContent = "You can go Next, or press “Check this answer”.";
+        setTop();
+      });
+
+      els.opts.appendChild(label);
+    });
+
+    if (typeof current === "number") {
+      els.saved.textContent = "Saved ✅";
+      els.hint.textContent = "You can change your answer anytime.";
+    } else {
+      els.saved.textContent = "Not answered yet.";
+      els.hint.textContent = "Pick one answer, then press Next.";
+    }
+
+    setTop();
+  }
+
+  function checkThis() {
+    const q = QUIZ.questions[idx];
+    const chosen = answers[idx];
+
+    // Clear marks
+    const optionEls = Array.from(els.opts.querySelectorAll(".opt"));
+    optionEls.forEach(o => o.classList.remove("correct", "wrong"));
+
+    if (typeof q.answer_index === "number") {
+      optionEls[q.answer_index]?.classList.add("correct");
+    }
+
+    if (typeof chosen === "number") {
+      if (typeof q.answer_index === "number" && chosen !== q.answer_index) {
+        optionEls[chosen]?.classList.add("wrong");
+        els.hint.textContent = "Not quite — the correct answer is highlighted ✅";
+      } else {
+        els.hint.textContent = "Correct! ✅";
+      }
+    } else {
+      els.hint.textContent = "Choose an option first 🙂";
+    }
+
+    checkedThis = true;
+  }
+
+  function go(n) {
+    idx = clamp(n, 0, total - 1);
+    renderQuestion();
+  }
+
+  function nextUnanswered() {
+    for (let i = idx + 1; i < total; i++) {
+      if (answers[i] === null) return go(i);
+    }
+    for (let i = 0; i < total; i++) {
+      if (answers[i] === null) return go(i);
+    }
+    // If none, stay
+    els.hint.textContent = "All questions are answered ✅ You can finish now.";
+  }
+
+  function showResults() {
+    const score = computeScore();
+    els.statRight.textContent = String(score.right);
+    els.statWrong.textContent = String(score.wrong);
+    els.statAnswered.textContent = `${score.answered} / ${total}`;
+    els.scoreLine.textContent = `Score: ${score.right} / ${total}`;
+
+    els.resultsBody.innerHTML = "";
+
+    QUIZ.questions.forEach((q, i) => {
+      const tr = document.createElement("tr");
+
+      const chosenIdx = answers[i];
+      const chosenText = (typeof chosenIdx === "number") ? q.options[chosenIdx] : "—";
+      const correctText = (typeof q.answer_index === "number") ? q.options[q.answer_index] : (q.answer ?? "—");
+      const isRight = (typeof chosenIdx === "number" && typeof q.answer_index === "number" && chosenIdx === q.answer_index);
+
+      tr.innerHTML = `
+        <td>${i + 1}</td>
+        <td>${escapeHtml(q.question)}</td>
+        <td>${escapeHtml(chosenText)}</td>
+        <td>${escapeHtml(correctText)}</td>
+        <td>${isRight ? '<span class="tag good">Right ✅</span>' : (chosenIdx === null ? '<span class="tag bad">Not answered</span>' : '<span class="tag bad">Wrong ❌</span>')}</td>
+      `;
+      els.resultsBody.appendChild(tr);
+    });
+
+    // swap views
+    els.quizCard.style.display = "none";
+    els.resultsCard.classList.add("show");
+    els.resultsCard.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function backToQuiz() {
+    els.resultsCard.classList.remove("show");
+    els.resultsCard.style.display = "none";
+    els.quizCard.style.display = "block";
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function resetAll() {
+    for (let i = 0; i < total; i++) answers[i] = null;
+    idx = 0;
+    renderQuestion();
+    els.hint.textContent = "All cleared. Start again 🙂";
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  // Buttons
+  els.btnPrev.addEventListener("click", () => go(idx - 1));
+  els.btnNext.addEventListener("click", () => go(idx + 1));
+  els.btnCheck.addEventListener("click", () => checkThis());
+  els.btnJumpUnanswered.addEventListener("click", () => nextUnanswered());
+  els.btnFinish.addEventListener("click", () => showResults());
+  els.btnBackToQuiz.addEventListener("click", () => backToQuiz());
+  els.btnPrint.addEventListener("click", () => window.print());
+  els.btnReset.addEventListener("click", () => resetAll());
+
+  // Keyboard support (desktop)
+  document.addEventListener("keydown", (e) => {
+    if (els.quizCard.style.display === "none") return;
+    if (e.key === "ArrowLeft") go(idx - 1);
+    if (e.key === "ArrowRight") go(idx + 1);
+  });
+
+  // Initial render
+  renderQuestion();
+</script>
+</body>
+</html>
