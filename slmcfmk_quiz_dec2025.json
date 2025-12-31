@@ -1,0 +1,1003 @@
+{
+  "title": "Islam & Qur'an Q&A (Kids)",
+  "version": 2,
+  "count": 66,
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which Surah does NOT start with Bismillah?",
+      "options": [
+        "Al-Anfal",
+        "Al-Hashr",
+        "Al-Mumtahanah",
+        "At-Tawbah"
+      ],
+      "answer": "At-Tawbah",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 2,
+      "question": "Which Surah is the longest in the Quran?",
+      "options": [
+        "Al-Baqarah",
+        "Al-Imran",
+        "An-Nisa",
+        "Al-Araf"
+      ],
+      "answer": "Al-Baqarah",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 3,
+      "question": "Rajab prepares Muslims spiritually for ____?",
+      "options": [
+        "Hajj",
+        "Ramadan",
+        "Eid",
+        "Muharram"
+      ],
+      "answer": "Ramadan",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 4,
+      "question": "What is the Quranic name of Hellfire’s gatekeeper?",
+      "options": [
+        "Ridwan",
+        "Zabaniyah",
+        "Malik",
+        "Harut"
+      ],
+      "answer": "Malik",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 5,
+      "question": "Which is the last Surah of the Quran?",
+      "options": [
+        "An-Nas",
+        "Al-Falaq",
+        "Al-Ikhlas",
+        "Al-Kawthar"
+      ],
+      "answer": "An-Nas",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 6,
+      "question": "Which Surah begins with the word “Tabāraka”?",
+      "options": [
+        "Al-Kahf",
+        "Al-Jinn",
+        "Al-Furqan",
+        "Al-Mulk"
+      ],
+      "answer": "Al-Mulk",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 7,
+      "question": "Who was the enemy of Prophet Musa?",
+      "options": [
+        "Namrood",
+        "Firawn",
+        "Abu Lahab",
+        "Qarun"
+      ],
+      "answer": "Firawn",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 8,
+      "question": "Which Surah has exactly 3 verses?",
+      "options": [
+        "Al-Nasr",
+        "Al-Asr",
+        "Al-Ikhlas",
+        "Al-Kawthar"
+      ],
+      "answer": "Al-Kawthar",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 9,
+      "question": "In which city was Prophet Muhammad ﷺ born?",
+      "options": [
+        "Madinah",
+        "Makkah",
+        "Taif",
+        "Jerusalem"
+      ],
+      "answer": "Makkah",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 10,
+      "question": "Which miracle is especially associated with Prophet Sulaiman?",
+      "options": [
+        "Splitting sea",
+        "Healing blind",
+        "Speaking birds",
+        "Building ark"
+      ],
+      "answer": "Speaking birds",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 11,
+      "question": "Isra refers to the night journey from Makkah to ____?",
+      "options": [
+        "Madinah",
+        "Taif",
+        "Sinai",
+        "Jerusalem"
+      ],
+      "answer": "Jerusalem",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 12,
+      "question": "Which prophet was swallowed by a fish?",
+      "options": [
+        "Nuh",
+        "Musa",
+        "Yunus",
+        "Ayub"
+      ],
+      "answer": "Yunus",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 13,
+      "question": "In which language was the Quran revealed?",
+      "options": [
+        "Arabic",
+        "Hebrew",
+        "Persian",
+        "Syriac"
+      ],
+      "answer": "Arabic",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 14,
+      "question": "What is the first word revealed in the Quran?",
+      "options": [
+        "Allah",
+        "Rabb",
+        "Qalam",
+        "Iqra"
+      ],
+      "answer": "Iqra",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 17,
+      "question": "Which prophet is mentioned only once in the Qur'an?",
+      "options": [
+        "Idris",
+        "Dhul-Kifl",
+        "Ilyas",
+        "Uzair"
+      ],
+      "answer": "Uzair",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 18,
+      "question": "Which prophet received the Quran?",
+      "options": [
+        "Isa",
+        "Muhammad",
+        "Musa",
+        "Ibrahim"
+      ],
+      "answer": "Muhammad",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 19,
+      "question": "Which angel is NOT mentioned by name in the Quran?",
+      "options": [
+        "Jibreel",
+        "Mikaeel",
+        "Malik",
+        "Israfeel"
+      ],
+      "answer": "Israfeel",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 20,
+      "question": "Which angel brought revelation to Prophet Muhammad ﷺ?",
+      "options": [
+        "Jibreel",
+        "Mikaeel",
+        "Israfeel",
+        "Malik"
+      ],
+      "answer": "Jibreel",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 21,
+      "question": "Which prophet split the sea by Allah’s command?",
+      "options": [
+        "Ibrahim",
+        "Musa",
+        "Nuh",
+        "Isa"
+      ],
+      "answer": "Musa",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 22,
+      "question": "Which Surah is called Umm-ul-Quran?",
+      "options": [
+        "Al-Fatiha",
+        "Al-Baqarah",
+        "Ya-Sin",
+        "Al-Ikhlas"
+      ],
+      "answer": "Al-Fatiha",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 23,
+      "question": "Which Surah is known as The Heart of the Quran?",
+      "options": [
+        "Al-Baqarah",
+        "Ar-Rahman",
+        "Ya-Sin",
+        "Al-Waqiah"
+      ],
+      "answer": "Ya-Sin",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 24,
+      "question": "Which prophet is called Kaleemullah in the Quran?",
+      "options": [
+        "Isa",
+        "Ibrahim",
+        "Musa",
+        "Nuh"
+      ],
+      "answer": "Musa",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 25,
+      "question": "Where did Isra end?",
+      "options": [
+        "Madinah",
+        "Taif",
+        "Mina",
+        "Masjid al-Aqsa"
+      ],
+      "answer": "Masjid al-Aqsa",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 26,
+      "question": "Which Surah contains the verse of light (Ayat-un-Noor)?",
+      "options": [
+        "Al-Isra",
+        "Al-Ahzab",
+        "An-Nur",
+        "Al-Furqan"
+      ],
+      "answer": "An-Nur",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 27,
+      "question": "Which ability was given to Prophet Yusuf?",
+      "options": [
+        "Control wind",
+        "Interpret dreams",
+        "Heal sick",
+        "Split sea"
+      ],
+      "answer": "Interpret dreams",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 28,
+      "question": "Which Surah is named after an insect?",
+      "options": [
+        "Al-Ankabut",
+        "Al-Baqarah",
+        "Al-Fil",
+        "Al-Naml"
+      ],
+      "answer": "Al-Naml",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 29,
+      "question": "Which prophet advised reducing the number of prayers?",
+      "options": [
+        "Ibrahim",
+        "Isa",
+        "Musa",
+        "Nuh"
+      ],
+      "answer": "Musa",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 30,
+      "question": "How many Surahs are in the Quran?",
+      "options": [
+        "114",
+        "112",
+        "113",
+        "115"
+      ],
+      "answer": "114",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 31,
+      "question": "Which prophet was thrown into a well?",
+      "options": [
+        "Musa",
+        "Yusuf",
+        "Isa",
+        "Nuh"
+      ],
+      "answer": "Yusuf",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 32,
+      "question": "Rajab comes before which month?",
+      "options": [
+        "Ramadan",
+        "Safar",
+        "Shaban",
+        "Dhul-Hijjah"
+      ],
+      "answer": "Shaban",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 33,
+      "question": "Which ability was given to Prophet Yusuf?",
+      "options": [
+        "Control wind",
+        "Heal sick",
+        "Interpret dreams",
+        "Split sea"
+      ],
+      "answer": "Interpret dreams",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 34,
+      "question": "Which miracle is especially associated with Prophet Isa?",
+      "options": [
+        "Healing blind",
+        "Splitting sea",
+        "Speaking birds",
+        "Building ark"
+      ],
+      "answer": "Healing blind",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 35,
+      "question": "In which Surah does Ayat-ul-Kursi appear?",
+      "options": [
+        "Al-Imran",
+        "An-Nisa",
+        "Al-Araf",
+        "Al-Baqarah"
+      ],
+      "answer": "Al-Baqarah",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 36,
+      "question": "How many daily prayers were finally made obligatory during Mi‘raj?",
+      "options": [
+        "10",
+        "20",
+        "5",
+        "50"
+      ],
+      "answer": "5",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 37,
+      "question": "The journey of Isra started from which mosque?",
+      "options": [
+        "Masjid an-Nabawi",
+        "Masjid al-Aqsa",
+        "Quba",
+        "Masjid al-Haram"
+      ],
+      "answer": "Masjid al-Haram",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 38,
+      "question": "Which Surah is known as Qul-Huwallahu-Ahad?",
+      "options": [
+        "Al-Ikhlas",
+        "Al-Falaq",
+        "An-Nas",
+        "Al-Kawthar"
+      ],
+      "answer": "Al-Ikhlas",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 39,
+      "question": "Which prophet could interpret dreams?",
+      "options": [
+        "Musa",
+        "Dawood",
+        "Sulaiman",
+        "Yusuf"
+      ],
+      "answer": "Yusuf",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 40,
+      "question": "Rajab comes after which month?",
+      "options": [
+        "Rabi-ul-Awwal",
+        "Shaban",
+        "Ramadan",
+        "Jumada-al-Akhirah"
+      ],
+      "answer": "Jumada-al-Akhirah",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 41,
+      "question": "How many verses (Ayat) are in Surah Al-Fatiha?",
+      "options": [
+        "7",
+        "5",
+        "6",
+        "10"
+      ],
+      "answer": "7",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 42,
+      "question": "Who was the mother of Prophet Isa?",
+      "options": [
+        "Aasiya",
+        "Maryam",
+        "Khadijah",
+        "Safiya"
+      ],
+      "answer": "Maryam",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 43,
+      "question": "What is the longest Surah in the Quran?",
+      "options": [
+        "Al-Araf",
+        "Al-Nisa",
+        "Al-Anam",
+        "Al-Baqarah"
+      ],
+      "answer": "Al-Baqarah",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 44,
+      "question": "Which word occurs most frequently in the Qur'an?",
+      "options": [
+        "Rahman",
+        "Rabb",
+        "Allah",
+        "Deen"
+      ],
+      "answer": "Allah",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 45,
+      "question": "Which city is mentioned most in the Quran?",
+      "options": [
+        "Makkah",
+        "Madinah",
+        "Jerusalem",
+        "Taif"
+      ],
+      "answer": "Makkah",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 46,
+      "question": "Which Surah mentions all five pillars of Islam indirectly?",
+      "options": [
+        "Al-Baqarah",
+        "An-Nur",
+        "Al-Hajj",
+        "Al-Anfal"
+      ],
+      "answer": "Al-Hajj",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 47,
+      "question": "Fighting was ____ in the month of Rajab in pre-Islamic times.?",
+      "options": [
+        "Allowed",
+        "Encouraged",
+        "Ordered",
+        "Forbidden"
+      ],
+      "answer": "Forbidden",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 48,
+      "question": "Which prophet spoke as a baby?",
+      "options": [
+        "Isa",
+        "Musa",
+        "Yusuf",
+        "Muhammad"
+      ],
+      "answer": "Isa",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 49,
+      "question": "Which animal carried the Prophet ﷺ during Isra?",
+      "options": [
+        "Horse",
+        "Buraq",
+        "Camel",
+        "Mule"
+      ],
+      "answer": "Buraq",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 50,
+      "question": "In which city was Prophet Muhammad ﷺ born?",
+      "options": [
+        "Madinah",
+        "Taif",
+        "Makkah",
+        "Jerusalem"
+      ],
+      "answer": "Makkah",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 51,
+      "question": "Which is the first Surah of the Quran?",
+      "options": [
+        "Al-Fatiha",
+        "Al-Ikhlas",
+        "Al-Baqarah",
+        "An-Nas"
+      ],
+      "answer": "Al-Fatiha",
+      "answer_index": 0,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 52,
+      "question": "Mi‘raj was a journey to the ____?",
+      "options": [
+        "Desert",
+        "Ocean",
+        "Heavens",
+        "Cave"
+      ],
+      "answer": "Heavens",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 53,
+      "question": "Rajab is one of the ____ sacred months.?",
+      "options": [
+        "Two",
+        "Four",
+        "Three",
+        "Five"
+      ],
+      "answer": "Four",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 54,
+      "question": "What is Mi‘raj?",
+      "options": [
+        "Night prayer",
+        "Ascension",
+        "Migration",
+        "Battle"
+      ],
+      "answer": "Ascension",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 55,
+      "question": "Which important Islamic event is commonly associated with Rajab?",
+      "options": [
+        "Hijrah",
+        "Badr",
+        "Isra",
+        "Fath"
+      ],
+      "answer": "Isra",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 56,
+      "question": "Which prophet received the Quran?",
+      "options": [
+        "Isa",
+        "Muhammad",
+        "Musa",
+        "Ibrahim"
+      ],
+      "answer": "Muhammad",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 57,
+      "question": "Rajab is the ____ month of the Islamic calendar.?",
+      "options": [
+        "Fifth",
+        "Sixth",
+        "Seventh",
+        "Eighth"
+      ],
+      "answer": "Seventh",
+      "answer_index": 2,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 58,
+      "question": "Which obligation was gifted to Muslims during Mi‘raj?",
+      "options": [
+        "Zakah",
+        "Salah",
+        "Fasting",
+        "Hajj"
+      ],
+      "answer": "Salah",
+      "answer_index": 1,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 59,
+      "question": "Which sacred month comes immediately before Ramadan?",
+      "options": [
+        "Muharram",
+        "Safar",
+        "Shaban",
+        "Rajab"
+      ],
+      "answer": "Rajab",
+      "answer_index": 3,
+      "source": "all_qsn.txt (comma section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 1001,
+      "question": "What is the name of the place Muslims face when praying",
+      "options": [
+        "Madinah",
+        "Masjid",
+        "Ka‘bah",
+        "Mina"
+      ],
+      "answer": "Ka‘bah",
+      "answer_index": 2,
+      "source": "all_qsn.txt (✅ section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 1002,
+      "question": "How many pillars of Islam are there",
+      "options": [
+        "Three",
+        "Four",
+        "Five",
+        "Six"
+      ],
+      "answer": "Five",
+      "answer_index": 2,
+      "source": "all_qsn.txt (✅ section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 1003,
+      "question": "What is the meaning of the word “Qur’an”",
+      "options": [
+        "To write",
+        "To read silently",
+        "To recite",
+        "To memorise"
+      ],
+      "answer": "To recite",
+      "answer_index": 2,
+      "source": "all_qsn.txt (✅ section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 1004,
+      "question": "Which Surah is equivalent to one-third of the Qur’an",
+      "options": [
+        "Surah Al-Falaq",
+        "Surah An-Naas",
+        "Surah Al-Ikhlas",
+        "Surah Al-Kawthar"
+      ],
+      "answer": "Surah Al-Ikhlas",
+      "answer_index": 2,
+      "source": "all_qsn.txt (✅ section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 1005,
+      "question": "What is the greatest Ayah in the Qur’an",
+      "options": [
+        "Ayat An-Noor",
+        "Ayat Al-Ifk",
+        "Ayat Ad-Dayn",
+        "Ayat Al-Kursi"
+      ],
+      "answer": "Ayat Al-Kursi",
+      "answer_index": 3,
+      "source": "all_qsn.txt (✅ section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 1006,
+      "question": "Which Surah has the word “Allah” in every Ayah",
+      "options": [
+        "Surah Al-Ikhlas",
+        "Surah Al-Falaq",
+        "Surah An-Naas",
+        "Surah Al-Mujadalah"
+      ],
+      "answer": "Surah Al-Mujadalah",
+      "answer_index": 3,
+      "source": "all_qsn.txt (✅ section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 1007,
+      "question": "Who was the first Hafiz of the Qur’an",
+      "options": [
+        "Angel Jibreel (AS)",
+        "Prophet Musa (AS)",
+        "Prophet Muhammad ﷺ",
+        "Prophet Ibrahim (AS)"
+      ],
+      "answer": "Prophet Muhammad ﷺ",
+      "answer_index": 2,
+      "source": "all_qsn.txt (✅ section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 1008,
+      "question": "How many Prophets are mentioned by name in the Qur’an",
+      "options": [
+        "20",
+        "24",
+        "25",
+        "26"
+      ],
+      "answer": "25",
+      "answer_index": 2,
+      "source": "all_qsn.txt (✅ section)",
+      "image": null,
+      "audio": null
+    },
+    {
+      "id": 1009,
+      "question": "Which Surah of the Qur’an is named after a woman",
+      "options": [
+        "Surah An-Nisa",
+        "Surah Maryam",
+        "Surah Al-Ahzab",
+        "Surah Al-Mumtahanah"
+      ],
+      "answer": "Surah Maryam",
+      "answer_index": 1,
+      "source": "all_qsn.txt (✅ section)",
+      "image": null,
+      "audio": null
+    }
+  ],
+  "schema": {
+    "question": {
+      "image": "optional string URL/path to an image (e.g., 'images/q1.png' or 'https://...')",
+      "audio": "optional string URL/path to audio"
+    }
+  }
+}

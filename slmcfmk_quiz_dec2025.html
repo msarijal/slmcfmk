@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Islam &amp; Qur&#x27;an Q&amp;A (Kids) — Loader</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --text: #eef2ff;
+      --muted: #c7d2fe;
+      --border: rgba(255,255,255,.12);
+      --accent: #7c3aed;
+      --good: #22c55e;
+      --bad: #ef4444;
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(1000px 500px at 80% 10%, rgba(34,197,94,.22), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100svh;
+    }
+    .safe {
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    header {
+      padding: 18px 14px 10px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: 750;
+      letter-spacing: .2px;
+    }
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.35;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 10px 12px 22px;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0 12px;
+    }
+    input[type="text"] {
+      width: min(520px, 100%);
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      outline: none;
+    }
+    .btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn.primary {
+      background: linear-gradient(180deg, rgba(124,58,237,.75), rgba(124,58,237,.50));
+      border-color: rgba(124,58,237,.65);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .topbar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0 12px;
+    }
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(124,58,237,.85), rgba(34,197,94,.75));
+    }
+    .qhead {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .qnum {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+    .q {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 650;
+      flex: 1;
+    }
+    .media {
+      margin: 10px 0 12px;
+    }
+    .media img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      display: none;
+    }
+    .opts {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .opt {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      cursor: pointer;
+    }
+    .opt input {
+      margin-top: 2px;
+      accent-color: var(--accent);
+      transform: scale(1.1);
+    }
+    .opt.selected {
+      border-color: rgba(124,58,237,.65);
+      background: rgba(124,58,237,.14);
+    }
+    .opt.correct {
+      border-color: rgba(34,197,94,.55);
+      background: rgba(34,197,94,.13);
+    }
+    .opt.wrong {
+      border-color: rgba(239,68,68,.55);
+      background: rgba(239,68,68,.13);
+    }
+    .opt span {
+      line-height: 1.25;
+      font-size: 14.5px;
+    }
+    .helper {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.35;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .nav3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    /* Results */
+    .results {
+      display: none;
+      margin-top: 12px;
+    }
+    .results.show { display: block; }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .stat {
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px;
+    }
+    .stat .label {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .stat .value {
+      font-size: 18px;
+      font-weight: 750;
+      margin-top: 4px;
+    }
+    .table {
+      overflow: auto;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+    }
+    th, td {
+      padding: 10px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      vertical-align: top;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-weight: 700;
+      background: rgba(255,255,255,.04);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .tag {
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .tag.good {
+      border-color: rgba(34,197,94,.45);
+      background: rgba(34,197,94,.12);
+    }
+    .tag.bad {
+      border-color: rgba(239,68,68,.45);
+      background: rgba(239,68,68,.12);
+    }
+    .error {
+      color: #fecaca;
+      background: rgba(239,68,68,.12);
+      border: 1px solid rgba(239,68,68,.35);
+      padding: 10px 12px;
+      border-radius: 14px;
+      margin: 10px 0 0;
+      display: none;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    code {
+      background: rgba(255,255,255,.08);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    @media (max-width: 420px) {
+      .stats { grid-template-columns: 1fr; }
+      .nav { grid-template-columns: 1fr; }
+      .nav3 { grid-template-columns: 1fr; }
+      h1 { font-size: 17px; }
+      .q { font-size: 15.5px; }
+    }
+  </style>
+</head>
+
+<body class="safe">
+  <header>
+    <h1 id="title">Islam &amp; Qur&#x27;an Q&amp;A (Kids) — Loader</h1>
+    <p class="sub">This page loads questions from a JSON file so you can swap quizzes later (and add picture questions too).</p>
+  </header>
+
+  <div class="wrap">
+    <div class="card" id="loaderCard">
+      <div class="row">
+        <input id="src" type="text" value="./slmcfmk_quiz_dec2025.json" aria-label="JSON file path or URL" />
+        <button class="btn primary" id="btnLoad">Load quiz</button>
+        <button class="btn" id="btnLoadFile">Load JSON file</button>
+        <input id="file" type="file" accept="application/json" hidden />
+      </div>
+      <p class="sub" style="margin-top:6px;">
+        Tip: if you open this from your computer as a <b>file</b>, browsers may block <code>fetch()</code>.
+        Best is to run a tiny local server (example: <code>python -m http.server</code>) or host it online.
+      </p>
+      <div class="error" id="error"></div>
+    </div>
+
+    <div class="topbar" id="topbar" style="display:none;">
+      <span class="pill" id="pillPos">Question 1 / —</span>
+      <span class="pill" id="pillAnswered">Answered: 0 / —</span>
+      <button class="btn" id="btnReset" title="Start over">Reset</button>
+    </div>
+
+    <div class="progress" id="progress" style="display:none;">
+      <div class="bar" id="bar"></div>
+    </div>
+
+    <div class="card" id="quizCard" style="display:none;">
+      <div class="qhead">
+        <p class="q" id="qText">—</p>
+        <div class="qnum" id="qNum">Q—</div>
+      </div>
+
+      <div class="media">
+        <img id="qImg" alt="Question image" />
+      </div>
+
+      <div class="opts" id="opts"></div>
+
+      <div class="helper">
+        <span id="hint">Pick one answer, then press Next.</span>
+        <span id="saved">Not answered yet.</span>
+      </div>
+
+      <div class="nav">
+        <button class="btn" id="btnPrev">◀ Previous</button>
+        <button class="btn primary" id="btnNext">Next ▶</button>
+      </div>
+
+      <div class="nav3">
+        <button class="btn" id="btnCheck">Check this answer</button>
+        <button class="btn" id="btnJumpUnanswered">Go to next unanswered</button>
+        <button class="btn" id="btnFinish">Finish & see results</button>
+      </div>
+    </div>
+
+    <div class="card results" id="resultsCard">
+      <div class="qhead" style="margin-bottom: 0;">
+        <p class="q">Results</p>
+        <div class="qnum" id="scoreLine">—</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="label">Right ✅</div>
+          <div class="value" id="statRight">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Wrong ❌</div>
+          <div class="value" id="statWrong">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Answered</div>
+          <div class="value" id="statAnswered">0</div>
+        </div>
+      </div>
+
+      <div class="table">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Question</th>
+              <th>Your answer</th>
+              <th>Correct answer</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="nav" style="margin-top: 12px;">
+        <button class="btn" id="btnBackToQuiz">◀ Back to quiz</button>
+        <button class="btn primary" id="btnPrint">Print / Save as PDF</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  let QUIZ = null;
+  let answers = [];
+  let idx = 0;
+
+  const els = {
+    title: document.getElementById("title"),
+    src: document.getElementById("src"),
+    btnLoad: document.getElementById("btnLoad"),
+    btnLoadFile: document.getElementById("btnLoadFile"),
+    file: document.getElementById("file"),
+    error: document.getElementById("error"),
+    loaderCard: document.getElementById("loaderCard"),
+    topbar: document.getElementById("topbar"),
+    progress: document.getElementById("progress"),
+    pillPos: document.getElementById("pillPos"),
+    pillAnswered: document.getElementById("pillAnswered"),
+    bar: document.getElementById("bar"),
+    quizCard: document.getElementById("quizCard"),
+    qText: document.getElementById("qText"),
+    qNum: document.getElementById("qNum"),
+    qImg: document.getElementById("qImg"),
+    opts: document.getElementById("opts"),
+    hint: document.getElementById("hint"),
+    saved: document.getElementById("saved"),
+    btnPrev: document.getElementById("btnPrev"),
+    btnNext: document.getElementById("btnNext"),
+    btnCheck: document.getElementById("btnCheck"),
+    btnJumpUnanswered: document.getElementById("btnJumpUnanswered"),
+    btnFinish: document.getElementById("btnFinish"),
+    btnReset: document.getElementById("btnReset"),
+    resultsCard: document.getElementById("resultsCard"),
+    resultsBody: document.querySelector("#resultsTable tbody"),
+    statRight: document.getElementById("statRight"),
+    statWrong: document.getElementById("statWrong"),
+    statAnswered: document.getElementById("statAnswered"),
+    scoreLine: document.getElementById("scoreLine"),
+    btnBackToQuiz: document.getElementById("btnBackToQuiz"),
+    btnPrint: document.getElementById("btnPrint"),
+  };
+
+  function showError(msg) {
+    els.error.style.display = "block";
+    els.error.innerHTML = msg;
+  }
+  function clearError() {
+    els.error.style.display = "none";
+    els.error.textContent = "";
+  }
+
+  function validateQuiz(data) {
+    if (!data || !Array.isArray(data.questions)) {
+      throw new Error("Invalid JSON: expected an object with a <code>questions</code> array.");
+    }
+    data.questions.forEach((q, i) => {
+      if (!q.question || !Array.isArray(q.options) || q.options.length < 2) {
+        throw new Error(`Question ${i+1} is missing <code>question</code> text or <code>options</code>.`);
+      }
+      if (typeof q.answer_index !== "number") {
+        // We can still work if answer exists by matching text
+        if (q.answer) {
+          q.answer_index = q.options.indexOf(q.answer);
+        }
+      }
+    });
+    return data;
+  }
+
+  async function loadFromUrl(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Could not load: ${url} (HTTP ${res.status})`);
+    return await res.json();
+  }
+
+  function loadQuiz(data) {
+    QUIZ = validateQuiz(data);
+    answers = Array(QUIZ.questions.length).fill(null);
+    idx = 0;
+
+    els.title.textContent = (QUIZ.title || "Quiz") + " — One by One";
+    els.loaderCard.style.display = "none";
+    els.topbar.style.display = "flex";
+    els.progress.style.display = "block";
+    els.quizCard.style.display = "block";
+    els.resultsCard.classList.remove("show");
+    els.resultsCard.style.display = "none";
+
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function answeredCount() {
+    return answers.filter(v => typeof v === "number").length;
+  }
+
+  function computeScore() {
+    let right = 0, wrong = 0, answered = 0;
+    QUIZ.questions.forEach((q, i) => {
+      const a = answers[i];
+      if (typeof a === "number") {
+        answered++;
+        if (a === q.answer_index) right++;
+        else wrong++;
+      }
+    });
+    return { right, wrong, answered };
+  }
+
+  function setTop() {
+    const total = QUIZ.questions.length;
+    els.pillPos.textContent = `Question ${idx + 1} / ${total}`;
+    els.pillAnswered.textContent = `Answered: ${answeredCount()} / ${total}`;
+    els.bar.style.width = `${((idx + 1) / total) * 100}%`;
+
+    els.btnPrev.disabled = idx === 0;
+    els.btnNext.disabled = idx === total - 1;
+
+    const score = computeScore();
+    els.btnFinish.textContent = (score.answered === total)
+      ? "Finish & see results"
+      : `Finish (answered ${score.answered}/${total})`;
+  }
+
+  function renderQuestion() {
+    const q = QUIZ.questions[idx];
+    els.qText.textContent = q.question;
+    els.qNum.textContent = `Q${q.id ?? (idx + 1)}`;
+
+    // Image support (optional)
+    if (q.image) {
+      els.qImg.src = q.image;
+      els.qImg.style.display = "block";
+    } else {
+      els.qImg.removeAttribute("src");
+      els.qImg.style.display = "none";
+    }
+
+    els.opts.innerHTML = "";
+    const name = "q_" + idx;
+    const current = answers[idx];
+
+    q.options.forEach((opt, oi) => {
+      const label = document.createElement("label");
+      label.className = "opt";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = name;
+      input.value = String(oi);
+
+      if (current === oi) {
+        input.checked = true;
+        label.classList.add("selected");
+      }
+
+      const span = document.createElement("span");
+      span.textContent = opt;
+
+      label.appendChild(input);
+      label.appendChild(span);
+
+      label.addEventListener("click", () => {
+        answers[idx] = oi;
+        Array.from(els.opts.querySelectorAll(".opt")).forEach(o => o.classList.remove("selected", "correct", "wrong"));
+        label.classList.add("selected");
+        els.saved.textContent = "Saved ✅";
+        els.hint.textContent = "You can go Next, or press “Check this answer”.";
+        setTop();
+      });
+
+      els.opts.appendChild(label);
+    });
+
+    if (typeof current === "number") {
+      els.saved.textContent = "Saved ✅";
+      els.hint.textContent = "You can change your answer anytime.";
+    } else {
+      els.saved.textContent = "Not answered yet.";
+      els.hint.textContent = "Pick one answer, then press Next.";
+    }
+
+    setTop();
+  }
+
+  function checkThis() {
+    const q = QUIZ.questions[idx];
+    const chosen = answers[idx];
+
+    const optionEls = Array.from(els.opts.querySelectorAll(".opt"));
+    optionEls.forEach(o => o.classList.remove("correct", "wrong"));
+
+    if (typeof q.answer_index === "number") {
+      optionEls[q.answer_index]?.classList.add("correct");
+    }
+
+    if (typeof chosen === "number") {
+      if (typeof q.answer_index === "number" && chosen !== q.answer_index) {
+        optionEls[chosen]?.classList.add("wrong");
+        els.hint.textContent = "Not quite — the correct answer is highlighted ✅";
+      } else {
+        els.hint.textContent = "Correct! ✅";
+      }
+    } else {
+      els.hint.textContent = "Choose an option first 🙂";
+    }
+  }
+
+  function go(n) {
+    idx = Math.max(0, Math.min(QUIZ.questions.length - 1, n));
+    renderQuestion();
+  }
+
+  function nextUnanswered() {
+    const total = QUIZ.questions.length;
+    for (let i = idx + 1; i < total; i++) {
+      if (answers[i] === null) return go(i);
+    }
+    for (let i = 0; i < total; i++) {
+      if (answers[i] === null) return go(i);
+    }
+    els.hint.textContent = "All questions are answered ✅ You can finish now.";
+  }
+
+  function showResults() {
+    const total = QUIZ.questions.length;
+    const score = computeScore();
+    els.statRight.textContent = String(score.right);
+    els.statWrong.textContent = String(score.wrong);
+    els.statAnswered.textContent = `${score.answered} / ${total}`;
+    els.scoreLine.textContent = `Score: ${score.right} / ${total}`;
+
+    els.resultsBody.innerHTML = "";
+    QUIZ.questions.forEach((q, i) => {
+      const tr = document.createElement("tr");
+      const chosenIdx = answers[i];
+      const chosenText = (typeof chosenIdx === "number") ? q.options[chosenIdx] : "—";
+      const correctText = (typeof q.answer_index === "number") ? q.options[q.answer_index] : (q.answer ?? "—");
+      const isRight = (typeof chosenIdx === "number" && typeof q.answer_index === "number" && chosenIdx === q.answer_index);
+
+      tr.innerHTML = `
+        <td>${i + 1}</td>
+        <td>${escapeHtml(q.question)}</td>
+        <td>${escapeHtml(chosenText)}</td>
+        <td>${escapeHtml(correctText)}</td>
+        <td>${isRight ? '<span class="tag good">Right ✅</span>' : (chosenIdx === null ? '<span class="tag bad">Not answered</span>' : '<span class="tag bad">Wrong ❌</span>')}</td>
+      `;
+      els.resultsBody.appendChild(tr);
+    });
+
+    els.quizCard.style.display = "none";
+    els.resultsCard.classList.add("show");
+    els.resultsCard.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function backToQuiz() {
+    els.resultsCard.classList.remove("show");
+    els.resultsCard.style.display = "none";
+    els.quizCard.style.display = "block";
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function resetAll() {
+    answers = Array(QUIZ.questions.length).fill(null);
+    idx = 0;
+    renderQuestion();
+    els.hint.textContent = "All cleared. Start again 🙂";
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  // Wire quiz buttons
+  els.btnPrev.addEventListener("click", () => go(idx - 1));
+  els.btnNext.addEventListener("click", () => go(idx + 1));
+  els.btnCheck.addEventListener("click", () => checkThis());
+  els.btnJumpUnanswered.addEventListener("click", () => nextUnanswered());
+  els.btnFinish.addEventListener("click", () => showResults());
+  els.btnBackToQuiz.addEventListener("click", () => backToQuiz());
+  els.btnPrint.addEventListener("click", () => window.print());
+  els.btnReset.addEventListener("click", () => resetAll());
+
+  // Loader buttons
+  els.btnLoad.addEventListener("click", async () => {
+    clearError();
+    try {
+      const url = els.src.value.trim();
+      const data = await loadFromUrl(url);
+      loadQuiz(data);
+    } catch (e) {
+      showError(
+        `Could not load quiz JSON.<br><br>` +
+        `<b>Error:</b> ${escapeHtml(e.message)}<br><br>` +
+        `If you're opening the HTML by double-clicking it, try running a local server in the folder:<br>` +
+        `<code>python -m http.server</code><br>` +
+        `Then open <code>http://localhost:8000/</code>`
+      );
+    }
+  });
+
+  els.btnLoadFile.addEventListener("click", () => els.file.click());
+  els.file.addEventListener("change", async (ev) => {
+    clearError();
+    const file = ev.target.files?.[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      loadQuiz(data);
+    } catch (e) {
+      showError(`Could not read that file as JSON. <b>Error:</b> ${escapeHtml(e.message)}`);
+    }
+  });
+
+  // Auto-load: from ?src=... or default
+  (async function autoLoad() {
+    const params = new URLSearchParams(location.search);
+    const src = params.get("src");
+    if (src) els.src.value = src;
+    // Try to auto-load default; if it fails, user can press Load
+    try {
+      const data = await loadFromUrl(els.src.value.trim());
+      loadQuiz(data);
+    } catch (_) {
+      // Silent — show loader UI
+    }
+  })();
+</script>
+</body>
+</html>
