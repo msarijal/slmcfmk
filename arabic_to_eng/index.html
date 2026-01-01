@@ -16,6 +16,7 @@
   <div class="wrap">
 
     <div class="topbar">
+      <button class="btn" id="btnBack" title="Main Page">Back</button>
       <span class="pill" id="pillPos">Question 1 / 66</span>
       <span class="pill" id="pillAnswered">Answered: 0 / 66</span>
       <button class="btn" id="btnReset" title="Start over">Reset</button>
@@ -136,6 +137,7 @@
   const QUESTIONS = prepareQuestions(QUIZ.questions);
 
   const els = {
+    btnBack: document.getElementById("btnBack"),
     pillPos: document.getElementById("pillPos"),
     pillAnswered: document.getElementById("pillAnswered"),
     bar: document.getElementById("bar"),
@@ -357,6 +359,13 @@
   }
 
   // Buttons
+  els.btnBack?.addEventListener("click", () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "../index.html";
+    }
+  });
   els.btnPrev.addEventListener("click", () => go(idx - 1));
   els.btnNext.addEventListener("click", () => go(idx + 1));
   els.btnCheck.addEventListener("click", () => checkThis());
