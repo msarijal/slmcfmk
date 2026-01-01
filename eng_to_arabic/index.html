@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Islam &amp; Qur&#x27;an Q&amp;A</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="safe">
+  <header>
+    <h1>Islam &amp; Qur&#x27;an Q&amp;A</h1>
+    <p class="sub">Answer each question. When you finish, you’ll see your choices, the correct answers, and your score.</p>
+  </header>
+
+  <div class="wrap">
+
+    <div class="topbar">
+      <span class="pill" id="pillPos">Question 1 / 66</span>
+      <span class="pill" id="pillAnswered">Answered: 0 / 66</span>
+      <button class="btn" id="btnReset" title="Start over">Reset</button>
+    </div>
+
+    <div class="progress" aria-hidden="true">
+      <div class="bar" id="bar"></div>
+    </div>
+
+    <div class="card" id="quizCard">
+      <div class="qhead">
+        <p class="q" id="qText">—</p>
+        <div class="qnum" id="qNum">Q—</div>
+      </div>
+
+      <div class="opts" id="opts"></div>
+
+      <div class="helper">
+        <span id="hint">Pick one answer, then press Next.</span>
+        <span id="saved">Not answered yet.</span>
+      </div>
+
+      <div class="nav">
+        <button class="btn" id="btnPrev">◀ Previous</button>
+        <button class="btn primary" id="btnNext">Next ▶</button>
+      </div>
+
+      <div class="nav3">
+        <button class="btn" id="btnCheck">Check this answer</button>
+        <button class="btn" id="btnJumpUnanswered">Go to next unanswered</button>
+        <button class="btn good" id="btnFinish">Finish & see results</button>
+      </div>
+    </div>
+
+    <div class="card results" id="resultsCard" style="margin-top: 12px;">
+      <div class="qhead" style="margin-bottom: 0;">
+        <p class="q">Results</p>
+        <div class="qnum" id="scoreLine">—</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="label">Right ✅</div>
+          <div class="value" id="statRight">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Wrong ❌</div>
+          <div class="value" id="statWrong">0</div>
+        </div>
+        <div class="stat">
+          <div class="label">Answered</div>
+          <div class="value" id="statAnswered">0</div>
+        </div>
+      </div>
+
+      <div class="table" id="resultsTableWrap">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Question</th>
+              <th>Your answer</th>
+              <th>Correct answer</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="nav" style="margin-top: 12px;">
+        <button class="btn" id="btnBackToQuiz">◀ Back to quiz</button>
+        <button class="btn primary" id="btnPrint">Print / Save as PDF</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  //const QUIZ = {"title": "Islam & Qur'an Q&A (Kids)", "version": 2, "count": 66, "questions": [{"id": 1, "question": "Which Surah does NOT start with Bismillah?", "options": ["Al-Anfal", "Al-Hashr", "Al-Mumtahanah", "At-Tawbah"], "answer": "At-Tawbah", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 2, "question": "Which Surah is the longest in the Quran?", "options": ["Al-Baqarah", "Al-Imran", "An-Nisa", "Al-Araf"], "answer": "Al-Baqarah", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 3, "question": "Rajab prepares Muslims spiritually for ____?", "options": ["Hajj", "Ramadan", "Eid", "Muharram"], "answer": "Ramadan", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 4, "question": "What is the Quranic name of Hellfire’s gatekeeper?", "options": ["Ridwan", "Zabaniyah", "Malik", "Harut"], "answer": "Malik", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 5, "question": "Which is the last Surah of the Quran?", "options": ["An-Nas", "Al-Falaq", "Al-Ikhlas", "Al-Kawthar"], "answer": "An-Nas", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 6, "question": "Which Surah begins with the word “Tabāraka”?", "options": ["Al-Kahf", "Al-Jinn", "Al-Furqan", "Al-Mulk"], "answer": "Al-Mulk", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 7, "question": "Who was the enemy of Prophet Musa?", "options": ["Namrood", "Firawn", "Abu Lahab", "Qarun"], "answer": "Firawn", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 8, "question": "Which Surah has exactly 3 verses?", "options": ["Al-Nasr", "Al-Asr", "Al-Ikhlas", "Al-Kawthar"], "answer": "Al-Kawthar", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 9, "question": "In which city was Prophet Muhammad ﷺ born?", "options": ["Madinah", "Makkah", "Taif", "Jerusalem"], "answer": "Makkah", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 10, "question": "Which miracle is especially associated with Prophet Sulaiman?", "options": ["Splitting sea", "Healing blind", "Speaking birds", "Building ark"], "answer": "Speaking birds", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 11, "question": "Isra refers to the night journey from Makkah to ____?", "options": ["Madinah", "Taif", "Sinai", "Jerusalem"], "answer": "Jerusalem", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 12, "question": "Which prophet was swallowed by a fish?", "options": ["Nuh", "Musa", "Yunus", "Ayub"], "answer": "Yunus", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 13, "question": "In which language was the Quran revealed?", "options": ["Arabic", "Hebrew", "Persian", "Syriac"], "answer": "Arabic", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 14, "question": "What is the first word revealed in the Quran?", "options": ["Allah", "Rabb", "Qalam", "Iqra"], "answer": "Iqra", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 17, "question": "Which prophet is mentioned only once in the Qur'an?", "options": ["Idris", "Dhul-Kifl", "Ilyas", "Uzair"], "answer": "Uzair", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 18, "question": "Which prophet received the Quran?", "options": ["Isa", "Muhammad", "Musa", "Ibrahim"], "answer": "Muhammad", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 19, "question": "Which angel is NOT mentioned by name in the Quran?", "options": ["Jibreel", "Mikaeel", "Malik", "Israfeel"], "answer": "Israfeel", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 20, "question": "Which angel brought revelation to Prophet Muhammad ﷺ?", "options": ["Jibreel", "Mikaeel", "Israfeel", "Malik"], "answer": "Jibreel", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 21, "question": "Which prophet split the sea by Allah’s command?", "options": ["Ibrahim", "Musa", "Nuh", "Isa"], "answer": "Musa", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 22, "question": "Which Surah is called Umm-ul-Quran?", "options": ["Al-Fatiha", "Al-Baqarah", "Ya-Sin", "Al-Ikhlas"], "answer": "Al-Fatiha", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 23, "question": "Which Surah is known as The Heart of the Quran?", "options": ["Al-Baqarah", "Ar-Rahman", "Ya-Sin", "Al-Waqiah"], "answer": "Ya-Sin", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 24, "question": "Which prophet is called Kaleemullah in the Quran?", "options": ["Isa", "Ibrahim", "Musa", "Nuh"], "answer": "Musa", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 25, "question": "Where did Isra end?", "options": ["Madinah", "Taif", "Mina", "Masjid al-Aqsa"], "answer": "Masjid al-Aqsa", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 26, "question": "Which Surah contains the verse of light (Ayat-un-Noor)?", "options": ["Al-Isra", "Al-Ahzab", "An-Nur", "Al-Furqan"], "answer": "An-Nur", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 27, "question": "Which ability was given to Prophet Yusuf?", "options": ["Control wind", "Interpret dreams", "Heal sick", "Split sea"], "answer": "Interpret dreams", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 28, "question": "Which Surah is named after an insect?", "options": ["Al-Ankabut", "Al-Baqarah", "Al-Fil", "Al-Naml"], "answer": "Al-Naml", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 29, "question": "Which prophet advised reducing the number of prayers?", "options": ["Ibrahim", "Isa", "Musa", "Nuh"], "answer": "Musa", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 30, "question": "How many Surahs are in the Quran?", "options": ["114", "112", "113", "115"], "answer": "114", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 31, "question": "Which prophet was thrown into a well?", "options": ["Musa", "Yusuf", "Isa", "Nuh"], "answer": "Yusuf", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 32, "question": "Rajab comes before which month?", "options": ["Ramadan", "Safar", "Shaban", "Dhul-Hijjah"], "answer": "Shaban", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 33, "question": "Which ability was given to Prophet Yusuf?", "options": ["Control wind", "Heal sick", "Interpret dreams", "Split sea"], "answer": "Interpret dreams", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 34, "question": "Which miracle is especially associated with Prophet Isa?", "options": ["Healing blind", "Splitting sea", "Speaking birds", "Building ark"], "answer": "Healing blind", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 35, "question": "In which Surah does Ayat-ul-Kursi appear?", "options": ["Al-Imran", "An-Nisa", "Al-Araf", "Al-Baqarah"], "answer": "Al-Baqarah", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 36, "question": "How many daily prayers were finally made obligatory during Mi‘raj?", "options": ["10", "20", "5", "50"], "answer": "5", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 37, "question": "The journey of Isra started from which mosque?", "options": ["Masjid an-Nabawi", "Masjid al-Aqsa", "Quba", "Masjid al-Haram"], "answer": "Masjid al-Haram", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 38, "question": "Which Surah is known as Qul-Huwallahu-Ahad?", "options": ["Al-Ikhlas", "Al-Falaq", "An-Nas", "Al-Kawthar"], "answer": "Al-Ikhlas", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 39, "question": "Which prophet could interpret dreams?", "options": ["Musa", "Dawood", "Sulaiman", "Yusuf"], "answer": "Yusuf", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 40, "question": "Rajab comes after which month?", "options": ["Rabi-ul-Awwal", "Shaban", "Ramadan", "Jumada-al-Akhirah"], "answer": "Jumada-al-Akhirah", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 41, "question": "How many verses (Ayat) are in Surah Al-Fatiha?", "options": ["7", "5", "6", "10"], "answer": "7", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 42, "question": "Who was the mother of Prophet Isa?", "options": ["Aasiya", "Maryam", "Khadijah", "Safiya"], "answer": "Maryam", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 43, "question": "What is the longest Surah in the Quran?", "options": ["Al-Araf", "Al-Nisa", "Al-Anam", "Al-Baqarah"], "answer": "Al-Baqarah", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 44, "question": "Which word occurs most frequently in the Qur'an?", "options": ["Rahman", "Rabb", "Allah", "Deen"], "answer": "Allah", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 45, "question": "Which city is mentioned most in the Quran?", "options": ["Makkah", "Madinah", "Jerusalem", "Taif"], "answer": "Makkah", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 46, "question": "Which Surah mentions all five pillars of Islam indirectly?", "options": ["Al-Baqarah", "An-Nur", "Al-Hajj", "Al-Anfal"], "answer": "Al-Hajj", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 47, "question": "Fighting was ____ in the month of Rajab in pre-Islamic times.?", "options": ["Allowed", "Encouraged", "Ordered", "Forbidden"], "answer": "Forbidden", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 48, "question": "Which prophet spoke as a baby?", "options": ["Isa", "Musa", "Yusuf", "Muhammad"], "answer": "Isa", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 49, "question": "Which animal carried the Prophet ﷺ during Isra?", "options": ["Horse", "Buraq", "Camel", "Mule"], "answer": "Buraq", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 50, "question": "In which city was Prophet Muhammad ﷺ born?", "options": ["Madinah", "Taif", "Makkah", "Jerusalem"], "answer": "Makkah", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 51, "question": "Which is the first Surah of the Quran?", "options": ["Al-Fatiha", "Al-Ikhlas", "Al-Baqarah", "An-Nas"], "answer": "Al-Fatiha", "answer_index": 0, "source": "all_qsn.txt (comma section)"}, {"id": 52, "question": "Mi‘raj was a journey to the ____?", "options": ["Desert", "Ocean", "Heavens", "Cave"], "answer": "Heavens", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 53, "question": "Rajab is one of the ____ sacred months.?", "options": ["Two", "Four", "Three", "Five"], "answer": "Four", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 54, "question": "What is Mi‘raj?", "options": ["Night prayer", "Ascension", "Migration", "Battle"], "answer": "Ascension", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 55, "question": "Which important Islamic event is commonly associated with Rajab?", "options": ["Hijrah", "Badr", "Isra", "Fath"], "answer": "Isra", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 56, "question": "Which prophet received the Quran?", "options": ["Isa", "Muhammad", "Musa", "Ibrahim"], "answer": "Muhammad", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 57, "question": "Rajab is the ____ month of the Islamic calendar.?", "options": ["Fifth", "Sixth", "Seventh", "Eighth"], "answer": "Seventh", "answer_index": 2, "source": "all_qsn.txt (comma section)"}, {"id": 58, "question": "Which obligation was gifted to Muslims during Mi‘raj?", "options": ["Zakah", "Salah", "Fasting", "Hajj"], "answer": "Salah", "answer_index": 1, "source": "all_qsn.txt (comma section)"}, {"id": 59, "question": "Which sacred month comes immediately before Ramadan?", "options": ["Muharram", "Safar", "Shaban", "Rajab"], "answer": "Rajab", "answer_index": 3, "source": "all_qsn.txt (comma section)"}, {"id": 1001, "question": "What is the name of the place Muslims face when praying", "options": ["Madinah", "Masjid", "Ka‘bah", "Mina"], "answer": "Ka‘bah", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1002, "question": "How many pillars of Islam are there", "options": ["Three", "Four", "Five", "Six"], "answer": "Five", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1003, "question": "What is the meaning of the word “Qur’an”", "options": ["To write", "To read silently", "To recite", "To memorise"], "answer": "To recite", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1004, "question": "Which Surah is equivalent to one-third of the Qur’an", "options": ["Surah Al-Falaq", "Surah An-Naas", "Surah Al-Ikhlas", "Surah Al-Kawthar"], "answer": "Surah Al-Ikhlas", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1005, "question": "What is the greatest Ayah in the Qur’an", "options": ["Ayat An-Noor", "Ayat Al-Ifk", "Ayat Ad-Dayn", "Ayat Al-Kursi"], "answer": "Ayat Al-Kursi", "answer_index": 3, "source": "all_qsn.txt (✅ section)"}, {"id": 1006, "question": "Which Surah has the word “Allah” in every Ayah", "options": ["Surah Al-Ikhlas", "Surah Al-Falaq", "Surah An-Naas", "Surah Al-Mujadalah"], "answer": "Surah Al-Mujadalah", "answer_index": 3, "source": "all_qsn.txt (✅ section)"}, {"id": 1007, "question": "Who was the first Hafiz of the Qur’an", "options": ["Angel Jibreel (AS)", "Prophet Musa (AS)", "Prophet Muhammad ﷺ", "Prophet Ibrahim (AS)"], "answer": "Prophet Muhammad ﷺ", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1008, "question": "How many Prophets are mentioned by name in the Qur’an", "options": ["20", "24", "25", "26"], "answer": "25", "answer_index": 2, "source": "all_qsn.txt (✅ section)"}, {"id": 1009, "question": "Which Surah of the Qur’an is named after a woman", "options": ["Surah An-Nisa", "Surah Maryam", "Surah Al-Ahzab", "Surah Al-Mumtahanah"], "answer": "Surah Maryam", "answer_index": 1, "source": "all_qsn.txt (✅ section)"}]};
+  const QUIZ = {"title":"Arabic Vocabulary (English → Arabic)","version":1,"count":42,"questions":[{"id":1,"question":"A book","options":["حَارٌّ","وَلَدٌ","كِتَابٌ","طَوِيلٌ"],"answer":"كِتَابٌ","answer_index":2},{"id":2,"question":"A mosque","options":["مَسْجِدٌ","سَرِيعٌ","قَمَرٌ","قَدِيمٌ"],"answer":"مَسْجِدٌ","answer_index":0},{"id":3,"question":"A house","options":["غُرْفَةٌ","بَيْتٌ","جِبَالٌ","بَابٌ"],"answer":"بَيْتٌ","answer_index":1},{"id":4,"question":"A pen","options":["قَلَمٌ","جَدِيدٌ","حَدِيقَة","سَيِّئٌ"],"answer":"قَلَمٌ","answer_index":0},{"id":5,"question":"mountains","options":["مُعَلِّمٌ","جِبَالٌ","أخٌ","كَبِيرٌ"],"answer":"جِبَالٌ","answer_index":1},{"id":6,"question":"Tree","options":["شَجَرَةٌ","طَالِبٌ","بَطِيءٌ","أُخْتٌ"],"answer":"شَجَرَةٌ","answer_index":0},{"id":7,"question":"Women","options":["قَصِيرٌ","اِمْرَأَةٌ","سُوقٌ","بَارِدٌ"],"answer":"اِمْرَأَةٌ","answer_index":1},{"id":8,"question":"A chair","options":["كُرْسِيٌ","شَمْسٌ","قَلَمٌ","جَيِّدٌ"],"answer":"كُرْسِيٌ","answer_index":0},{"id":9,"question":"An earth","options":["اَرْضٌ","طَاوِلَة","جَمِيلٌ","أم"],"answer":"اَرْضٌ","answer_index":0},{"id":10,"question":"A door","options":["بَابٌ","مَسْجِدٌ","سَرِيعٌ","قَمَرٌ"],"answer":"بَابٌ","answer_index":0},{"id":11,"question":"A brother","options":["أخٌ","حَدِيقَة","شَجَرَةٌ","قَدِيمٌ"],"answer":"أخٌ","answer_index":0},{"id":12,"question":"A sister","options":["أُخْتٌ","سَيِّئٌ","غُرْفَةٌ","بَارِدٌ"],"answer":"أُخْتٌ","answer_index":0},{"id":13,"question":"A school","options":["مَدْرَسَة","رَجُلٌ","قَصِيرٌ","كُرْسِيٌ"],"answer":"مَدْرَسَة","answer_index":0},{"id":14,"question":"A table","options":["طَاوِلَة","سُوقٌ","جَدِيدٌ","شَمْسٌ"],"answer":"طَاوِلَة","answer_index":0},{"id":15,"question":"A student","options":["طَالِبٌ","قَدِيمٌ","نَظِيفٌ","بَيْتٌ"],"answer":"طَالِبٌ","answer_index":0},{"id":16,"question":"A teacher","options":["مُعَلِّمٌ","بَطِيءٌ","جَيِّدٌ","اَرْضٌ"],"answer":"مُعَلِّمٌ","answer_index":0},{"id":17,"question":"Man","options":["رَجُلٌ","حَارٌّ","قَلَمٌ","أخٌ"],"answer":"رَجُلٌ","answer_index":0},{"id":18,"question":"A room","options":["غُرْفَةٌ","سَيِّئٌ","قَمَرٌ","كَبِيرٌ"],"answer":"غُرْفَةٌ","answer_index":0},{"id":19,"question":"Sun","options":["شَمْسٌ","أُخْتٌ","جَمِيلٌ","طَاوِلَة"],"answer":"شَمْسٌ","answer_index":0},{"id":20,"question":"Moon","options":["قَمَرٌ","بَابٌ","بَارِدٌ","مَدْرَسَة"],"answer":"قَمَرٌ","answer_index":0},{"id":21,"question":"A garden","options":["حَدِيقَة","طَوِيلٌ","سَرِيعٌ","كُرْسِيٌ"],"answer":"حَدِيقَة","answer_index":0},{"id":22,"question":"A Boy","options":["وَلَدٌ","اِمْرَأَةٌ","قَدِيمٌ","جَدِيدٌ"],"answer":"وَلَدٌ","answer_index":0},{"id":23,"question":"A girl","options":["بِنْتٌ","حَارٌّ","قَلَمٌ","سُوقٌ"],"answer":"بِنْتٌ","answer_index":0},{"id":24,"question":"A mother","options":["أم","جِبَالٌ","غُرْفَةٌ","بَطِيءٌ"],"answer":"أم","answer_index":0},{"id":25,"question":"A father","options":["أب","شَجَرَةٌ","سَيِّئٌ","قَمَرٌ"],"answer":"أب","answer_index":0},{"id":26,"question":"Market","options":["سُوقٌ","مُعَلِّمٌ","جَيِّدٌ","بَابٌ"],"answer":"سُوقٌ","answer_index":0},{"id":27,"question":"clean","options":["نَظِيفٌ","قَصِيرٌ","طَوِيلٌ","كِتَابٌ"],"answer":"نَظِيفٌ","answer_index":0},{"id":28,"question":"dirty","options":["وَسِخٌ","قَدِيمٌ","سَرِيعٌ","اَرْضٌ"],"answer":"وَسِخٌ","answer_index":0},{"id":29,"question":"Beautiful","options":["جَمِيلٌ","أخٌ","مَسْجِدٌ","بَارِدٌ"],"answer":"جَمِيلٌ","answer_index":0},{"id":30,"question":"tall","options":["طَوِيلٌ","حَدِيقَة","شَمْسٌ","بِنْتٌ"],"answer":"طَوِيلٌ","answer_index":0},{"id":31,"question":"Short","options":["قَصِيرٌ","جَدِيدٌ","غُرْفَةٌ","قَلَمٌ"],"answer":"قَصِيرٌ","answer_index":0},{"id":32,"question":"big","options":["كَبِيرٌ","سَيِّئٌ","أم","طَالِبٌ"],"answer":"كَبِيرٌ","answer_index":0},{"id":33,"question":"small","options":["صَغِيرٌ","وَلَدٌ","بَابٌ","مَدْرَسَة"],"answer":"صَغِيرٌ","answer_index":0},{"id":34,"question":"Great","options":["عَظِيمٌ","بَطِيءٌ","قَمَرٌ","كُرْسِيٌ"],"answer":"عَظِيمٌ","answer_index":0},{"id":35,"question":"Hot","options":["حَارٌّ","قَدِيمٌ","نَظِيفٌ","اِمْرَأَةٌ"],"answer":"حَارٌّ","answer_index":0},{"id":36,"question":"good","options":["جَيِّدٌ","سُوقٌ","رَجُلٌ","شَجَرَةٌ"],"answer":"جَيِّدٌ","answer_index":0},{"id":37,"question":"Bad","options":["سَيِّئٌ","قَصِيرٌ","طَوِيلٌ","أخٌ"],"answer":"سَيِّئٌ","answer_index":0},{"id":38,"question":"new","options":["جَدِيدٌ","أب","بَارِدٌ","قَمَرٌ"],"answer":"جَدِيدٌ","answer_index":0},{"id":39,"question":"old","options":["قَدِيمٌ","شَمْسٌ","قَلَمٌ","غُرْفَةٌ"],"answer":"قَدِيمٌ","answer_index":0},{"id":40,"question":"fast","options":["سَرِيعٌ","بِنْتٌ","مَدْرَسَة","وَسِخٌ"],"answer":"سَرِيعٌ","answer_index":0},{"id":41,"question":"slow","options":["بَطِيءٌ","حَدِيقَة","كِتَابٌ","عَظِيمٌ"],"answer":"بَطِيءٌ","answer_index":0},{"id":42,"question":"Cold","options":["بَارِدٌ","حَارٌّ","سُوقٌ","طَاوِلَة"],"answer":"بَارِدٌ","answer_index":0}]}
+  const total = QUIZ.questions.length;
+
+  function shuffleInPlace(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function prepareQuestions(rawQuestions) {
+    const qs = rawQuestions.map(q => ({ ...q, options: Array.isArray(q.options) ? [...q.options] : [] }));
+
+    // Randomize question order (each question appears exactly once)
+    shuffleInPlace(qs);
+
+    // Randomize options per question, while keeping the correct answer aligned
+    qs.forEach(q => {
+      if (!Array.isArray(q.options) || q.options.length === 0) return;
+
+      const answerText = (typeof q.answer_index === "number")
+        ? q.options[q.answer_index]
+        : (q.answer ?? null);
+
+      const indexed = q.options.map(text => ({ text }));
+      shuffleInPlace(indexed);
+      q.options = indexed.map(x => x.text);
+
+      if (answerText !== null) {
+        const newIdx = q.options.findIndex(t => t === answerText);
+        q.answer_index = newIdx;
+        q.answer = answerText;
+      }
+    });
+
+    return qs;
+  }
+
+  const QUESTIONS = prepareQuestions(QUIZ.questions);
+
+  const els = {
+    pillPos: document.getElementById("pillPos"),
+    pillAnswered: document.getElementById("pillAnswered"),
+    bar: document.getElementById("bar"),
+    qText: document.getElementById("qText"),
+    qNum: document.getElementById("qNum"),
+    opts: document.getElementById("opts"),
+    hint: document.getElementById("hint"),
+    saved: document.getElementById("saved"),
+    btnPrev: document.getElementById("btnPrev"),
+    btnNext: document.getElementById("btnNext"),
+    btnCheck: document.getElementById("btnCheck"),
+    btnFinish: document.getElementById("btnFinish"),
+    btnReset: document.getElementById("btnReset"),
+    btnJumpUnanswered: document.getElementById("btnJumpUnanswered"),
+    quizCard: document.getElementById("quizCard"),
+    resultsCard: document.getElementById("resultsCard"),
+    resultsBody: document.querySelector("#resultsTable tbody"),
+    statRight: document.getElementById("statRight"),
+    statWrong: document.getElementById("statWrong"),
+    statAnswered: document.getElementById("statAnswered"),
+    scoreLine: document.getElementById("scoreLine"),
+    btnBackToQuiz: document.getElementById("btnBackToQuiz"),
+    btnPrint: document.getElementById("btnPrint"),
+  };
+
+  // answers[idx] = chosen option index (number) or null
+  const answers = Array(total).fill(null);
+
+  let idx = 0;
+  let checkedThis = false;
+
+  function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+
+  function answeredCount() {
+    return answers.filter(v => typeof v === "number").length;
+  }
+
+  function computeScore() {
+    let right = 0, wrong = 0, answered = 0;
+    QUESTIONS.forEach((q, i) => {
+      const a = answers[i];
+      if (typeof a === "number") {
+        answered++;
+        if (a === q.answer_index) right++;
+        else wrong++;
+      }
+    });
+    return { right, wrong, answered };
+  }
+
+  function setTop() {
+    els.pillPos.textContent = `Question ${idx + 1} / ${total}`;
+    els.pillAnswered.textContent = `Answered: ${answeredCount()} / ${total}`;
+    els.bar.style.width = `${((idx + 1) / total) * 100}%`;
+
+    els.btnPrev.disabled = idx === 0;
+    els.btnNext.disabled = idx === total - 1;
+
+    const score = computeScore();
+    const allAnswered = score.answered === total;
+    els.btnFinish.textContent = allAnswered ? "Finish & see results" : `Finish (answered ${score.answered}/${total})`;
+  }
+
+  function renderQuestion() {
+    checkedThis = false;
+    const q = QUESTIONS[idx];
+    els.qText.textContent = q.question;
+    els.qNum.textContent = `Q${q.id}`;
+
+    els.opts.innerHTML = "";
+    const name = "q_" + idx;
+
+    const current = answers[idx];
+
+    q.options.forEach((opt, oi) => {
+      const label = document.createElement("label");
+      label.className = "opt";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = name;
+      input.value = String(oi);
+
+      if (current === oi) {
+        input.checked = true;
+        label.classList.add("selected");
+      }
+
+      const span = document.createElement("span");
+      span.textContent = opt;
+
+      label.appendChild(input);
+      label.appendChild(span);
+
+      label.addEventListener("click", () => {
+        // Save answer
+        answers[idx] = oi;
+        // Visual selected state
+        Array.from(els.opts.querySelectorAll(".opt")).forEach(o => o.classList.remove("selected", "correct", "wrong"));
+        label.classList.add("selected");
+
+        els.saved.textContent = "Saved ✅";
+        els.hint.textContent = "You can go Next, or press “Check this answer”.";
+        setTop();
+      });
+
+      els.opts.appendChild(label);
+    });
+
+    if (typeof current === "number") {
+      els.saved.textContent = "Saved ✅";
+      els.hint.textContent = "You can change your answer anytime.";
+    } else {
+      els.saved.textContent = "Not answered yet.";
+      els.hint.textContent = "Pick one answer, then press Next.";
+    }
+
+    setTop();
+  }
+
+  function checkThis() {
+    const q = QUESTIONS[idx];
+    const chosen = answers[idx];
+
+    // Clear marks
+    const optionEls = Array.from(els.opts.querySelectorAll(".opt"));
+    optionEls.forEach(o => o.classList.remove("correct", "wrong"));
+
+    if (typeof q.answer_index === "number") {
+      optionEls[q.answer_index]?.classList.add("correct");
+    }
+
+    if (typeof chosen === "number") {
+      if (typeof q.answer_index === "number" && chosen !== q.answer_index) {
+        optionEls[chosen]?.classList.add("wrong");
+        els.hint.textContent = "Not quite — the correct answer is highlighted ✅";
+      } else {
+        els.hint.textContent = "Correct! ✅";
+      }
+    } else {
+      els.hint.textContent = "Choose an option first 🙂";
+    }
+
+    checkedThis = true;
+  }
+
+  function go(n) {
+    idx = clamp(n, 0, total - 1);
+    renderQuestion();
+  }
+
+  function nextUnanswered() {
+    for (let i = idx + 1; i < total; i++) {
+      if (answers[i] === null) return go(i);
+    }
+    for (let i = 0; i < total; i++) {
+      if (answers[i] === null) return go(i);
+    }
+    // If none, stay
+    els.hint.textContent = "All questions are answered ✅ You can finish now.";
+  }
+
+  function showResults() {
+    const score = computeScore();
+    els.statRight.textContent = String(score.right);
+    els.statWrong.textContent = String(score.wrong);
+    els.statAnswered.textContent = `${score.answered} / ${total}`;
+    els.scoreLine.textContent = `Score: ${score.right} / ${total}`;
+
+    els.resultsBody.innerHTML = "";
+
+    QUESTIONS.forEach((q, i) => {
+      const tr = document.createElement("tr");
+
+      const chosenIdx = answers[i];
+      const chosenText = (typeof chosenIdx === "number") ? q.options[chosenIdx] : "—";
+      const correctText = (typeof q.answer_index === "number") ? q.options[q.answer_index] : (q.answer ?? "—");
+      const isRight = (typeof chosenIdx === "number" && typeof q.answer_index === "number" && chosenIdx === q.answer_index);
+
+      tr.innerHTML = `
+        <td>${i + 1}</td>
+        <td>${escapeHtml(q.question)}</td>
+        <td>${escapeHtml(chosenText)}</td>
+        <td>${escapeHtml(correctText)}</td>
+        <td>${isRight ? '<span class="tag good">Right ✅</span>' : (chosenIdx === null ? '<span class="tag bad">Not answered</span>' : '<span class="tag bad">Wrong ❌</span>')}</td>
+      `;
+      els.resultsBody.appendChild(tr);
+    });
+
+    // swap views
+    els.quizCard.style.display = "none";
+    els.resultsCard.classList.add("show");
+    els.resultsCard.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function backToQuiz() {
+    els.resultsCard.classList.remove("show");
+    els.resultsCard.style.display = "none";
+    els.quizCard.style.display = "block";
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function resetAll() {
+    for (let i = 0; i < total; i++) answers[i] = null;
+    idx = 0;
+    renderQuestion();
+    els.hint.textContent = "All cleared. Start again 🙂";
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  // Buttons
+  els.btnPrev.addEventListener("click", () => go(idx - 1));
+  els.btnNext.addEventListener("click", () => go(idx + 1));
+  els.btnCheck.addEventListener("click", () => checkThis());
+  els.btnJumpUnanswered.addEventListener("click", () => nextUnanswered());
+  els.btnFinish.addEventListener("click", () => showResults());
+  els.btnBackToQuiz.addEventListener("click", () => backToQuiz());
+  els.btnPrint.addEventListener("click", () => window.print());
+  els.btnReset.addEventListener("click", () => resetAll());
+
+  // Keyboard support (desktop)
+  document.addEventListener("keydown", (e) => {
+    if (els.quizCard.style.display === "none") return;
+    if (e.key === "ArrowLeft") go(idx - 1);
+    if (e.key === "ArrowRight") go(idx + 1);
+  });
+
+  // Initial render
+  renderQuestion();
+</script>
+</body>
+</html>
