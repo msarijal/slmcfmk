@@ -321,8 +321,8 @@
       tr.innerHTML = `
         <td>${i + 1}</td>
         <td>${escapeHtml(q.question)}</td>
-        <td>${escapeHtml(chosenText)}</td>
         <td>${escapeHtml(correctText)}</td>
+        <td>${escapeHtml(chosenText)}</td>
         <td>${isRight ? '<span class="tag good">Right ✅</span>' : (chosenIdx === null ? '<span class="tag bad">Not answered</span>' : '<span class="tag bad">Wrong ❌</span>')}</td>
       `;
       els.resultsBody.appendChild(tr);
