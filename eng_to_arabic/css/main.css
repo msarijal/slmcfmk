@@ -272,7 +272,7 @@
       .stats { grid-template-columns: 1fr; }
       .opts { grid-template-columns: 1fr; }
       .nav { grid-template-columns: 1fr 1fr; }
-      .nav3 { grid-template-columns: 1fr; }
+      .nav3 { grid-template-columns: 1fr 1fr; }
       h1 { font-size: 17px; }
       .q { font-size: 18px; }
     }
