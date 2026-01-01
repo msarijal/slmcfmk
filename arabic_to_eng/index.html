@@ -12,57 +12,6 @@
     <h1>Islam &amp; Qur&#x27;an Q&amp;A</h1>
     <p class="sub">Answer each question. When you finish, you’ll see your choices, the correct answers, and your score.</p>
   </header>
-
-<!-- Add this div before the script section, after the quiz-card or at an appropriate location in the body -->
-<div id="category-select" class="card" style="max-width:600px;margin:2rem auto;padding:2rem;text-align:center;">
-  <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
-    <button class="btn category-btn" data-quiz="noun">Noun</button>
-    <button class="btn category-btn" data-quiz="verb">Verb</button>
-    <button class="btn category-btn" data-quiz="adjective">Adjective</button>
-    <button class="btn category-btn" data-quiz="preposition">Preposition</button>
-    <button class="btn category-btn" data-quiz="pronoun">Pronoun</button>
-    <button class="btn category-btn" data-quiz="all">All</button>
-  </div>
-</div>
-
-<script>
-  // Define different quizzes
-  const QUIZ_NOUN = {"title":"Arabic Nouns","questions":[/* noun questions */]};
-  const QUIZ_VERB = {"title":"Arabic Verbs","questions":[/* verb questions */]};
-  const QUIZ_ADJECTIVE = {"title":"Arabic Adjectives","questions":[/* adjective questions */]};
-  const QUIZ_PREPOSITION = {"title":"Arabic Prepositions","questions":[/* preposition questions */]};
-  const QUIZ_PRONOUN = {"title":"Arabic Pronouns","questions":[/* pronoun questions */]};
-  //const QUIZ_ALL = /* your existing QUIZ object */;
-
-  const QUIZZES = {
-    noun: QUIZ_NOUN,
-    verb: QUIZ_VERB,
-    adjective: QUIZ_ADJECTIVE,
-    preposition: QUIZ_PREPOSITION,
-    pronoun: QUIZ_PRONOUN,
-    all: QUIZ_ALL
-  };
-
-  let QUIZ = null;
-  let total = 0;
-
-  // Category button click handlers
-  document.querySelectorAll('.category-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const quizKey = btn.dataset.quiz;
-      QUIZ = QUIZZES[quizKey];
-      total = QUIZ.questions.length;
-      document.getElementById('category-select').style.display = 'none';
-      document.getElementById('quiz-card').style.display = 'block';
-      startQuiz();
-    });
-  });
-
-  function startQuiz() {
-    QUESTIONS = prepareQuestions(QUIZ.questions);
-    // Initialize your quiz rendering here
-  }
-</script>
   
   <div class="wrap">
 
