@@ -184,8 +184,24 @@ q.options.forEach((opt, oi) => {
     const span = document.createElement("span");
     span.textContent = opt;
 
+    const optSpeakText = (typeof opt === "string" && /[\u0600-\u06FF]/.test(opt)) ? opt.trim() : "";
+    let speakBtn = null;
+    if (optSpeakText) {
+      speakBtn = document.createElement("button");
+      speakBtn.type = "button";
+      speakBtn.className = "btn speak";
+      speakBtn.textContent = "▶";
+      speakBtn.title = "Speak";
+      speakBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        speakArabic(optSpeakText);
+      });
+    }
+
     label.appendChild(input);
     label.appendChild(span);
+    if (speakBtn) label.appendChild(speakBtn);
 
     label.addEventListener("click", () => {
     // Save answer

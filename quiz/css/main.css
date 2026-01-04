@@ -219,8 +219,13 @@
       background: rgba(239,68,68,.13);
     }
     .opt span {
+      flex: 1;
       line-height: 1.25;
       font-size: 30px;
+    }
+    .opt .btn.speak {
+      margin-left: auto;
+      align-self: center;
     }
     .helper {
       margin-top: 10px;
