@@ -8,7 +8,9 @@ return arr;
 }
 
 function prepareQuestions(rawQuestions) {
-const qs = rawQuestions.map(q => ({ ...q, options: Array.isArray(q.options) ? [...q.options] : [] }));
+const qs = rawQuestions
+  .filter(q => q && typeof q === "object")
+  .map(q => ({ ...q, options: Array.isArray(q.options) ? [...q.options] : [] }));
 
 // Randomize question order (each question appears exactly once)
 shuffleInPlace(qs);
