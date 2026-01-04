@@ -98,7 +98,7 @@
     }
 
     .drawerBack {
-      position: fixed;
+      position: fixed !important;
       inset: 0;
       background: rgba(0, 0, 0, .55);
       opacity: 0;
@@ -111,12 +111,12 @@
       pointer-events: auto;
     }
     .drawer {
-      position: fixed;
+      position: fixed !important;
       top: 0;
       left: 0;
       height: 100svh;
       width: min(360px, 88vw);
-      transform: translateX(-110%);
+      transform: translateX(-110%) !important;
       transition: transform .18s ease;
       z-index: 61;
       padding: 12px;
@@ -126,7 +126,7 @@
       border-right: 1px solid var(--border);
     }
     .drawer.open {
-      transform: translateX(0);
+      transform: translateX(0) !important;
     }
     .drawer .menuItem {
       width: 100%;
