@@ -52,6 +52,7 @@ pillAnswered: document.getElementById("pillAnswered"),
 bar: document.getElementById("bar"),
 qText: document.getElementById("qText"),
 qNum: document.getElementById("qNum"),
+btnSpeak: document.getElementById("btnSpeak"),
 opts: document.getElementById("opts"),
 hint: document.getElementById("hint"),
 saved: document.getElementById("saved"),
@@ -71,6 +72,45 @@ scoreLine: document.getElementById("scoreLine"),
 btnBackToQuiz: document.getElementById("btnBackToQuiz"),
 btnPrint: document.getElementById("btnPrint"),
 };
+
+function cancelSpeech() {
+  if (window.speechSynthesis && window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+  }
+}
+
+function getSpeakTextFromQuestion(qText) {
+  if (typeof qText !== "string") return "";
+
+  // Prefer text inside parentheses if that contains Arabic (e.g. "(واحِدٌ) ١")
+  const m = qText.match(/\(([^)]+)\)/);
+  if (m && /[\u0600-\u06FF]/.test(m[1])) return m[1].trim();
+
+  // Otherwise, speak the full text if it contains Arabic
+  if (/[\u0600-\u06FF]/.test(qText)) return qText.trim();
+
+  return "";
+}
+
+function pickArabicVoice() {
+  if (!window.speechSynthesis || typeof window.speechSynthesis.getVoices !== "function") return null;
+  const voices = window.speechSynthesis.getVoices();
+  return voices.find(v => typeof v.lang === "string" && v.lang.toLowerCase().startsWith("ar")) ?? null;
+}
+
+function speakArabic(text) {
+  if (!text) return;
+  if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== "function") return;
+
+  cancelSpeech();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "ar-SA";
+
+  const v = pickArabicVoice();
+  if (v) utter.voice = v;
+
+  window.speechSynthesis.speak(utter);
+}
 
 // answers[idx] = chosen option index (number) or null
 const answers = Array(total).fill(null);
@@ -115,6 +155,12 @@ checkedThis = false;
 const q = QUESTIONS[idx];
 els.qText.textContent = q.question;
 els.qNum.textContent = `Q${q.id}`;
+
+const speakText = getSpeakTextFromQuestion(q.question);
+if (els.btnSpeak) {
+  els.btnSpeak.disabled = !speakText;
+  els.btnSpeak.dataset.speak = speakText;
+}
 
 els.opts.innerHTML = "";
 const name = "q_" + idx;
@@ -194,6 +240,7 @@ checkedThis = true;
 }
 
 function go(n) {
+cancelSpeech();
 idx = clamp(n, 0, total - 1);
 renderQuestion();
 }
@@ -274,6 +321,10 @@ if (window.history.length > 1) {
 } else {
     window.location.href = "../index.html";
 }
+});
+els.btnSpeak?.addEventListener("click", () => {
+const text = els.btnSpeak?.dataset?.speak ?? "";
+speakArabic(text);
 });
 els.btnPrev.addEventListener("click", () => go(idx - 1));
 els.btnNext.addEventListener("click", () => go(idx + 1));

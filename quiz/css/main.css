@@ -97,6 +97,54 @@
       transform: none;
     }
 
+    .drawerBack {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .55);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease;
+      z-index: 60;
+    }
+    .drawerBack.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100svh;
+      width: min(360px, 88vw);
+      transform: translateX(-110%);
+      transition: transform .18s ease;
+      z-index: 61;
+      padding: 12px;
+      padding-top: calc(12px + env(safe-area-inset-top));
+      overflow: auto;
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+    }
+    .drawer.open {
+      transform: translateX(0);
+    }
+    .drawer .menuItem {
+      width: 100%;
+      text-align: left;
+    }
+    .drawer .menuTitle {
+      display: block;
+      font-size: 14px;
+      font-weight: 750;
+      margin-bottom: 6px;
+    }
+    .drawer .menuDesc {
+      display: block;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.35;
+    }
+
     .card {
       background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
       border: 1px solid var(--border);
@@ -122,6 +170,20 @@
       line-height: 1.35;
       font-weight: 650;
       flex: 1;
+    }
+    .qline {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .qline .q {
+      margin: 0;
+      flex: 1;
+    }
+    .btn.speak {
+      padding: 6px 10px;
+      min-width: 38px;
+      line-height: 1;
     }
     .opts {
       display: grid;
@@ -158,7 +220,7 @@
     }
     .opt span {
       line-height: 1.25;
-      font-size: 17px;
+      font-size: 30px;
     }
     .helper {
       margin-top: 10px;
