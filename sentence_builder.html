@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Arabic Sentence Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/sentence_builder.css">
+</head>
+
+<body>
+  <header>
+    <img src="images/logo-1.png" alt="Islamic Learning">
+    <h1>Arabic Sentence Builder</h1>
+    <p>Click words to build the Arabic sentence for the English prompt</p>
+  </header>
+
+  <main class="page">
+    <div class="row">
+      <section class="panel">
+        <h2 class="sectionTitle">Prompt</h2>
+        <div class="prompt">
+          <div class="controls" style="justify-content: space-between;">
+            <button class="btn2" id="btnPrevPrompt" type="button">Previous</button>
+            <button class="btn2" id="btnNextPrompt" type="button">Next</button>
+          </div>
+          <select id="promptSelect" aria-label="Choose a sentence"></select>
+          <div class="english" id="englishText"></div>
+          <p class="muted">Tip: click Arabic words below. Tap a word in your built sentence to remove it.</p>
+        </div>
+
+        <hr style="border:0;border-top:1px solid var(--border);margin:14px 0;">
+
+        <h2 class="sectionTitle">Your Arabic sentence</h2>
+        <div class="builder">
+          <div class="arabicLine" id="builtLine" aria-label="Built Arabic sentence"></div>
+          <div class="controls">
+            <button class="btn2" id="btnUndo" type="button">Undo</button>
+            <button class="btn2 warn" id="btnClear" type="button">Clear</button>
+            <button class="btn2" id="btnSpeak" type="button">Speak</button>
+            <button class="btn2 primary" id="btnCheck" type="button">Check</button>
+            <button class="btn2" id="btnShowAnswer" type="button">Show answer</button>
+          </div>
+          <div class="result" id="result">Pick a prompt to start.</div>
+          <div class="answerBox" id="answerBox"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="sectionTitle">Word bank</h2>
+        <div class="banks">
+          <div class="bankTabs" role="tablist" aria-label="Word bank tabs">
+            <button class="bankTab active" type="button" data-bank="nouns">Nouns</button>
+            <button class="bankTab" type="button" data-bank="preps">Prepositions</button>
+            <button class="bankTab" type="button" data-bank="verbs">Verbs</button>
+          </div>
+
+          <div id="bankGrid" class="bankGrid" aria-label="Arabic word buttons"></div>
+
+          <p class="muted">You can add more words/sentences by editing the arrays in this page.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 SLMCFMK, Fishermead Mosque, MK6 2LA
+    <br>
+    Free for personal & educational use · CC BY-NC 4.0
+    <br>Sentence Builder
+  </footer>
+
+  <script>
+    function stripHarakat(s) {
+      if (typeof s !== "string") return "";
+      return s
+        .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    const WORDS = {
+      nouns: [
+        "كِتَابٌ","مَسْجِدٌ","بَيْتٌ","قَلَمٌ","جِبَالٌ","شَجَرَةٌ","اِمْرَأَةٌ",
+        "كُرْسِيٌ","اَرْضٌ","بَابٌ","أخٌ","أُخْتٌ","مَدْرَسَة","طَاوِلَة",
+        "طَالِبٌ","مُعَلِّمٌ","رَجُلٌ","غُرْفَةٌ","شَمْسٌ","قَمَرٌ","حَدِيقَة",
+        "وَلَدٌ","بِنْتٌ","أم","أب","سُوقٌ","نَظِيفٌ","وَسِخٌ",
+        "جَمِيلٌ","طَوِيلٌ","قَصِيرٌ","كَبِيرٌ","صَغِيرٌ","عَظِيمٌ","حَارٌّ",
+        "جَيِّدٌ","سَيِّئٌ","جَدِيدٌ","قَدِيمٌ","سَرِيعٌ","بَطِيءٌ","بَارِدٌ",
+        "الله"
+      ],
+      preps: [
+        "مَعَ","بِ","مِنْ","اِلَى","عَلَى","فِي","خَلْفَ","حَوْلَ",
+        "لِ","و","بين","تَحْتُ","فَوْقَ","حَتَّى","قَبْلَ",
+        "بَعْدُ","عن","عِنْدَ","اَمَامَ"
+      ],
+      verbs: [
+        "كتب","سجد","ركع","شكر","نصر","عَمِلَ","سَمِعَ","جَلَسَ",
+        "فتح","صبر","حمل","عرف","عبد","نظر","خلق","وَقَفَ",
+        "خرج","ذكر","فعل","رجع","دخل","غفر","أَكَلَ",
+        "عَلَّمَ","ساعَدَ","رَأَى"
+      ]
+    };
+
+    const PROMPTS = [
+      {
+        id: "p1",
+        english: "The boy wrote a book.",
+        answer: ["كتب","الولد","كتاب"]
+      },
+      {
+        id: "p2",
+        english: "The man entered the mosque.",
+        answer: ["دخل","الرجل","المسجد"]
+      },
+      {
+        id: "p3",
+        english: "The teacher taught the student.",
+        answer: ["علم","المعلم","الطالب"]
+      },
+      {
+        id: "p4",
+        english: "The girl opened the door.",
+        answer: ["فتح","البنت","الباب"]
+      },
+      {
+        id: "p5",
+        english: "The father helped the mother.",
+        answer: ["ساعد","الأب","الأم"]
+      },
+      {
+        id: "p6",
+        english: "The student wrote with a pen.",
+        answer: ["كتب","الطالب","ب","قلم"]
+      },
+      {
+        id: "p7",
+        english: "The brother entered the house.",
+        answer: ["دخل","الأخ","البيت"]
+      },
+      {
+        id: "p8",
+        english: "The sister opened the door.",
+        answer: ["فتح","الأخت","الباب"]
+      },
+      {
+        id: "p9",
+        english: "The man worked in the market.",
+        answer: ["عمل","الرجل","في","السوق"]
+      },
+      {
+        id: "p10",
+        english: "The woman entered the garden.",
+        answer: ["دخل","المرأة","الحديقة"]
+      },
+      {
+        id: "p11",
+        english: "The boy saw the moon.",
+        answer: ["رأى","الولد","القمر"]
+      },
+      {
+        id: "p12",
+        english: "The girl saw the sun.",
+        answer: ["رأى","البنت","الشمس"]
+      },
+      {
+        id: "p13",
+        english: "The teacher entered the school.",
+        answer: ["دخل","المعلم","المدرسة"]
+      },
+      {
+        id: "p14",
+        english: "The student carried a book.",
+        answer: ["حمل","الطالب","كتاب"]
+      },
+      {
+        id: "p15",
+        english: "The man opened the door.",
+        answer: ["فتح","الرجل","الباب"]
+      },
+      {
+        id: "p16",
+        english: "The boy exited the house.",
+        answer: ["خرج","الولد","البيت"]
+      },
+      {
+        id: "p17",
+        english: "The girl entered the room.",
+        answer: ["دخل","البنت","الغرفة"]
+      },
+      {
+        id: "p18",
+        english: "The man returned to the house.",
+        answer: ["رجع","الرجل","الى","البيت"]
+      },
+      {
+        id: "p19",
+        english: "The teacher wrote on the table.",
+        answer: ["كتب","المعلم","على","الطاولة"]
+      },
+      {
+        id: "p20",
+        english: "The student heard the teacher.",
+        answer: ["سمع","الطالب","المعلم"]
+      },
+      {
+        id: "p21",
+        english: "The boy thanked the teacher.",
+        answer: ["شكر","الولد","المعلم"]
+      },
+      {
+        id: "p22",
+        english: "The man remembered the mosque.",
+        answer: ["ذكر","الرجل","المسجد"]
+      },
+      {
+        id: "p23",
+        english: "The woman worshipped Allah.",
+        answer: ["عبد","المرأة","الله"]
+      },
+      {
+        id: "p24",
+        english: "The boy was patient.",
+        answer: ["صبر","الولد"]
+      },
+      {
+        id: "p25",
+        english: "The man forgave the boy.",
+        answer: ["غفر","الرجل","الولد"]
+      },
+      {
+        id: "p26",
+        english: "The teacher helped the student.",
+        answer: ["ساعد","المعلم","الطالب"]
+      },
+      {
+        id: "p27",
+        english: "The man carried the chair.",
+        answer: ["حمل","الرجل","الكرسي"]
+      },
+      {
+        id: "p28",
+        english: "The student entered the school.",
+        answer: ["دخل","الطالب","المدرسة"]
+      },
+      {
+        id: "p29",
+        english: "The boy exited the room.",
+        answer: ["خرج","الولد","الغرفة"]
+      },
+      {
+        id: "p30",
+        english: "The girl opened the book.",
+        answer: ["فتح","البنت","الكتاب"]
+      },
+      {
+        id: "p31",
+        english: "The house is big.",
+        answer: ["البيت","كبير"]
+      },
+      {
+        id: "p32",
+        english: "The room is small.",
+        answer: ["الغرفة","صغير"]
+      },
+      {
+        id: "p33",
+        english: "The market is clean.",
+        answer: ["السوق","نظيف"]
+      },
+      {
+        id: "p34",
+        english: "The garden is beautiful.",
+        answer: ["الحديقة","جميل"]
+      },
+      {
+        id: "p35",
+        english: "The pen is new.",
+        answer: ["القلم","جديد"]
+      },
+      {
+        id: "p36",
+        english: "The book is old.",
+        answer: ["الكتاب","قديم"]
+      },
+      {
+        id: "p37",
+        english: "The boy is tall.",
+        answer: ["الولد","طويل"]
+      },
+      {
+        id: "p38",
+        english: "The girl is short.",
+        answer: ["البنت","قصير"]
+      },
+      {
+        id: "p39",
+        english: "The sun is hot.",
+        answer: ["الشمس","حار"]
+      },
+      {
+        id: "p40",
+        english: "The moon is beautiful.",
+        answer: ["القمر","جميل"]
+      },
+      {
+        id: "p41",
+        english: "The man worked with the boy.",
+        answer: ["عمل","الرجل","مع","الولد"]
+      },
+      {
+        id: "p42",
+        english: "The student wrote in the book.",
+        answer: ["كتب","الطالب","في","الكتاب"]
+      },
+      {
+        id: "p43",
+        english: "The teacher stood in front of the student.",
+        answer: ["وقف","المعلم","امام","الطالب"]
+      },
+      {
+        id: "p44",
+        english: "The chair is under the table.",
+        answer: ["الكرسي","تحت","الطاولة"]
+      },
+      {
+        id: "p45",
+        english: "The pen is on the table.",
+        answer: ["القلم","على","الطاولة"]
+      },
+      {
+        id: "p46",
+        english: "The boy entered after the man.",
+        answer: ["دخل","الولد","بعد","الرجل"]
+      },
+      {
+        id: "p47",
+        english: "The girl stood between the boy and the man.",
+        answer: ["وقف","البنت","بين","الولد","و","الرجل"]
+      },
+      {
+        id: "p48",
+        english: "The market is behind the house.",
+        answer: ["السوق","خلف","البيت"]
+      },
+      {
+        id: "p49",
+        english: "The garden is in front of the house.",
+        answer: ["الحديقة","امام","البيت"]
+      },
+      {
+        id: "p50",
+        english: "Allah created.",
+        answer: ["خلق","الله"]
+      }
+    ];
+
+    const els = {
+      promptSelect: document.getElementById("promptSelect"),
+      englishText: document.getElementById("englishText"),
+      builtLine: document.getElementById("builtLine"),
+      bankGrid: document.getElementById("bankGrid"),
+      btnPrevPrompt: document.getElementById("btnPrevPrompt"),
+      btnNextPrompt: document.getElementById("btnNextPrompt"),
+      btnUndo: document.getElementById("btnUndo"),
+      btnClear: document.getElementById("btnClear"),
+      btnSpeak: document.getElementById("btnSpeak"),
+      btnCheck: document.getElementById("btnCheck"),
+      btnShowAnswer: document.getElementById("btnShowAnswer"),
+      result: document.getElementById("result"),
+      answerBox: document.getElementById("answerBox")
+    };
+
+    let activeBank = "nouns";
+    let built = [];
+    let currentPrompt = PROMPTS[0];
+    let alActive = false;
+
+    function getPromptIndexById(id) {
+      const i = PROMPTS.findIndex((p) => p.id === id);
+      return i >= 0 ? i : 0;
+    }
+
+    function goToPromptIndex(nextIndex) {
+      const n = PROMPTS.length;
+      if (!n) return;
+      const i = Math.max(0, Math.min(n - 1, nextIndex));
+      els.promptSelect.value = PROMPTS[i].id;
+      setPromptById(PROMPTS[i].id);
+    }
+
+    function goPrevPrompt() {
+      const i = getPromptIndexById(currentPrompt?.id);
+      goToPromptIndex(i - 1);
+    }
+
+    function goNextPrompt() {
+      const i = getPromptIndexById(currentPrompt?.id);
+      goToPromptIndex(i + 1);
+    }
+
+    function makeDefinite(word) {
+      const w = stripHarakat(word);
+      if (!w) return "";
+      if (w === "الله") return w;
+      return w.startsWith("ال") ? w : "ال" + w;
+    }
+
+    function renderPromptSelect() {
+      els.promptSelect.innerHTML = "";
+      PROMPTS.forEach((p, i) => {
+        const opt = document.createElement("option");
+        opt.value = p.id;
+        opt.textContent = `${i + 1}. ${p.english}`;
+        els.promptSelect.appendChild(opt);
+      });
+    }
+
+    function setPromptById(id) {
+      const found = PROMPTS.find((p) => p.id === id) || PROMPTS[0];
+      currentPrompt = found;
+      els.englishText.textContent = currentPrompt.english;
+      els.result.textContent = "Build the Arabic sentence by clicking words.";
+      els.answerBox.classList.remove("show");
+      updateAnswerBox();
+      clearBuilt();
+    }
+
+    function updateAnswerBox() {
+      els.answerBox.textContent = normalizeTokens(currentPrompt.answer).join(" ");
+    }
+
+    function renderBank() {
+      els.bankGrid.innerHTML = "";
+
+      if (activeBank === "nouns") {
+        const alBtn = document.createElement("button");
+        alBtn.type = "button";
+        alBtn.className = "chip" + (alActive ? " active" : "");
+        alBtn.textContent = "ال";
+        alBtn.title = "Toggle ال";
+        alBtn.addEventListener("click", () => {
+          alActive = !alActive;
+          renderBank();
+        });
+        els.bankGrid.appendChild(alBtn);
+      }
+
+      WORDS[activeBank].forEach((w) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "chip";
+        b.textContent = stripHarakat(w);
+        b.addEventListener("click", () => {
+          const base = stripHarakat(w);
+          const usedAl = (activeBank === "nouns" && alActive);
+          const next = usedAl ? makeDefinite(base) : base;
+          built.push(next);
+          renderBuilt();
+
+          if (usedAl) {
+            alActive = false;
+            renderBank();
+          }
+        });
+        els.bankGrid.appendChild(b);
+      });
+    }
+
+    function renderBuilt() {
+      els.builtLine.innerHTML = "";
+
+      if (built.length === 0) {
+        const hint = document.createElement("span");
+        hint.className = "chip small";
+        hint.style.opacity = "0.7";
+        hint.textContent = "Click words below to build a sentence";
+        els.builtLine.appendChild(hint);
+        return;
+      }
+
+      built.forEach((w, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "chip";
+        b.textContent = w;
+        b.title = "Remove";
+        b.addEventListener("click", () => {
+          built.splice(i, 1);
+          renderBuilt();
+        });
+        els.builtLine.appendChild(b);
+      });
+    }
+
+    function undoBuilt() {
+      built.pop();
+      renderBuilt();
+    }
+
+    function clearBuilt() {
+      built = [];
+      renderBuilt();
+    }
+
+    function normalizeTokens(arr) {
+      return arr
+        .map((s) => stripHarakat(typeof s === "string" ? s : ""))
+        .filter(Boolean);
+    }
+
+    function checkAnswer() {
+      const target = normalizeTokens(currentPrompt.answer);
+      const attempt = normalizeTokens(built);
+
+      if (attempt.length === 0) {
+        els.result.textContent = "Add some words first.";
+        return;
+      }
+
+      const ok = target.length === attempt.length && target.every((t, i) => t === attempt[i]);
+
+      if (ok) {
+        els.result.textContent = "Correct ✅";
+      } else {
+        els.result.textContent = "Not quite — try again. (Order matters)";
+      }
+    }
+
+    function speak(text) {
+      try {
+        if (!("speechSynthesis" in window)) return;
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = "ar-SA";
+        u.rate = 0.9;
+        u.pitch = 1;
+        window.speechSynthesis.speak(u);
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    function speakBuilt() {
+      const attempt = normalizeTokens(built).join(" ");
+      if (!attempt) return;
+      speak(attempt);
+    }
+
+    function setActiveBank(next) {
+      activeBank = next;
+      document.querySelectorAll(".bankTab").forEach((t) => {
+        t.classList.toggle("active", t.dataset.bank === activeBank);
+      });
+      renderBank();
+    }
+
+    document.querySelectorAll(".bankTab").forEach((t) => {
+      t.addEventListener("click", () => setActiveBank(t.dataset.bank));
+    });
+
+    els.promptSelect.addEventListener("change", (e) => setPromptById(e.target.value));
+    els.btnPrevPrompt.addEventListener("click", goPrevPrompt);
+    els.btnNextPrompt.addEventListener("click", goNextPrompt);
+    els.btnUndo.addEventListener("click", undoBuilt);
+    els.btnClear.addEventListener("click", clearBuilt);
+    els.btnCheck.addEventListener("click", checkAnswer);
+    els.btnSpeak.addEventListener("click", speakBuilt);
+
+    els.btnShowAnswer.addEventListener("click", () => {
+      els.answerBox.classList.toggle("show");
+      els.btnShowAnswer.textContent = els.answerBox.classList.contains("show") ? "Hide answer" : "Show answer";
+    });
+
+    renderPromptSelect();
+    setPromptById(PROMPTS[0].id);
+    setActiveBank("nouns");
+    renderBuilt();
+  </script>
+</body>
+</html>
