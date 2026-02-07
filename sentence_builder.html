@@ -55,6 +55,11 @@
             <button class="bankTab" type="button" data-bank="verbs">Verbs</button>
           </div>
 
+          <label class="muted" style="display:flex; gap:10px; align-items:center;">
+            <input id="toggleMeaning" type="checkbox">
+            Show meaning
+          </label>
+
           <div id="bankGrid" class="bankGrid" aria-label="Arabic word buttons"></div>
 
           <p class="muted">You can add more words/sentences by editing the arrays in this page.</p>
@@ -77,6 +82,109 @@
         .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, "")
         .replace(/\s+/g, " ")
         .trim();
+    }
+
+    const MEANINGS = {
+      // Nouns / adjectives
+      "كتاب": "book",
+      "مسجد": "mosque",
+      "بيت": "house",
+      "قلم": "pen",
+      "جبال": "mountains",
+      "شجرة": "tree",
+      "امرأة": "woman",
+      "كرسي": "chair",
+      "ارض": "earth",
+      "باب": "door",
+      "أخ": "brother",
+      "أخت": "sister",
+      "مدرسة": "school",
+      "طاولة": "table",
+      "طالب": "student",
+      "معلم": "teacher",
+      "رجل": "man",
+      "غرفة": "room",
+      "شمس": "sun",
+      "قمر": "moon",
+      "حديقة": "garden",
+      "ولد": "boy",
+      "بنت": "girl",
+      "أم": "mother",
+      "أب": "father",
+      "سوق": "market",
+      "نظيف": "clean",
+      "وسخ": "dirty",
+      "جميل": "beautiful",
+      "طويل": "tall",
+      "قصير": "short",
+      "كبير": "big",
+      "صغير": "small",
+      "عظيم": "great",
+      "حار": "hot",
+      "جيد": "good",
+      "سيئ": "bad",
+      "جديد": "new",
+      "قديم": "old",
+      "سريع": "fast",
+      "بطيء": "slow",
+      "بارد": "cold",
+      "الله": "Allah",
+
+      // Prepositions / connectors
+      "مع": "with",
+      "ب": "with / by",
+      "من": "from",
+      "الى": "to",
+      "على": "on",
+      "في": "in",
+      "خلف": "behind",
+      "حول": "around",
+      "ل": "for / to",
+      "و": "and",
+      "بين": "between",
+      "تحت": "under",
+      "فوق": "above",
+      "حتى": "until",
+      "قبل": "before",
+      "بعد": "after",
+      "عن": "about",
+      "عند": "at",
+      "امام": "in front of",
+
+      // Verbs
+      "كتب": "wrote",
+      "سجد": "prostrated",
+      "ركع": "bowed",
+      "شكر": "thanked",
+      "نصر": "helped",
+      "عمل": "worked",
+      "سمع": "heard",
+      "جلس": "sat",
+      "فتح": "opened",
+      "صبر": "was patient",
+      "حمل": "carried",
+      "عرف": "knew",
+      "عبد": "worshipped",
+      "نظر": "looked",
+      "خلق": "created",
+      "وقف": "stood",
+      "خرج": "exited",
+      "ذكر": "remembered",
+      "فعل": "did",
+      "رجع": "returned",
+      "دخل": "entered",
+      "غفر": "forgave",
+      "اكل": "ate",
+      "علم": "taught",
+      "ساعد": "helped",
+      "رأى": "saw"
+    };
+
+    function getMeaning(word) {
+      const w = stripHarakat(word);
+      if (!w || w === "ال") return "";
+      const core = w.startsWith("ال") ? w.slice(2) : w;
+      return MEANINGS[core] || MEANINGS[w] || "";
     }
 
     const WORDS = {
@@ -360,6 +468,7 @@
       englishText: document.getElementById("englishText"),
       builtLine: document.getElementById("builtLine"),
       bankGrid: document.getElementById("bankGrid"),
+      toggleMeaning: document.getElementById("toggleMeaning"),
       btnPrevPrompt: document.getElementById("btnPrevPrompt"),
       btnNextPrompt: document.getElementById("btnNextPrompt"),
       btnUndo: document.getElementById("btnUndo"),
@@ -432,12 +541,20 @@
 
     function renderBank() {
       els.bankGrid.innerHTML = "";
+      const showMeaning = !!els.toggleMeaning?.checked;
 
       if (activeBank === "nouns") {
         const alBtn = document.createElement("button");
         alBtn.type = "button";
         alBtn.className = "chip" + (alActive ? " active" : "");
-        alBtn.textContent = "ال";
+        if (showMeaning) {
+          const ar = document.createElement("span");
+          ar.className = "ar";
+          ar.textContent = "ال";
+          alBtn.appendChild(ar);
+        } else {
+          alBtn.textContent = "ال";
+        }
         alBtn.title = "Toggle ال";
         alBtn.addEventListener("click", () => {
           alActive = !alActive;
@@ -450,7 +567,19 @@
         const b = document.createElement("button");
         b.type = "button";
         b.className = "chip";
-        b.textContent = stripHarakat(w);
+        const arText = stripHarakat(w);
+        if (showMeaning) {
+          const ar = document.createElement("span");
+          ar.className = "ar";
+          ar.textContent = arText;
+          const en = document.createElement("span");
+          en.className = "en";
+          en.textContent = getMeaning(arText);
+          b.appendChild(ar);
+          b.appendChild(en);
+        } else {
+          b.textContent = arText;
+        }
         b.addEventListener("click", () => {
           const base = stripHarakat(w);
           const usedAl = (activeBank === "nouns" && alActive);
@@ -562,6 +691,7 @@
     els.promptSelect.addEventListener("change", (e) => setPromptById(e.target.value));
     els.btnPrevPrompt.addEventListener("click", goPrevPrompt);
     els.btnNextPrompt.addEventListener("click", goNextPrompt);
+    els.toggleMeaning.addEventListener("change", renderBank);
     els.btnUndo.addEventListener("click", undoBuilt);
     els.btnClear.addEventListener("click", clearBuilt);
     els.btnCheck.addEventListener("click", checkAnswer);
