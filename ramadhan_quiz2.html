@@ -58,18 +58,6 @@
 
     .topLeft,.topRight{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
 
-    .levelTag{
-      color: var(--muted);
-      font-weight: 900;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(214,179,106,.25);
-      background: rgba(15,19,48,.55);
-    }
-
     .brand{
       display:flex;
       align-items:baseline;
@@ -99,11 +87,11 @@
       border: 1px solid var(--line);
       background: rgba(15,19,48,.75);
       box-shadow: 0 8px 20px rgba(0,0,0,.25);
-      padding: 14px 18px;
+      padding: 10px 12px;
       border-radius: 999px;
-      font-weight:900;
+      font-weight:700;
       color: var(--gold2);
-      font-size: clamp(16px, 2.0vw, 24px);
+      font-size: clamp(12px, 1.4vw, 16px);
     }
 
     .scorePills{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;}
@@ -111,11 +99,11 @@
       border: 1px solid var(--line);
       background: rgba(15,19,48,.75);
       box-shadow: 0 8px 20px rgba(0,0,0,.25);
-      padding: 14px 18px;
+      padding: 8px 10px;
       border-radius: 999px;
       font-weight: 900;
       color: var(--gold2);
-      font-size: clamp(16px, 2.0vw, 24px);
+      font-size: clamp(12px, 1.4vw, 16px);
       letter-spacing: .02em;
     }
 
@@ -141,13 +129,7 @@
 
     .hidden{display:none !important;}
 
-    .concealed{
-      visibility: hidden !important;
-      pointer-events: none !important;
-    }
-
     .question{
-      position: relative;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -158,14 +140,8 @@
       min-height: 120px;
     }
 
-    .question .levelTag{
-      position: absolute;
-      top: 12px;
-      left: 12px;
-    }
-
     .questionText{
-      font-size: clamp(24px, 3.2vw, 52px);
+      font-size: clamp(20px, 2.8vw, 44px);
       font-weight: 800;
       line-height: 1.15;
       text-align:center;
@@ -271,8 +247,8 @@
 
     .ansCorrect{
       border-color: rgba(34,197,94,.95);
-      background: linear-gradient(180deg, rgba(16,120,60,.28), rgba(10, 40, 19, 0.88));
-      box-shadow: 0 0 0 3px rgba(1, 94, 35, 0.28), 0 12px 28px rgba(0,0,0,.45);
+      background: linear-gradient(180deg, rgba(34,197,94,.24), rgba(10,14,40,.85));
+      box-shadow: 0 0 0 3px rgba(34,197,94,.28), 0 12px 28px rgba(0,0,0,.45);
     }
 
     .ansWrong{
@@ -283,8 +259,8 @@
 
     .badge{
       flex:0 0 auto;
-      width: 72px !important;
-      height: 72px !important;
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
       display:grid;
       place-items:center;
@@ -293,15 +269,14 @@
       color: var(--bg0);
       background: radial-gradient(circle at 30% 30%, var(--gold2), var(--gold));
       box-shadow: 0 10px 24px rgba(0,0,0,.35);
-      font-size: 32px !important;
+      font-size: 18px;
     }
 
     .ansText{
       flex:1 1 auto;
-      font-size: clamp(18px, 2.2vw, 32px);
+      font-size: clamp(16px, 2.0vw, 28px);
       font-weight:800;
-      line-height: 1.15;
-      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+      line-height:1.15;
     }
 
     .bottom{
@@ -405,7 +380,7 @@
       <div class="topbar">
         <div class="topLeft">
           <button class="btn btnPrimary" id="btnNext" type="button" disabled>Next</button>
-          <button class="btn" id="btnShowChoices" type="button">Answers</button>
+          <button class="btn" id="btnShowChoices" type="button">Show Answers</button>
         </div>
 
         <div class="brand">
@@ -429,12 +404,11 @@
       <div class="stage">
         <div class="panel">
           <div class="question">
-            <div class="levelTag" id="levelTag">Level 1</div>
             <div class="questionText" id="questionText">Loading…</div>
           </div>
 
-          <div class="answers concealed" id="answers" aria-label="Answers"></div>
-          <div class="players concealed" id="players" aria-label="Players"></div>
+          <div class="answers hidden" id="answers" aria-label="Answers"></div>
+          <div class="players hidden" id="players" aria-label="Players"></div>
         </div>
       </div>
 
@@ -454,748 +428,11 @@
       </div>
     </div>
   </div>
-<script id="embeddedQuiz" type="application/json">
-{
-  "title": "Ramadhan and Fasting – MCQ Quiz (Hard)",
-  "version": 2,
-  "count": 55,
-  "questions": [
-    {
-      "id": 1,
-      "question": "Which Surah mentions fasting as an obligation?",
-      "options": [
-        "Al-Ma’idah",
-        "Al-Baqarah",
-        "Al-Imran",
-        "Al-Nisa"
-      ],
-      "answer": "Al-Baqarah",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 2,
-      "question": "Which group is allowed to miss fasting and make it up later?",
-      "options": [
-        "Children",
-        "Travelers",
-        "Angels",
-        "Teachers"
-      ],
-      "answer": "Travelers",
-      "answer_index": 1,
-      "level": 3
-    },
-    {
-      "id": 3,
-      "question": "Fidya is given by a person who:",
-      "options": [
-        "Missed one fast",
-        "Is permanently ill",
-        "Forgot to fast",
-        "Slept late"
-      ],
-      "answer": "Is permanently ill",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 4,
-      "question": "Which condition is NOT required for fasting to be obligatory?",
-      "options": [
-        "Islam",
-        "Sanity",
-        "Puberty",
-        "Wealth"
-      ],
-      "answer": "Wealth",
-      "answer_index": 3,
-      "level": 1
-    },
-    {
-      "id": 5,
-      "question": "Which of the following INVALIDATES a fast?",
-      "options": [
-        "Forgetting and eating",
-        "Vomiting unintentionally",
-        "Swallowing medicine intentionally",
-        "Sleeping all day"
-      ],
-      "answer": "Swallowing medicine intentionally",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 6,
-      "question": "Which reduces the reward of fasting but does NOT break it?",
-      "options": [
-        "Eating",
-        "Drinking",
-        "Lying",
-        "Vomiting"
-      ],
-      "answer": "Lying",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 7,
-      "question": "If someone eats forgetfully while fasting, they should:",
-      "options": [
-        "Stop fasting",
-        "Give Kaffarah",
-        "Continue fasting",
-        "Repeat the fast"
-      ],
-      "answer": "Continue fasting",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 8,
-      "question": "If someone breaks a Ramadhan fast thinking Maghrib has started, but it has not, they must:",
-      "options": [
-        "Do nothing",
-        "Give Fidya",
-        "Repeat fast (Qada)",
-        "Give Kaffarah"
-      ],
-      "answer": "Repeat fast (Qada)",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 9,
-      "question": "The main purpose of fasting mentioned in the Qur’an is to gain:",
-      "options": [
-        "Strength",
-        "Wealth",
-        "Knowledge",
-        "Taqwa"
-      ],
-      "answer": "Taqwa",
-      "answer_index": 3,
-      "level": 1
-    },
-    {
-      "id": 10,
-      "question": "The fast of a pregnant or breastfeeding woman who fears harm to child is:",
-      "options": [
-        "Obligatory",
-        "Wajib",
-        "Exempt with Qada later",
-        "Exempt with Fidya allowed"
-      ],
-      "answer": "Exempt with Fidya allowed",
-      "answer_index": 3,
-      "level": 1
-    },
-    {
-      "id": 11,
-      "question": "Which act is Makruh (disliked) while fasting?",
-      "options": [
-        "Using miswak",
-        "Smelling perfume deeply",
-        "Making dua",
-        "Reading Qur’an"
-      ],
-      "answer": "Smelling perfume deeply",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 12,
-      "question": "Which fast does NOT require Kaffarah if broken?",
-      "options": [
-        "Ramadhan fast",
-        "Qada fast",
-        "Nafl fast",
-        "Vowed fast"
-      ],
-      "answer": "Nafl fast",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 13,
-      "question": "Which Surah mentions Ramadhan by name?",
-      "options": [
-        "Al-Qadr",
-        "Al-Baqarah",
-        "Al-Fajr",
-        "Al-Shams"
-      ],
-      "answer": "Al-Baqarah",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 14,
-      "question": "The first revelation “Iqra” occurred in:",
-      "options": [
-        "Cave Thawr",
-        "Cave Hira",
-        "Masjid Nabawi",
-        "Makkah market"
-      ],
-      "answer": "Cave Hira",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 15,
-      "question": "The Qur’an was revealed gradually over how many years?",
-      "options": [
-        "10",
-        "15",
-        "23",
-        "30"
-      ],
-      "answer": "23",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 16,
-      "question": "Which Surah describes Laylatul Qadr?",
-      "options": [
-        "Al-Qadr",
-        "Al-Fajr",
-        "Al-Baqarah",
-        "Al-Ikhlas"
-      ],
-      "answer": "Al-Qadr",
-      "answer_index": 0,
-      "level": 1
-    },
-    {
-      "id": 17,
-      "question": "The word Qur’an literally means:",
-      "options": [
-        "Book",
-        "Law",
-        "Recitation",
-        "Wisdom"
-      ],
-      "answer": "Recitation",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 18,
-      "question": "The Battle of Badr took place on which Islamic date?",
-      "options": [
-        "1 Ramadhan",
-        "10 Ramadhan",
-        "17 Ramadhan",
-        "27 Ramadhan"
-      ],
-      "answer": "17 Ramadhan",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 19,
-      "question": "Which Companion carried the flag of the Muslims at Badr?",
-      "options": [
-        "Umar ibn Al-Khattab (RA)",
-        "Ali ibn Abi Talib (RA)",
-        "Hamzah ibn Abdul Muttalib (RA)",
-        "Mus‘ab ibn Umair (RA)"
-      ],
-      "answer": "Mus‘ab ibn Umair (RA)",
-      "answer_index": 3,
-      "level": 1
-    },
-    {
-      "id": 20,
-      "question": "The number of enemies at Badr was about:",
-      "options": [
-        "500",
-        "700",
-        "900",
-        "1000"
-      ],
-      "answer": "1000",
-      "answer_index": 3,
-      "level": 1
-    },
-    {
-      "id": 21,
-      "question": "The first battle that occurred during Ramadhan was:",
-      "options": [
-        "Uhud",
-        "Badr",
-        "Khandaq",
-        "Hunain"
-      ],
-      "answer": "Badr",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 22,
-      "question": "The second ten days of Ramadhan emphasize seeking:",
-      "options": [
-        "Patience",
-        "Charity",
-        "Maghfirah",
-        "Guidance"
-      ],
-      "answer": "Maghfirah",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 23,
-      "question": "Which event is NOT associated with Ramadhan?",
-      "options": [
-        "Revelation of the Qur’an",
-        "Battle of Badr",
-        "Laylatul Qadr",
-        "Hijrah to Madinah"
-      ],
-      "answer": "Hijrah to Madinah",
-      "answer_index": 3,
-      "level": 1
-    },
-    {
-      "id": 24,
-      "question": "During the Hijrah, the Prophet ﷺ stayed in a cave called?",
-      "options": [
-        "Thawr",
-        "Hira",
-        "Uhud",
-        "Safa"
-      ],
-      "answer": "Thawr",
-      "answer_index": 0,
-      "level": 1
-    },
-    {
-      "id": 25,
-      "question": "Which Sahabi is known for writing down the Qur’an during the Prophet ﷺ’s lifetime?",
-      "options": [
-        "Zayd",
-        "Uthman",
-        "Abdullah",
-        "Ali"
-      ],
-      "answer": "Zayd",
-      "answer_index": 0,
-      "level": 1
-    },
-    {
-      "id": 26,
-      "question": "Which companion is called “Dhul-Nurayn”?",
-      "options": [
-        "Uthman",
-        "Umar",
-        "Ali",
-        "Abu Bakr"
-      ],
-      "answer": "Uthman",
-      "answer_index": 0,
-      "level": 1
-    },
-    {
-      "id": 27,
-      "question": "Who organized Taraweeh in congregation during his caliphate?",
-      "options": [
-        "Abu Bakr (RA)",
-        "Umar ibn Al-Khattab (RA)",
-        "Uthman (RA)",
-        "Ali (RA)"
-      ],
-      "answer": "Umar ibn Al-Khattab (RA)",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 28,
-      "question": "Taraweeh prayer during Ramadhan is:",
-      "options": [
-        "Fard",
-        "Wajib",
-        "Sunnah",
-        "Makruh"
-      ],
-      "answer": "Sunnah",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 29,
-      "question": "What is the recommended act during the last ten nights of Ramadhan?",
-      "options": [
-        "Fasting only",
-        "I’tikaf",
-        "Charity",
-        "Traveling"
-      ],
-      "answer": "I’tikaf",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 30,
-      "question": "I’tikaf (seclusion in the mosque) is especially observed during:",
-      "options": [
-        "First 10 days of Ramadhan",
-        "Last 10 nights of Ramadhan",
-        "First 5 nights of Ramadhan",
-        "Entire month"
-      ],
-      "answer": "Last 10 nights of Ramadhan",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 31,
-      "question": "Zakat al-Fitr is obligatory on:",
-      "options": [
-        "Only men",
-        "Only children",
-        "Every Muslim who possesses surplus food",
-        "Only the poor"
-      ],
-      "answer": "Every Muslim who possesses surplus food",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 32,
-      "question": "When should Zakat al-Fitr be paid?",
-      "options": [
-        "Any day in Ramadhan",
-        "Before Eid prayer",
-        "After Eid prayer",
-        "Anytime in Shawwal"
-      ],
-      "answer": "Before Eid prayer",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 33,
-      "question": "How much Zakat al-Fitr is given per person?",
-      "options": [
-        "One sa‘ of food (approx. 2–3 kg)",
-        "Half sa‘ of food",
-        "One sa‘ of gold",
-        "Any amount one wishes"
-      ],
-      "answer": "One sa‘ of food (approx. 2–3 kg)",
-      "answer_index": 0,
-      "level": 1
-    },
-    {
-      "id": 34,
-      "question": "Giving Zakat-ul-Fitr purifies the fast from?",
-      "options": [
-        "Hunger",
-        "Sleep",
-        "Mistakes",
-        "Travel"
-      ],
-      "answer": "Mistakes",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 35,
-      "question": "Muslims fast during Ramadhan from:",
-      "options": [
-        "Sunrise to sunset",
-        "Fajr to Maghrib",
-        "Zuhr to Isha",
-        "Sunrise to Isha"
-      ],
-      "answer": "Fajr to Maghrib",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 36,
-      "question": "The special night in Ramadhan, better than a thousand months, is called:",
-      "options": [
-        "Laylatul Isra",
-        "Laylatul Qadr",
-        "Laylatul Miraj",
-        "Laylatul Bara’ah"
-      ],
-      "answer": "Laylatul Qadr",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 37,
-      "question": "The meal eaten before starting the fast is called:",
-      "options": [
-        "Iftar",
-        "Suhoor",
-        "Sahoor",
-        "Dinner"
-      ],
-      "answer": "Suhoor",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 38,
-      "question": "The meal to break the fast is called:",
-      "options": [
-        "Iftar",
-        "Suhoor",
-        "Breakfast",
-        "Lunch"
-      ],
-      "answer": "Iftar",
-      "answer_index": 0,
-      "level": 1
-    },
-    {
-      "id": 39,
-      "question": "Special night prayers in Ramadhan are called:",
-      "options": [
-        "Fajr",
-        "Taraweeh",
-        "Tahajjud",
-        "Sunnah"
-      ],
-      "answer": "Taraweeh",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 40,
-      "question": "Laylatul Qadr is found in which part of Ramadhan?",
-      "options": [
-        "First 10 nights",
-        "Middle 10 nights",
-        "Last 10 nights",
-        "First 5 days"
-      ],
-      "answer": "Last 10 nights",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 41,
-      "question": "Fasting during Ramadhan is:",
-      "options": [
-        "Optional",
-        "Fard (obligatory)",
-        "Wajib",
-        "Recommended"
-      ],
-      "answer": "Fard (obligatory)",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 42,
-      "question": "Charity given to the poor at the end of Ramadhan is called:",
-      "options": [
-        "Zakat al-Mal",
-        "Zakat al-Fitr",
-        "Sadaqah",
-        "Kaffarah"
-      ],
-      "answer": "Zakat al-Fitr",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 43,
-      "question": "The first battle in Islam was:",
-      "options": [
-        "Uhud",
-        "Khandaq",
-        "Badr",
-        "Hunain"
-      ],
-      "answer": "Badr",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 44,
-      "question": "Taraweeh is prayed after:",
-      "options": [
-        "Fajr",
-        "Zuhr",
-        "Asr",
-        "Isha"
-      ],
-      "answer": "Isha",
-      "answer_index": 3,
-      "level": 1
-    },
-    {
-      "id": 45,
-      "question": "The gate of Jannah reserved for those who fast is named?",
-      "options": [
-        "Firdaus",
-        "Salam",
-        "Rayyan",
-        "Noor"
-      ],
-      "answer": "Rayyan",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 46,
-      "question": "Forgetfully eating while fasting requires what action?",
-      "options": [
-        "Kaffarah",
-        "Qada",
-        "Fidya",
-        "None"
-      ],
-      "answer": "None",
-      "answer_index": 3,
-      "level": 1
-    },
-    {
-      "id": 47,
-      "question": "The sunnah method of breaking fast is with?",
-      "options": [
-        "Water",
-        "Milk",
-        "Dates",
-        "Bread"
-      ],
-      "answer": "Dates",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 48,
-      "question": "Laylatul Qadr is searched in which category of nights?",
-      "options": [
-        "Even",
-        "First",
-        "Odd",
-        "Last"
-      ],
-      "answer": "Odd",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 49,
-      "question": "The first ten days of Ramadhan are known as the days of?",
-      "options": [
-        "Maghfirah",
-        "Najah",
-        "Rahmah",
-        "Itqu"
-      ],
-      "answer": "Rahmah",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 50,
-      "question": "The last ten days of Ramadhan are associated with freedom from?",
-      "options": [
-        "Hunger",
-        "Sin",
-        "Fire",
-        "Fear"
-      ],
-      "answer": "Fire",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 51,
-      "question": "The Arabic phrase Itqu-minan-Naar means?",
-      "options": [
-        "Protection from evil",
-        "Forgiveness of sins",
-        "Freedom",
-        "Guidance"
-      ],
-      "answer": "Freedom",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 52,
-      "question": "Eid-ul-Fitr marks the completion of?",
-      "options": [
-        "Hajj",
-        "Zakah",
-        "Fasting",
-        "Prayer"
-      ],
-      "answer": "Fasting",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 53,
-      "question": "The Takbeer of Eid-ul-Fitr begins from?",
-      "options": [
-        "Fajr",
-        "Sunrise",
-        "Sunset",
-        "Prayer"
-      ],
-      "answer": "Sunset",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 54,
-      "question": "Which act is prohibited on Eid-ul-Fitr?",
-      "options": [
-        "Prayer",
-        "Charity",
-        "Fasting",
-        "Takbeer"
-      ],
-      "answer": "Fasting",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 55,
-      "question": "The Eid prayer consists of how many rak‘ahs?",
-      "options": [
-        "One",
-        "Two",
-        "Three",
-        "Four"
-      ],
-      "answer": "Two",
-      "answer_index": 1,
-      "level": 1
-    }
-  ]
-}
-
-</script>
-
 
   <script>
     const DEFAULT_DATA_FILE2 = "slmcfmk_quiz_dec2025.json";
     const DEFAULT_DATA_FILE = "ram_quiz.json";
 
-    function getEmbeddedQuizJson() {
-      const el = document.getElementById("embeddedQuiz");
-      if (!el) return null;
-      const raw = (el.textContent ?? "").trim();
-      if (!raw) return null;
-      try {
-        return JSON.parse(raw);
-      } catch {
-        return null;
-      }
-    }
     function storageKeyFor(dataFile) {
       return `ramadhan_quiz_state::${dataFile}`;
     }
@@ -1203,7 +440,6 @@
     const els = {
       quizTitle: document.getElementById("quizTitle"),
       pillPos: document.getElementById("pillPos"),
-      levelTag: document.getElementById("levelTag"),
       scoreA: document.getElementById("scoreA"),
       scoreB: document.getElementById("scoreB"),
       scoreC: document.getElementById("scoreC"),
@@ -1250,28 +486,18 @@
       return arr;
     }
 
-    function sortQuestionsByIdInPlace(qs) {
-      qs.sort((a, b) => {
-        const ai = (typeof a?.id === "number") ? a.id : parseInt(a?.id ?? "0", 10) || 0;
-        const bi = (typeof b?.id === "number") ? b.id : parseInt(b?.id ?? "0", 10) || 0;
-        return ai - bi;
-      });
-      return qs;
-    }
-
     function normalizeQuestions(rawQuestions) {
       const qs = (Array.isArray(rawQuestions) ? rawQuestions : [])
         .filter(q => q && typeof q === "object")
         .map(q => ({
           id: q.id ?? null,
-          level: (typeof q.level === "number") ? q.level : (Number.isFinite(parseInt(q.level, 10)) ? parseInt(q.level, 10) : 1),
           question: String(q.question ?? ""),
           options: Array.isArray(q.options) ? q.options.map(x => String(x)) : [],
           answer_index: (typeof q.answer_index === "number") ? q.answer_index : null,
           answer: (typeof q.answer === "string") ? q.answer : null,
         }));
 
-      sortQuestionsByIdInPlace(qs);
+      shuffleInPlace(qs);
 
       qs.forEach(q => {
         if (!Array.isArray(q.options) || q.options.length !== 4) return;
@@ -1315,6 +541,7 @@
         const st = JSON.parse(raw);
         if (!st || typeof st !== "object") return null;
         if (st.dataFile !== dataFile) return null;
+        if (!Array.isArray(st.questions) || st.questions.length === 0) return null;
         if (!Array.isArray(st.playerScores) || st.playerScores.length !== 4) return null;
         if (typeof st.idx !== "number") return null;
         return st;
@@ -1334,6 +561,7 @@
           playerScores: [...playerScores],
           playerPicks: [...playerPicks],
           stage,
+          questions: QUESTIONS,
         };
         window.localStorage.setItem(storageKeyFor(dataFile), JSON.stringify(st));
       } catch {
@@ -1385,14 +613,13 @@
       scoredThisQuestion = false;
       playerPicks = [null, null, null, null];
       stage = "question";
-      els.answers.classList.add("concealed");
-      els.players.classList.add("concealed");
+      els.answers.classList.add("hidden");
+      els.players.classList.add("hidden");
       els.btnShowChoices.disabled = false;
       els.btnShowAnswer.disabled = true;
 
       const q = QUESTIONS[idx];
       els.questionText.textContent = q.question;
-      els.levelTag.textContent = `Level ${q.level ?? 1}`;
 
       const letters = ["1", "2", "3", "4"];
       els.answers.innerHTML = "";
@@ -1438,8 +665,8 @@
       if (!QUESTIONS.length) return;
       if (stage !== "question") return;
       stage = "choices";
-      els.answers.classList.remove("concealed");
-      els.players.classList.remove("concealed");
+      els.answers.classList.remove("hidden");
+      els.players.classList.remove("hidden");
       els.btnShowChoices.disabled = true;
       els.btnShowAnswer.disabled = false;
       applyFocus();
@@ -1600,43 +827,30 @@
       }
 
       if (e.key === "r" || e.key === "R") {
-        const ok = window.confirm("Reset the game? This will clear scores and restart from the beginning.");
-        if (ok) restart();
+        restart();
       }
     });
 
     els.btnNext.addEventListener("click", nextQuestion);
-    els.btnRestart.addEventListener("click", () => {
-      const ok = window.confirm("Reset the game? This will clear scores and restart from the beginning.");
-      if (ok) restart();
-    });
+    els.btnRestart.addEventListener("click", restart);
     els.btnShowChoices.addEventListener("click", showChoices);
     els.btnShowAnswer.addEventListener("click", showAnswer);
 
     async function loadQuiz() {
       const dataFile = getDataFile();
       try {
-        const embedded = getEmbeddedQuizJson();
-        let json;
-        if (embedded) {
-          json = embedded;
-        } else {
-          const res = await fetch(dataFile, { cache: "no-store" });
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          json = await res.json();
-        }
+        const res = await fetch(dataFile, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
 
         QUIZ = json;
         const title = (json && typeof json.title === "string") ? json.title : dataFile;
         els.quizTitle.textContent = "";
 
-        // Always rebuild QUESTIONS from the *current* quiz JSON so edits (like level changes)
-        // reflect immediately even if localStorage has older saved state.
-        QUESTIONS = normalizeQuestions(json?.questions);
-
         const st = loadState(dataFile);
         if (st) {
-          idx = Math.max(0, Math.min(st.idx, QUESTIONS.length - 1));
+          QUESTIONS = st.questions;
+          idx = Math.max(0, Math.min(st.idx, st.questions.length - 1));
           activePlayer = (typeof st.activePlayer === "number") ? Math.max(0, Math.min(3, st.activePlayer)) : 0;
           playerScores[0] = st.playerScores[0] ?? 0;
           playerScores[1] = st.playerScores[1] ?? 0;
@@ -1646,6 +860,8 @@
             playerPicks = st.playerPicks.map(v => (typeof v === "number" ? v : null));
           }
           stage = (st.stage === "choices" || st.stage === "revealed" || st.stage === "question") ? st.stage : "question";
+        } else {
+          QUESTIONS = normalizeQuestions(json?.questions);
         }
 
         if (!QUESTIONS.length) {
@@ -1659,8 +875,8 @@
         // Restore stage visibility if we have saved state
         if (st) {
           if (stage === "choices" || stage === "revealed") {
-            els.answers.classList.remove("concealed");
-            els.players.classList.remove("concealed");
+            els.answers.classList.remove("hidden");
+            els.players.classList.remove("hidden");
             els.btnShowChoices.disabled = true;
             els.btnShowAnswer.disabled = stage !== "choices";
             renderPlayers();
