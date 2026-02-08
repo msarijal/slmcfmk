@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Ramadhan Quiz</title>
+  <style>
+    :root{
+      --bg0:#050611;
+      --bg1:#0b0d24;
+      --panel:#0f1330;
+      --panel2:#0b0f2a;
+      --gold:#d6b36a;
+      --gold2:#f0dca2;
+      --text:#eef2ff;
+      --muted:#b7bfdc;
+      --line:rgba(214,179,106,.35);
+      --shadow:0 18px 40px rgba(0,0,0,.55);
+      --ok:#22c55e;
+      --bad:#ef4444;
+      --focus:#60a5fa;
+      --select:#f59e0b;
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 50% 20%, rgba(214,179,106,.16), transparent 60%),
+        radial-gradient(900px 600px at 50% 100%, rgba(96,165,250,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      overflow:hidden;
+    }
+
+    .safe{
+      height:100%;
+      padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      box-sizing:border-box;
+    }
+
+    .frame{
+      height:100%;
+      display:grid;
+      grid-template-rows: auto 1fr auto;
+      gap:14px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      min-width: 0;
+    }
+
+    .title{
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--gold2);
+      font-size: clamp(18px, 2.2vw, 30px);
+      white-space:nowrap;
+    }
+
+    .subtitle{
+      color:var(--muted);
+      font-size: clamp(12px, 1.4vw, 16px);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .pills{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+    .pill{
+      border: 1px solid var(--line);
+      background: rgba(15,19,48,.75);
+      box-shadow: 0 8px 20px rgba(0,0,0,.25);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-weight:700;
+      color: var(--gold2);
+      font-size: clamp(12px, 1.4vw, 16px);
+    }
+
+    .stage{
+      display:grid;
+      grid-template-columns: 1fr;
+      align-items:center;
+      justify-items:center;
+      gap:14px;
+      min-height:0;
+    }
+
+    .panel{
+      width: 100%;
+      max-width: 1200px;
+      background: linear-gradient(180deg, rgba(15,19,48,.92), rgba(9,12,32,.92));
+      border:1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      box-sizing:border-box;
+    }
+
+    .question{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 22px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(11,15,42,.85), rgba(15,19,48,.85));
+      border: 1px solid rgba(214,179,106,.35);
+      min-height: 120px;
+    }
+
+    .questionText{
+      font-size: clamp(20px, 2.8vw, 44px);
+      font-weight: 800;
+      line-height: 1.15;
+      text-align:center;
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+    }
+
+    .answers{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .ans{
+      position:relative;
+      border:1px solid rgba(214,179,106,.45);
+      background: linear-gradient(180deg, rgba(16,22,58,.9), rgba(10,14,40,.9));
+      border-radius: 16px;
+      min-height: 92px;
+      display:flex;
+      align-items:center;
+      padding: 14px 16px 14px 18px;
+      gap: 12px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.35);
+      cursor:pointer;
+      user-select:none;
+      outline:none;
+      transition: transform .08s ease, border-color .08s ease, background .12s ease;
+    }
+
+    .ans:active{transform: scale(.995);}
+
+    .ans[aria-disabled="true"]{cursor:default; opacity:.98;}
+
+    .ansFocus{
+      border-color: rgba(96,165,250,.9);
+      box-shadow: 0 0 0 3px rgba(96,165,250,.35), 0 12px 28px rgba(0,0,0,.45);
+    }
+
+    .ansSelected{
+      border-color: rgba(245,158,11,.95);
+      box-shadow: 0 0 0 3px rgba(245,158,11,.28), 0 12px 28px rgba(0,0,0,.45);
+    }
+
+    .ansCorrect{
+      border-color: rgba(34,197,94,.95);
+      background: linear-gradient(180deg, rgba(34,197,94,.24), rgba(10,14,40,.85));
+      box-shadow: 0 0 0 3px rgba(34,197,94,.28), 0 12px 28px rgba(0,0,0,.45);
+    }
+
+    .ansWrong{
+      border-color: rgba(239,68,68,.95);
+      background: linear-gradient(180deg, rgba(239,68,68,.22), rgba(10,14,40,.85));
+      box-shadow: 0 0 0 3px rgba(239,68,68,.26), 0 12px 28px rgba(0,0,0,.45);
+    }
+
+    .badge{
+      flex:0 0 auto;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      letter-spacing:.02em;
+      color: var(--bg0);
+      background: radial-gradient(circle at 30% 30%, var(--gold2), var(--gold));
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
+      font-size: 18px;
+    }
+
+    .ansText{
+      flex:1 1 auto;
+      font-size: clamp(16px, 2.0vw, 28px);
+      font-weight:800;
+      line-height:1.15;
+    }
+
+    .bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .hint{
+      color: var(--muted);
+      font-weight: 700;
+      font-size: clamp(12px, 1.5vw, 18px);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    .controls{display:flex; gap:10px;}
+
+    .btn{
+      border:1px solid rgba(214,179,106,.45);
+      background: rgba(15,19,48,.75);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      font-size: clamp(12px, 1.6vw, 18px);
+      cursor:pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,.28);
+    }
+
+    .btnPrimary{
+      background: linear-gradient(180deg, rgba(214,179,106,.25), rgba(15,19,48,.75));
+      border-color: rgba(214,179,106,.8);
+      color: var(--gold2);
+    }
+
+    .btn:disabled{opacity:.5; cursor:default;}
+
+    .overlay{
+      position:fixed;
+      inset: 0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,.6);
+      padding: 18px;
+      box-sizing:border-box;
+    }
+
+    .overlay.show{display:flex;}
+
+    .modal{
+      width: 100%;
+      max-width: 820px;
+      background: linear-gradient(180deg, rgba(15,19,48,.96), rgba(9,12,32,.96));
+      border:1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .modal h2{
+      margin: 0;
+      font-size: clamp(18px, 2.2vw, 26px);
+      color: var(--gold2);
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .modal p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-weight:700;
+      line-height:1.35;
+      font-size: clamp(14px, 1.6vw, 18px);
+    }
+
+    .modal .row{
+      margin-top: 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 820px){
+      body{overflow:auto;}
+      .frame{grid-template-rows:auto auto auto;}
+      .answers{grid-template-columns:1fr;}
+      .hint{white-space:normal;}
+    }
+  </style>
+</head>
+<body>
+  <div class="safe">
+    <div class="frame" role="application" aria-label="Ramadhan Quiz">
+      <div class="topbar">
+        <div class="brand">
+          <div class="title">Ramadhan Quiz</div>
+          <div class="subtitle" id="quizTitle">Loading…</div>
+        </div>
+        <div class="pills">
+          <div class="pill" id="pillPos">Q 0 / 0</div>
+          <div class="pill" id="pillScore">Score 0</div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="panel">
+          <div class="question">
+            <div class="questionText" id="questionText">Loading…</div>
+          </div>
+
+          <div class="answers" id="answers" aria-label="Answers"></div>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="hint" id="hint">Use Arrow keys to choose A/B/C/D, press Enter/OK to select.</div>
+        <div class="controls">
+          <button class="btn" id="btnRestart" type="button">Restart</button>
+          <button class="btn btnPrimary" id="btnNext" type="button" disabled>Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Message">
+      <h2 id="overlayTitle">Notice</h2>
+      <p id="overlayText">—</p>
+      <div class="row">
+        <button class="btn btnPrimary" id="overlayBtn" type="button">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DEFAULT_DATA_FILE = "slmcfmk_quiz_dec2025.json";
+
+    const els = {
+      quizTitle: document.getElementById("quizTitle"),
+      pillPos: document.getElementById("pillPos"),
+      pillScore: document.getElementById("pillScore"),
+      questionText: document.getElementById("questionText"),
+      answers: document.getElementById("answers"),
+      hint: document.getElementById("hint"),
+      btnNext: document.getElementById("btnNext"),
+      btnRestart: document.getElementById("btnRestart"),
+      overlay: document.getElementById("overlay"),
+      overlayTitle: document.getElementById("overlayTitle"),
+      overlayText: document.getElementById("overlayText"),
+      overlayBtn: document.getElementById("overlayBtn"),
+    };
+
+    function getDataFile() {
+      const url = new URL(window.location.href);
+      return url.searchParams.get("data") || DEFAULT_DATA_FILE;
+    }
+
+    function showOverlay(title, text) {
+      els.overlayTitle.textContent = title;
+      els.overlayText.textContent = text;
+      els.overlay.classList.add("show");
+      els.overlay.setAttribute("aria-hidden", "false");
+      els.overlayBtn.focus();
+    }
+
+    function hideOverlay() {
+      els.overlay.classList.remove("show");
+      els.overlay.setAttribute("aria-hidden", "true");
+    }
+
+    els.overlayBtn.addEventListener("click", hideOverlay);
+
+    function shuffleInPlace(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function normalizeQuestions(rawQuestions) {
+      const qs = (Array.isArray(rawQuestions) ? rawQuestions : [])
+        .filter(q => q && typeof q === "object")
+        .map(q => ({
+          id: q.id ?? null,
+          question: String(q.question ?? ""),
+          options: Array.isArray(q.options) ? q.options.map(x => String(x)) : [],
+          answer_index: (typeof q.answer_index === "number") ? q.answer_index : null,
+          answer: (typeof q.answer === "string") ? q.answer : null,
+        }));
+
+      shuffleInPlace(qs);
+
+      qs.forEach(q => {
+        if (!Array.isArray(q.options) || q.options.length !== 4) return;
+
+        const answerText = (typeof q.answer_index === "number")
+          ? q.options[q.answer_index]
+          : (q.answer ?? null);
+
+        const options = q.options.map(text => ({ text }));
+        shuffleInPlace(options);
+        q.options = options.map(o => o.text);
+
+        if (answerText !== null) {
+          q.answer_index = q.options.findIndex(t => t === answerText);
+          q.answer = answerText;
+        }
+      });
+
+      return qs.filter(q => q.question && Array.isArray(q.options) && q.options.length === 4 && typeof q.answer_index === "number" && q.answer_index >= 0);
+    }
+
+    let QUIZ = null;
+    let QUESTIONS = [];
+    let idx = 0;
+    let score = 0;
+    let focused = 0;
+    let locked = false;
+    let chosenIndex = null;
+
+    function setTop() {
+      els.pillPos.textContent = `Q ${Math.min(idx + 1, QUESTIONS.length)} / ${QUESTIONS.length}`;
+      els.pillScore.textContent = `Score ${score}`;
+    }
+
+    function clearAnswerClasses() {
+      const cards = Array.from(els.answers.querySelectorAll(".ans"));
+      cards.forEach((c) => {
+        c.classList.remove("ansFocus", "ansSelected", "ansCorrect", "ansWrong");
+        c.setAttribute("aria-disabled", locked ? "true" : "false");
+      });
+    }
+
+    function applyFocus() {
+      clearAnswerClasses();
+      const cards = Array.from(els.answers.querySelectorAll(".ans"));
+      cards.forEach((c, i) => {
+        if (i === focused) c.classList.add("ansFocus");
+        if (chosenIndex === i) c.classList.add("ansSelected");
+      });
+    }
+
+    function renderQuestion() {
+      if (!QUESTIONS.length) return;
+
+      locked = false;
+      chosenIndex = null;
+      els.btnNext.disabled = true;
+      els.hint.textContent = "Use Arrow keys to choose A/B/C/D, press Enter/OK to select.";
+
+      const q = QUESTIONS[idx];
+      els.questionText.textContent = q.question;
+
+      const letters = ["A", "B", "C", "D"];
+      els.answers.innerHTML = "";
+
+      q.options.forEach((text, i) => {
+        const btn = document.createElement("div");
+        btn.className = "ans";
+        btn.setAttribute("role", "button");
+        btn.setAttribute("tabindex", "-1");
+        btn.setAttribute("aria-disabled", "false");
+        btn.dataset.index = String(i);
+
+        const badge = document.createElement("div");
+        badge.className = "badge";
+        badge.textContent = letters[i];
+
+        const span = document.createElement("div");
+        span.className = "ansText";
+        span.textContent = text;
+
+        btn.appendChild(badge);
+        btn.appendChild(span);
+
+        btn.addEventListener("click", () => {
+          focused = i;
+          applyFocus();
+          chooseFocused();
+        });
+
+        els.answers.appendChild(btn);
+      });
+
+      focused = 0;
+      setTop();
+      applyFocus();
+    }
+
+    function markResult() {
+      const q = QUESTIONS[idx];
+      const cards = Array.from(els.answers.querySelectorAll(".ans"));
+
+      cards.forEach((c, i) => {
+        c.setAttribute("aria-disabled", "true");
+        if (i === q.answer_index) c.classList.add("ansCorrect");
+      });
+
+      if (typeof chosenIndex === "number") {
+        if (chosenIndex !== q.answer_index) {
+          cards[chosenIndex]?.classList.add("ansWrong");
+          els.hint.textContent = "Wrong answer. Correct is highlighted in green.";
+        } else {
+          els.hint.textContent = "Correct!";
+        }
+      }
+    }
+
+    function chooseFocused() {
+      if (locked) return;
+      const q = QUESTIONS[idx];
+      chosenIndex = focused;
+      locked = true;
+
+      const isRight = chosenIndex === q.answer_index;
+      if (isRight) score += 1;
+
+      els.btnNext.disabled = false;
+      setTop();
+
+      applyFocus();
+      markResult();
+    }
+
+    function nextQuestion() {
+      if (!QUESTIONS.length) return;
+      if (idx >= QUESTIONS.length - 1) {
+        showOverlay("Finished", `Your score: ${score} / ${QUESTIONS.length}`);
+        return;
+      }
+      idx += 1;
+      renderQuestion();
+    }
+
+    function restart() {
+      idx = 0;
+      score = 0;
+      renderQuestion();
+      setTop();
+    }
+
+    function moveFocus(dir) {
+      if (!QUESTIONS.length) return;
+      const row = Math.floor(focused / 2);
+      const col = focused % 2;
+
+      if (dir === "left") focused = row * 2 + Math.max(0, col - 1);
+      if (dir === "right") focused = row * 2 + Math.min(1, col + 1);
+      if (dir === "up") focused = Math.max(0, focused - 2);
+      if (dir === "down") focused = Math.min(3, focused + 2);
+
+      applyFocus();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (els.overlay.classList.contains("show")) {
+        if (e.key === "Enter" || e.key === "Escape") hideOverlay();
+        return;
+      }
+
+      if (e.key === "ArrowLeft") { e.preventDefault(); moveFocus("left"); }
+      if (e.key === "ArrowRight") { e.preventDefault(); moveFocus("right"); }
+      if (e.key === "ArrowUp") { e.preventDefault(); moveFocus("up"); }
+      if (e.key === "ArrowDown") { e.preventDefault(); moveFocus("down"); }
+
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        chooseFocused();
+      }
+
+      if (e.key === "n" || e.key === "N") {
+        if (!els.btnNext.disabled) nextQuestion();
+      }
+
+      if (e.key === "r" || e.key === "R") {
+        restart();
+      }
+    });
+
+    els.btnNext.addEventListener("click", nextQuestion);
+    els.btnRestart.addEventListener("click", restart);
+
+    async function loadQuiz() {
+      const dataFile = getDataFile();
+      try {
+        const res = await fetch(dataFile, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+
+        QUIZ = json;
+        const title = (json && typeof json.title === "string") ? json.title : dataFile;
+        els.quizTitle.textContent = title;
+
+        QUESTIONS = normalizeQuestions(json?.questions);
+        if (!QUESTIONS.length) {
+          showOverlay("No questions", "The JSON file loaded but contains no valid questions. Expected: { questions: [ { question, options[4], answer_index } ] }.");
+          els.questionText.textContent = "No questions found.";
+          return;
+        }
+
+        restart();
+      } catch (err) {
+        els.quizTitle.textContent = dataFile;
+        els.questionText.textContent = "Could not load quiz data.";
+        showOverlay(
+          "Cannot load JSON",
+          `Tried to load: ${dataFile}. If you opened this page using file://, many browsers block fetch. Use a simple local web server instead, or open from an HTTP URL. Error: ${String(err && err.message ? err.message : err)}`
+        );
+      }
+    }
+
+    loadQuiz();
+  </script>
+</body>
+</html>
