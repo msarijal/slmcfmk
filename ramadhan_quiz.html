@@ -45,15 +45,16 @@
       display:grid;
       grid-template-rows: auto 1fr auto;
       gap:14px;
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
     .topbar{
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:12px;
+      justify-content:flex-start;
+      gap: 50px;
+      padding: 18px 18px 10px;
     }
 
     .topLeft,.topRight{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
@@ -406,11 +407,6 @@
         <div class="topLeft">
           <button class="btn btnPrimary" id="btnNext" type="button" disabled>Next</button>
           <button class="btn" id="btnShowChoices" type="button">Answers</button>
-        </div>
-
-        <div class="brand">
-          <div class="title">Ramadhan Quiz</div>
-          <div class="subtitle" id="quizTitle">Loading…</div>
         </div>
 
         <div class="topRight">
@@ -1628,7 +1624,7 @@
 
         QUIZ = json;
         const title = (json && typeof json.title === "string") ? json.title : dataFile;
-        els.quizTitle.textContent = "";
+        if (els.quizTitle) els.quizTitle.textContent = "";
 
         // Always rebuild QUESTIONS from the *current* quiz JSON so edits (like level changes)
         // reflect immediately even if localStorage has older saved state.
@@ -1680,11 +1676,11 @@
         setTop();
         saveState(dataFile);
       } catch (err) {
-        els.quizTitle.textContent = dataFile;
+        if (els.quizTitle) els.quizTitle.textContent = dataFile;
         els.questionText.textContent = "Could not load quiz data.";
         showOverlay(
           "Cannot load JSON",
-          `Tried to load: ${dataFile}. If you opened this page using file://, many browsers block fetch. Use a simple local web server instead, or open from an HTTP URL. Error: ${String(err && err.message ? err.message : err)}`
+          `Could not load ${dataFile}. If you opened this file directly, your browser may block JSON loading. Run a local server (e.g. python3 -m http.server 8000).\n\nError: ${String(err)}`
         );
       }
     }
