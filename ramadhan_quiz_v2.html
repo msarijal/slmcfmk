@@ -168,30 +168,6 @@
       box-sizing:border-box;
     }
 
-    .modal{
-      width: min(680px, 92vw);
-      background: linear-gradient(180deg, rgba(15,19,48,.96), rgba(9,12,32,.96));
-      border: 1px solid rgba(214,179,106,.35);
-      border-radius: 20px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.55);
-      padding: 18px;
-      box-sizing:border-box;
-      animation: pop .12s ease;
-      position: relative;
-      z-index: 2;
-    }
-
-    .fireworks{
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 3;
-      opacity: 1.95;
-      mix-blend-mode: screen;
-    }
-
     .hidden{display:none !important;}
 
     .concealed{
@@ -402,7 +378,7 @@
       display:none;
       align-items:center;
       justify-content:center;
-      background: rgba(0,0,0,.78);
+      background: rgba(0,0,0,.6);
       padding: 18px;
       box-sizing:border-box;
     }
@@ -428,10 +404,10 @@
     }
 
     .modal p{
-      margin: 8px 0 0; 
+      margin: 10px 0 0;
       color: var(--muted);
       font-weight:700;
-      line-height:1.45;
+      line-height:1.35;
       font-size: clamp(14px, 1.6vw, 18px);
     }
 
@@ -442,25 +418,6 @@
       align-items:center;
       justify-content:flex-end;
       flex-wrap:wrap;
-    }
-
-    .winnerLine{
-      margin: 6px 0 0; 
-      font-weight: 1000;
-      letter-spacing: .02em;
-      color: var(--gold2);
-      font-size: clamp(30px, 4.5vw, 64px);
-      line-height: 1.05;
-      text-align:center;
-    }
-
-    .winnerSub{
-      margin: 10px 0 0; 
-      color: var(--muted);
-      font-weight: 800;
-      font-size: clamp(14px, 1.8vw, 20px);
-      line-height: 1.4;
-      text-align:center;
     }
 
     @media (max-width: 820px){
@@ -515,16 +472,15 @@
   </div>
 
   <div class="overlay" id="overlay" aria-hidden="true">
-    <canvas class="fireworks" id="fireworks" aria-hidden="true"></canvas>
     <div class="modal" role="dialog" aria-modal="true" aria-label="Message">
       <h2 id="overlayTitle">Notice</h2>
-      <div id="overlayText"></div>
+      <p id="overlayText">—</p>
       <div class="row">
         <button class="btn btnPrimary" id="overlayBtn" type="button">OK</button>
       </div>
     </div>
   </div>
-<script id="embeddedQuiz2" type="application/json">
+<script id="embeddedQuiz" type="application/json">
 {
   "title": "Ramadhan and Fasting – MCQ Quiz (Hard)",
   "version": 2,
@@ -1244,110 +1200,11 @@
       "answer": "Sunset Of Last Ramadhan",
       "answer_index": 2,
       "level": 4
-    },
-    {
-      "id": 54,
-      "question": "What is Fidya in the context of fasting?",
-      "options": [
-        "A penalty for intentionally breaking a fast",
-        "Compensation for missing a fast due to valid reasons",
-        "Fasting 60 consecutive days",
-        "Expiation for sins committed outside Ramadan"
-      ],
-      "answer": "Compensation for missing a fast due to valid reasons",
-      "answer_index": 1,
-      "level": 4
-    },
-    {
-      "id": 55,
-      "question": "Which of the following applies to Kaffarah?",
-      "options": [
-        "It is given when someone cannot fast due to old age",
-        "It is a replacement for missed fasts due to illness",
-        "It is required when someone deliberately breaks a fast in Ramadan",
-        "It is optional for missed voluntary fasts"
-      ],
-      "answer": "It is required when someone deliberately breaks a fast in Ramadan",
-      "answer_index": 2,
-      "level": 4
-    },
-    {
-      "id": 56,
-      "question": "Which of the following applies to Kaffarah?",
-      "options": [
-        "It is given when someone cannot fast due to old age",
-        "It is a replacement for missed fasts due to illness",
-        "It is required when someone intentionally breaks a fast in Ramadan",
-        "It is optional for missed voluntary fasts"
-      ],
-      "answer": "It is required when someone intentionally breaks a fast in Ramadan",
-      "answer_index": 2,
-      "level": 4
-    },
-    {
-      "id": 57,
-      "question": "Which of the following is a valid form of Kaffarah if one breaks a fast intentionally?",
-      "options": [
-        "Feeding 60 poor people or fasting 60 consecutive days",
-        "Feeding one poor person per missed day",
-        "Performing two extra rak’ahs of prayer daily",
-        "Donating clothes to the needy"
-      ],
-      "answer": "Feeding 60 poor people or fasting 60 consecutive days",
-      "answer_index": 0,
-      "level": 4
-    },
-    {
-      "id": 58,
-      "question": "The main difference between Fidya and Kaffarah is:",
-      "options": [
-        "Fidya is optional, Kaffarah is mandatory",
-        "Fidya is compensation for inability, Kaffarah is penalty for deliberate breaking",
-        "Fidya is only for old people, Kaffarah is only for the young",
-        "Fidya is paid in money, Kaffarah is paid in gold"
-      ],
-      "answer": "Fidya is compensation for inability, Kaffarah is penalty for deliberate breaking",
-      "answer_index": 1,
-      "level": 4
     }
   ]
 }
 </script>
-<script id="embeddedQuiz" type="application/json">
-{
-  "title": "Ramadhan and Fasting – MCQ Quiz (Hard)",
-  "version": 2,
-  "count": 2,
-  "questions": [
-    {
-      "id": 1,
-      "question": "Which of the following INVALIDATES a fast?",
-      "options": [
-        "Forgetting and eating",
-        "Vomiting unintentionally",
-        "Swallowing medicine intentionally",
-        "Sleeping all day"
-      ],
-      "answer": "Swallowing medicine intentionally",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 2,
-      "question": "Which reduces the reward of fasting but does NOT break it?",
-      "options": [
-        "Eating",
-        "Drinking",
-        "Lying",
-        "Vomiting"
-      ],
-      "answer": "Lying",
-      "answer_index": 2,
-      "level": 1
-    }
-  ]
-}
-</script>
+
 
   <script>
     const DEFAULT_DATA_FILE2 = "slmcfmk_quiz_dec2025.json";
@@ -1388,7 +1245,6 @@
       overlayTitle: document.getElementById("overlayTitle"),
       overlayText: document.getElementById("overlayText"),
       overlayBtn: document.getElementById("overlayBtn"),
-      fireworks: document.getElementById("fireworks"),
     };
 
     function getDataFile() {
@@ -1404,118 +1260,9 @@
       els.overlayBtn.focus();
     }
 
-    function showOverlayHtml(title, html) {
-      els.overlayTitle.textContent = title;
-      els.overlayText.innerHTML = html;
-      els.overlay.classList.add("show");
-      els.overlay.setAttribute("aria-hidden", "false");
-      els.overlayBtn.focus();
-    }
-
-    let fireworksRAF = null;
-    let fireworksParticles = [];
-    let fireworksLast = 0;
-    let fireworksNextBurstAt = 0;
-
-    function resizeFireworksCanvas() {
-      if (!els.fireworks) return;
-      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      const w = Math.floor(window.innerWidth);
-      const h = Math.floor(window.innerHeight);
-      els.fireworks.width = Math.floor(w * dpr);
-      els.fireworks.height = Math.floor(h * dpr);
-      const ctx = els.fireworks.getContext("2d");
-      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function spawnBurst() {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      const x = Math.random() * w;
-      const y = (Math.random() * 0.45 + 0.1) * h;
-      const colors = ["#F59E0B", "#22C55E", "#60A5FA", "#F472B6", "#A78BFA", "#FBBF24"]; 
-      const color = colors[(Math.random() * colors.length) | 0];
-      const count = 42 + ((Math.random() * 26) | 0);
-      for (let i = 0; i < count; i++) {
-        const a = (Math.PI * 2 * i) / count + (Math.random() * 0.15);
-        const sp = 140 + Math.random() * 220;
-        fireworksParticles.push({
-          x, y,
-          vx: Math.cos(a) * sp,
-          vy: Math.sin(a) * sp,
-          life: 1,
-          r: 2 + Math.random() * 2.5,
-          color,
-        });
-      }
-    }
-
-    function startFireworks() {
-      if (!els.fireworks) return;
-      stopFireworks();
-      resizeFireworksCanvas();
-      fireworksParticles = [];
-      fireworksLast = performance.now();
-      fireworksNextBurstAt = fireworksLast + 50;
-
-      const ctx = els.fireworks.getContext("2d");
-      if (!ctx) return;
-
-      const step = (t) => {
-        fireworksRAF = requestAnimationFrame(step);
-        const dt = Math.min(0.033, (t - fireworksLast) / 1000);
-        fireworksLast = t;
-
-        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-        if (t >= fireworksNextBurstAt) {
-          spawnBurst();
-          fireworksNextBurstAt = t + 350 + Math.random() * 650;
-        }
-
-        const g = 380;
-        for (let i = fireworksParticles.length - 1; i >= 0; i--) {
-          const p = fireworksParticles[i];
-          p.vy += g * dt;
-          p.x += p.vx * dt;
-          p.y += p.vy * dt;
-          p.vx *= (1 - 1.8 * dt);
-          p.vy *= (1 - 0.6 * dt);
-          p.life -= 0.9 * dt;
-
-          if (p.life <= 0) {
-            fireworksParticles.splice(i, 1);
-            continue;
-          }
-
-          ctx.globalAlpha = Math.max(0, Math.min(1, p.life));
-          ctx.fillStyle = p.color;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.globalAlpha = 1;
-      };
-
-      fireworksRAF = requestAnimationFrame(step);
-      window.addEventListener("resize", resizeFireworksCanvas);
-    }
-
-    function stopFireworks() {
-      if (fireworksRAF) cancelAnimationFrame(fireworksRAF);
-      fireworksRAF = null;
-      fireworksParticles = [];
-      window.removeEventListener("resize", resizeFireworksCanvas);
-      if (els.fireworks) {
-        const ctx = els.fireworks.getContext("2d");
-        if (ctx) ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-      }
-    }
-
     function hideOverlay() {
       els.overlay.classList.remove("show");
       els.overlay.setAttribute("aria-hidden", "true");
-      stopFireworks();
     }
 
     els.overlayBtn.addEventListener("click", hideOverlay);
@@ -1717,8 +1464,8 @@
       clearFocusClasses();
       const cards = Array.from(els.answers.querySelectorAll(".ans"));
       cards.forEach((c, i) => {
-        if (stage !== "choices" && i === focused) c.classList.add("ansFocus");
-        if ((stage === "revealed" || revealed) && chosenIndex === i) c.classList.add("ansSelected");
+        if (i === focused) c.classList.add("ansFocus");
+        if (chosenIndex === i) c.classList.add("ansSelected");
       });
     }
 
@@ -1811,10 +1558,10 @@
         c.appendChild(t);
 
         const pick = playerPicks[pi];
-        if ((stage === "choices" || stage === "revealed" || revealed) && typeof pick === "number") {
+        if (typeof pick === "number") {
           const p = document.createElement("div");
           p.className = "playerPick";
-          if (stage === "revealed" || revealed) p.textContent = String(pick + 1);
+          p.textContent = String(pick + 1);
           c.appendChild(p);
         }
 
@@ -1885,17 +1632,7 @@
       if (!QUESTIONS.length) return;
       if (!selectedLevel && idx >= QUESTIONS.length - 1) {
         const total = playerScores.reduce((a, b) => a + b, 0);
-        const max = Math.max(...playerScores);
-        const winners = PLAYER_LABELS.filter((_, i) => playerScores[i] === max);
-        const winnerText = (winners.length === 1)
-          ? `Winner is ${winners[0]}`
-          : `Winners are ${winners.join(" & ")}`;
-        const scoresText = `Scores — A: ${playerScores[0]}, B: ${playerScores[1]}, C: ${playerScores[2]}, D: ${playerScores[3]}. Total points: ${total}.`;
-        showOverlayHtml(
-          "Finished",
-          `<div class="winnerLine">${winnerText}</div><div class="winnerSub">${scoresText}</div>`
-        );
-        startFireworks();
+        showOverlay("Finished", `Scores — A: ${playerScores[0]}, B: ${playerScores[1]}, C: ${playerScores[2]}, D: ${playerScores[3]}. Total points: ${total}.`);
         return;
       }
       if (selectedLevel && levelIndices.length) {

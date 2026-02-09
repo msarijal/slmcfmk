@@ -717,6 +717,71 @@
       "answer": "Sunset Of Last Ramadhan",
       "answer_index": 2,
       "level": 4
+    },
+    {
+      "id": 54,
+      "question": "What is Fidya in the context of fasting?",
+      "options": [
+        "A penalty for intentionally breaking a fast",
+        "Compensation for missing a fast due to valid reasons",
+        "Fasting 60 consecutive days",
+        "Expiation for sins committed outside Ramadan"
+      ],
+      "answer": "Compensation for missing a fast due to valid reasons",
+      "answer_index": 1,
+      "level": 4
+    },
+    {
+      "id": 55,
+      "question": "Which of the following applies to Kaffarah?",
+      "options": [
+        "It is given when someone cannot fast due to old age",
+        "It is a replacement for missed fasts due to illness",
+        "It is required when someone deliberately breaks a fast in Ramadan",
+        "It is optional for missed voluntary fasts"
+      ],
+      "answer": "It is required when someone deliberately breaks a fast in Ramadan",
+      "answer_index": 2,
+      "level": 4
+    },
+    {
+      "id": 56,
+      "question": "Which of the following applies to Kaffarah?",
+      "options": [
+        "It is given when someone cannot fast due to old age",
+        "It is a replacement for missed fasts due to illness",
+        "It is required when someone intentionally breaks a fast in Ramadan",
+        "It is optional for missed voluntary fasts"
+      ],
+      "answer": "It is required when someone intentionally breaks a fast in Ramadan",
+      "answer_index": 2,
+      "level": 4
+    },
+    {
+      "id": 57,
+      "question": "Which of the following is a valid form of Kaffarah if one breaks a fast intentionally?",
+      "options": [
+        "Feeding 60 poor people or fasting 60 consecutive days",
+        "Feeding one poor person per missed day",
+        "Performing two extra rak’ahs of prayer daily",
+        "Donating clothes to the needy"
+      ],
+      "answer": "Feeding 60 poor people or fasting 60 consecutive days",
+      "answer_index": 0,
+      "level": 4
+    },
+    {
+      "id": 58,
+      "question": "The main difference between Fidya and Kaffarah is:",
+      "options": [
+        "Fidya is optional, Kaffarah is mandatory",
+        "Fidya is compensation for inability, Kaffarah is penalty for deliberate breaking",
+        "Fidya is only for old people, Kaffarah is only for the young",
+        "Fidya is paid in money, Kaffarah is paid in gold"
+      ],
+      "answer": "Fidya is compensation for inability, Kaffarah is penalty for deliberate breaking",
+      "answer_index": 1,
+      "level": 4
     }
   ]
 }
