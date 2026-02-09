@@ -120,6 +120,34 @@
       letter-spacing: .02em;
     }
 
+    .levelRow{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+      padding: 0 18px;
+      flex-wrap:wrap;
+    }
+
+    .levelBtn{
+      border: 1px solid var(--line);
+      background: rgba(15,19,48,.75);
+      box-shadow: 0 8px 20px rgba(0,0,0,.25);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 900;
+      color: var(--gold2);
+      font-size: clamp(14px, 1.8vw, 22px);
+      cursor:pointer;
+      user-select:none;
+      outline:none;
+    }
+
+    .levelBtnActive{
+      border-color: rgba(96,165,250,.95);
+      box-shadow: 0 0 0 3px rgba(96,165,250,.28), 0 12px 28px rgba(0,0,0,.45);
+    }
+
     .stage{
       display:grid;
       grid-template-columns: 1fr;
@@ -421,6 +449,8 @@
           <button class="btn btnPrimary" id="btnShowAnswer" type="button" disabled>Correct Answer</button>
         </div>
       </div>
+
+      <div class="levelRow" id="levelRow" aria-label="Levels"></div>
 
       <div class="stage">
         <div class="panel">
@@ -1196,9 +1226,9 @@
     }
 
     const els = {
-      quizTitle: document.getElementById("quizTitle"),
       pillPos: document.getElementById("pillPos"),
       levelTag: document.getElementById("levelTag"),
+      levelRow: document.getElementById("levelRow"),
       scoreA: document.getElementById("scoreA"),
       scoreB: document.getElementById("scoreB"),
       scoreC: document.getElementById("scoreC"),
@@ -1306,6 +1336,8 @@
     let revealed = false;
     let scoredThisQuestion = false;
     let stage = "question"; // question | choices | revealed
+    let selectedLevel = null;
+    let levelIndices = [];
 
     function loadState(dataFile) {
       try {
@@ -1329,6 +1361,7 @@
           dataFile,
           savedAt: Date.now(),
           idx,
+          selectedLevel,
           activePlayer,
           playerScores: [...playerScores],
           playerPicks: [...playerPicks],
@@ -1349,11 +1382,74 @@
     }
 
     function setTop() {
-      els.pillPos.textContent = `Q ${Math.min(idx + 1, QUESTIONS.length)} / ${QUESTIONS.length}`;
+      if (selectedLevel && levelIndices.length) {
+        const pos = Math.max(0, levelIndices.indexOf(idx));
+        els.pillPos.textContent = `Q ${Math.min(pos + 1, levelIndices.length)} / ${levelIndices.length}`;
+      } else {
+        els.pillPos.textContent = `Q ${Math.min(idx + 1, QUESTIONS.length)} / ${QUESTIONS.length}`;
+      }
       els.scoreA.textContent = `A: ${playerScores[0]}`;
       els.scoreB.textContent = `B: ${playerScores[1]}`;
       els.scoreC.textContent = `C: ${playerScores[2]}`;
       els.scoreD.textContent = `D: ${playerScores[3]}`;
+    }
+
+    function rebuildLevelIndices() {
+      if (!selectedLevel) {
+        levelIndices = [];
+        return;
+      }
+      levelIndices = [];
+      for (let i = 0; i < QUESTIONS.length; i++) {
+        const q = QUESTIONS[i];
+        const lvl = (typeof q.level === "number") ? q.level : parseInt(q.level ?? "1", 10) || 1;
+        if (lvl === selectedLevel) levelIndices.push(i);
+      }
+    }
+
+    function renderLevelRow() {
+      if (!els.levelRow) return;
+      els.levelRow.innerHTML = "";
+      [1, 2, 3, 4].forEach((lvl) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "levelBtn" + (selectedLevel === lvl ? " levelBtnActive" : "");
+        b.textContent = `Level ${lvl}`;
+        b.addEventListener("click", () => {
+          if (selectedLevel === lvl) {
+            selectedLevel = null;
+          } else {
+            selectedLevel = lvl;
+          }
+          rebuildLevelIndices();
+          if (selectedLevel) {
+            if (!levelIndices.length) {
+              selectedLevel = null;
+              rebuildLevelIndices();
+              renderLevelRow();
+              setTop();
+              saveState(getDataFile());
+              showOverlay("No questions", `No questions found for Level ${lvl}.`);
+              return;
+            }
+            idx = levelIndices[0];
+          }
+          renderLevelRow();
+          renderQuestion();
+          setTop();
+          saveState(getDataFile());
+        });
+        els.levelRow.appendChild(b);
+      });
+    }
+
+    function getNextIndex() {
+      if (selectedLevel && levelIndices.length) {
+        const pos = levelIndices.indexOf(idx);
+        const nextPos = (pos >= 0) ? ((pos + 1) % levelIndices.length) : 0;
+        return levelIndices[nextPos];
+      }
+      return idx + 1;
     }
 
     function clearFocusClasses() {
@@ -1534,12 +1630,16 @@
 
     function nextQuestion() {
       if (!QUESTIONS.length) return;
-      if (idx >= QUESTIONS.length - 1) {
+      if (!selectedLevel && idx >= QUESTIONS.length - 1) {
         const total = playerScores.reduce((a, b) => a + b, 0);
         showOverlay("Finished", `Scores — A: ${playerScores[0]}, B: ${playerScores[1]}, C: ${playerScores[2]}, D: ${playerScores[3]}. Total points: ${total}.`);
         return;
       }
-      idx += 1;
+      if (selectedLevel && levelIndices.length) {
+        idx = getNextIndex();
+      } else {
+        idx += 1;
+      }
       renderQuestion();
 
       saveState(getDataFile());
@@ -1549,11 +1649,14 @@
       const dataFile = getDataFile();
       clearState(dataFile);
       idx = 0;
+      selectedLevel = null;
+      levelIndices = [];
       playerScores[0] = 0;
       playerScores[1] = 0;
       playerScores[2] = 0;
       playerScores[3] = 0;
       activePlayer = 0;
+      renderLevelRow();
       renderQuestion();
       setTop();
 
@@ -1636,6 +1739,7 @@
         const st = loadState(dataFile);
         if (st) {
           idx = Math.max(0, Math.min(st.idx, QUESTIONS.length - 1));
+          selectedLevel = (typeof st.selectedLevel === "number") ? st.selectedLevel : null;
           activePlayer = (typeof st.activePlayer === "number") ? Math.max(0, Math.min(3, st.activePlayer)) : 0;
           playerScores[0] = st.playerScores[0] ?? 0;
           playerScores[1] = st.playerScores[1] ?? 0;
@@ -1652,6 +1756,19 @@
           els.questionText.textContent = "No questions found.";
           return;
         }
+
+        if (selectedLevel && (selectedLevel < 1 || selectedLevel > 4)) selectedLevel = null;
+        rebuildLevelIndices();
+        if (selectedLevel) {
+          if (!levelIndices.length) {
+            selectedLevel = null;
+            rebuildLevelIndices();
+          } else if (!levelIndices.includes(idx)) {
+            idx = levelIndices[0];
+          }
+        }
+
+        renderLevelRow();
 
         // Render
         renderQuestion();
