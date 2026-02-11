@@ -458,10 +458,31 @@
       margin: 10px 0 0; 
       color: var(--muted);
       font-weight: 800;
-      font-size: clamp(14px, 1.8vw, 20px);
-      line-height: 1.4;
+      font-size: 20px;
       text-align:center;
     }
+
+    .winnerScores{
+      margin-top: 14px;
+      display:flex;
+      justify-content:center;
+      gap: 16px;
+      flex-wrap:wrap;
+    }
+    .winnerScoreCircle{
+      width: 86px;
+      height: 86px;
+      border-radius: 999px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      border: 2px solid rgba(255,255,255,.22);
+      background: radial-gradient(120px 120px at 30% 25%, rgba(255,255,255,.12), rgba(0,0,0,.25));
+      box-shadow: 0 14px 28px rgba(0,0,0,.35);
+    }
+    .winnerScoreLabel{font-weight: 1000; font-size: 20px; line-height: 1;}
+    .winnerScoreValue{margin-top: 6px; font-weight: 1000; font-size: 28px; line-height: 1; color: var(--gold2);}
 
     @media (max-width: 820px){
       body{overflow:auto;}
@@ -1661,20 +1682,25 @@
       els.btnNext.disabled = ended;
       els.btnShowChoices.disabled = ended;
       els.btnShowAnswer.disabled = ended;
-      if (els.btnScores) els.btnScores.disabled = ended;
+      if (els.btnScores) els.btnScores.disabled = false;
     }
 
     function endGameNow() {
-      const total = playerScores.reduce((a, b) => a + b, 0);
       const max = Math.max(...playerScores);
       const winners = PLAYER_LABELS.filter((_, i) => playerScores[i] === max);
       const winnerText = (winners.length === 1)
         ? `Winner is ${winners[0]}`
         : `Winners are ${winners.join(" & ")}`;
-      const scoresText = `Scores — A: ${playerScores[0]}, B: ${playerScores[1]}, C: ${playerScores[2]}, D: ${playerScores[3]}. Total points: ${total}.`;
+      const scoresHtml = `
+        <div class="winnerScores" aria-label="Final scores">
+          <div class="winnerScoreCircle"><div class="winnerScoreLabel">A</div><div class="winnerScoreValue">${playerScores[0]}</div></div>
+          <div class="winnerScoreCircle"><div class="winnerScoreLabel">B</div><div class="winnerScoreValue">${playerScores[1]}</div></div>
+          <div class="winnerScoreCircle"><div class="winnerScoreLabel">C</div><div class="winnerScoreValue">${playerScores[2]}</div></div>
+          <div class="winnerScoreCircle"><div class="winnerScoreLabel">D</div><div class="winnerScoreValue">${playerScores[3]}</div></div>
+        </div>`;
       showOverlayHtml(
-        "Finished",
-        `<div class="winnerLine">${winnerText}</div><div class="winnerSub">${scoresText}</div>`
+        "Game Over. Hope You All Enjoyed The Quiz!",
+        `<div class="winnerLine">${winnerText}</div>${scoresHtml}`
       );
       startFireworks();
       setEndedUi(true);
@@ -1917,16 +1943,21 @@
     function nextQuestion() {
       if (!QUESTIONS.length) return;
       if (!selectedLevel && idx >= QUESTIONS.length - 1) {
-        const total = playerScores.reduce((a, b) => a + b, 0);
         const max = Math.max(...playerScores);
         const winners = PLAYER_LABELS.filter((_, i) => playerScores[i] === max);
         const winnerText = (winners.length === 1)
           ? `Winner is ${winners[0]}`
           : `Winners are ${winners.join(" & ")}`;
-        const scoresText = `Scores — A: ${playerScores[0]}, B: ${playerScores[1]}, C: ${playerScores[2]}, D: ${playerScores[3]}. Total points: ${total}.`;
+        const scoresHtml = `
+          <div class="winnerScores" aria-label="Final scores">
+            <div class="winnerScoreCircle"><div class="winnerScoreLabel">A</div><div class="winnerScoreValue">${playerScores[0]}</div></div>
+            <div class="winnerScoreCircle"><div class="winnerScoreLabel">B</div><div class="winnerScoreValue">${playerScores[1]}</div></div>
+            <div class="winnerScoreCircle"><div class="winnerScoreLabel">C</div><div class="winnerScoreValue">${playerScores[2]}</div></div>
+            <div class="winnerScoreCircle"><div class="winnerScoreLabel">D</div><div class="winnerScoreValue">${playerScores[3]}</div></div>
+          </div>`;
         showOverlayHtml(
-          "Finished",
-          `<div class="winnerLine">${winnerText}</div><div class="winnerSub">${scoresText}</div>`
+          "Game Over. Hope You All Enjoyed The Quiz!",
+          `<div class="winnerLine">${winnerText}</div>${scoresHtml}`
         );
         startFireworks();
         return;
