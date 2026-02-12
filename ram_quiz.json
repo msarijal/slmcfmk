@@ -4,670 +4,766 @@
   "count": 55,
   "questions": [
     {
-      "id": 5,
-      "question": "Which of the following INVALIDATES a fast?",
+      "id": 1,
+      "question": "What is the Arabic word for fasting?",
       "options": [
-        "Forgetting and eating",
-        "Vomiting unintentionally",
-        "Swallowing medicine intentionally",
-        "Sleeping all day"
-      ],
-      "answer": "Swallowing medicine intentionally",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 6,
-      "question": "Which reduces the reward of fasting but does NOT break it?",
-      "options": [
-        "Eating",
-        "Drinking",
-        "Lying",
-        "Vomiting"
-      ],
-      "answer": "Lying",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 11,
-      "question": "Which act is Makruh (disliked) while fasting?",
-      "options": [
-        "Using miswak",
-        "Smelling perfume deeply",
-        "Making dua",
-        "Reading Qur’an"
-      ],
-      "answer": "Smelling perfume deeply",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 14,
-      "question": "The first revelation “Iqra” occurred in:",
-      "options": [
-        "Cave Thawr",
-        "Cave Hira",
-        "Masjid Nabawi",
-        "Makkah market"
-      ],
-      "answer": "Cave Hira",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 16,
-      "question": "Which Surah describes Laylatul Qadr?",
-      "options": [
-        "Al-Qadr",
-        "Al-Fajr",
-        "Al-Baqarah",
-        "Al-Ikhlas"
-      ],
-      "answer": "Al-Qadr",
-      "answer_index": 0,
-      "level": 1
-    },
-    {
-      "id": 30,
-      "question": "I’tikaf (seclusion in the mosque) is especially observed during:",
-      "options": [
-        "First 10 days of Ramadhan",
-        "Last 10 nights of Ramadhan",
-        "First 5 nights of Ramadhan",
-        "Entire month"
-      ],
-      "answer": "Last 10 nights of Ramadhan",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 34,
-      "question": "Giving Zakat-ul-Fitr purifies the fast from?",
-      "options": [
-        "Hunger",
-        "Sleep",
-        "Mistakes",
-        "Travel"
-      ],
-      "answer": "Mistakes",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 35,
-      "question": "Muslims fast during Ramadhan from:",
-      "options": [
-        "Sunrise to sunset",
-        "Fajr to Maghrib",
-        "Zuhr to Isha",
-        "Sunrise to Isha"
-      ],
-      "answer": "Fajr to Maghrib",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 36,
-      "question": "The special night in Ramadhan, better than a thousand months, is called:",
-      "options": [
-        "Laylatul Isra",
-        "Laylatul Qadr",
-        "Laylatul Miraj",
-        "Laylatul Bara’ah"
-      ],
-      "answer": "Laylatul Qadr",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 37,
-      "question": "The meal eaten before starting the fast is called:",
-      "options": [
-        "Iftar",
-        "Suhoor",
-        "Sahoor",
-        "Dinner"
-      ],
-      "answer": "Suhoor",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 38,
-      "question": "The meal to break the fast is called:",
-      "options": [
-        "Iftar",
-        "Suhoor",
-        "Breakfast",
-        "Lunch"
-      ],
-      "answer": "Iftar",
-      "answer_index": 0,
-      "level": 1
-    },
-    {
-      "id": 39,
-      "question": "Special night prayers in Ramadhan are called:",
-      "options": [
-        "Fajr",
-        "Taraweeh",
-        "Tahajjud",
-        "Sunnah"
-      ],
-      "answer": "Taraweeh",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 41,
-      "question": "Fasting during Ramadhan is:",
-      "options": [
-        "Optional",
-        "Fard (obligatory)",
-        "Wajib",
-        "Recommended"
-      ],
-      "answer": "Fard (obligatory)",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 43,
-      "question": "The first battle in Islam was:",
-      "options": [
-        "Uhud",
-        "Khandaq",
-        "Badr",
-        "Hunain"
-      ],
-      "answer": "Badr",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 44,
-      "question": "Taraweeh is prayed after:",
-      "options": [
-        "Fajr",
-        "Zuhr",
-        "Asr",
-        "Isha"
-      ],
-      "answer": "Isha",
-      "answer_index": 3,
-      "level": 1
-    },
-    {
-      "id": 47,
-      "question": "The sunnah method of breaking fast is with?",
-      "options": [
-        "Water",
-        "Milk",
-        "Dates",
-        "Bread"
-      ],
-      "answer": "Dates",
-      "answer_index": 2,
-      "level": 1
-    },
-    {
-      "id": 52,
-      "question": "Eid-ul-Fitr marks the completion of?",
-      "options": [
+        "Salah",
+        "Zakat",
         "Hajj",
-        "Zakah",
-        "Fasting",
-        "Prayer"
+        "Sawm"
       ],
-      "answer": "Fasting",
+      "answer": "Sawm",
+      "answer_index": 3,
+      "level": 1
+    },
+    {
+      "id": 2,
+      "question": "Which Islamic month is Ramadan?",
+      "options": [
+        "7th month",
+        "8th month",
+        "9th month",
+        "10th month"
+      ],
+      "answer": "9th month",
       "answer_index": 2,
       "level": 1
     },
     {
-      "id": 55,
-      "question": "The Eid prayer consists of how many rak‘ahs?",
+        "id": 3,
+        "question": "Which reduces the reward of fasting but does NOT break it?",
+        "options": [
+          "Eating",
+          "Drinking",
+          "Lying",
+          "Vomiting"
+        ],
+        "answer": "Lying",
+        "answer_index": 2,
+        "level": 1
+      },
+    {
+        "id": 4,
+        "question": "Which act is Makruh (disliked) while fasting?",
+        "options": [
+          "Using miswak",
+          "Smelling perfume deeply",
+          "Making dua",
+          "Reading Qur’an"
+        ],
+        "answer": "Smelling perfume deeply",
+        "answer_index": 1,
+        "level": 1
+      },
+      {
+        "id": 5,
+        "question": "The first revelation “Iqra” occurred in:",
+        "options": [
+          "Cave Thawr",
+          "Masjid Nabawi",
+          "Makkah market",
+          "Cave Hira"
+        ],
+        "answer": "Cave Hira",
+        "answer_index": 3,
+        "level": 1
+      },
+      {
+        "id": 6,
+        "question": "Which Surah describes Laylatul Qadr?",
+        "options": [
+          "Al-Qadr",
+          "Al-Fajr",
+          "Al-Baqarah",
+          "Al-Ikhlas"
+        ],
+        "answer": "Al-Qadr",
+        "answer_index": 0,
+        "level": 1
+      },
+    {
+        "id": 7,
+        "question": "Muslims fast during Ramadhan from:",
+        "options": [
+          "Sunrise to sunset",
+          "Fajr to Maghrib",
+          "Zuhr to Isha",
+          "Sunrise to Isha"
+        ],
+        "answer": "Fajr to Maghrib",
+        "answer_index": 1,
+        "level": 1
+      },
+    {
+        "id": 8,
+        "question": "The special night in Ramadhan, better than a thousand months, is called:",
+        "options": [
+          "Laylatul Isra",
+          "Laylatul Qadr",
+          "Laylatul Miraj",
+          "Laylatul Bara’ah"
+        ],
+        "answer": "Laylatul Qadr",
+        "answer_index": 1,
+        "level": 1
+      },
+      {
+        "id": 9,
+        "question": "Which of the following INVALIDATES a fast?",
+        "options": [
+          "Forgetting and eating",
+          "Vomiting unintentionally",
+          "Swallowing medicine intentionally",
+          "Sleeping all day"
+        ],
+        "answer": "Swallowing medicine intentionally",
+        "answer_index": 2,
+        "level": 1
+      },
+    {
+        "id": 10,
+        "question": "The meal eaten before starting the fast is called:",
+        "options": [
+          "Suhoor",
+          "Iftar",
+          "Tea",
+          "Dinner"
+        ],
+        "answer": "Suhoor",
+        "answer_index": 0,
+        "level": 1
+      },
+    {
+        "id": 11,
+        "question": "The meal to break the fast is called:",
+        "options": [
+          "Iftar",
+          "Suhoor",
+          "Breakfast",
+          "Lunch"
+        ],
+        "answer": "Iftar",
+        "answer_index": 0,
+        "level": 1
+      },
+    {
+        "id": 12,
+        "question": "Special night prayers in Ramadhan are called:",
+        "options": [
+          "Fajr",
+          "Taraweeh",
+          "Tahajjud",
+          "Sunnah"
+        ],
+        "answer": "Taraweeh",
+        "answer_index": 1,
+        "level": 1
+      },
+
+    {
+        "id": 13,
+        "question": "Fasting during Ramadhan is:",
+        "options": [
+          "Optional",
+          "Wajib",
+          "Recommended",
+          "Fard (obligatory)"
+        ],
+        "answer": "Fard (obligatory)",
+        "answer_index": 3,
+        "level": 1
+      },        
+      {
+        "id": 14,
+        "question": "Taraweeh is prayed after:",
+        "options": [
+          "Fajr",
+          "Zuhr",
+          "Asr",
+          "Isha"
+        ],
+        "answer": "Isha",
+        "answer_index": 3,
+        "level": 1
+      },
+
+    {
+        "id": 15,
+        "question": "The sunnah method of breaking fast is with?",
+        "options": [
+          "Water",
+          "Milk",
+          "Dates",
+          "Bread"
+        ],
+        "answer": "Dates",
+        "answer_index": 2,
+        "level": 1
+      },
+    {
+        "id": 16,
+        "question": "Eid-ul-Fitr marks the completion of?",
+        "options": [
+          "Hajj",
+          "Zakah",
+          "Fasting",
+          "Prayer"
+        ],
+        "answer": "Fasting",
+        "answer_index": 2,
+        "level": 1
+      },
+    {
+        "id": 17,
+        "question": "The Eid prayer consists of how many rak‘ahs?",
+        "options": [
+          "One",
+          "Two",
+          "Three",
+          "Four"
+        ],
+        "answer": "Two",
+        "answer_index": 1,
+        "level": 1
+      },
+    {
+        "id": 18,
+        "question": "If someone eats forgetfully while fasting, they should:",
+        "options": [
+          "Continue fasting",
+          "Stop fasting",
+          "Give Kaffarah",
+          "Repeat the fast"
+        ],
+        "answer": "Continue fasting",
+        "answer_index": 0,
+        "level": 1
+      },
+    {
+        "id": 19,
+        "question": "The word Qur’an literally means:",
+        "options": [
+          "Book",
+          "Law",
+          "Recitation",
+          "Wisdom"
+        ],
+        "answer": "Recitation",
+        "answer_index": 2,
+        "level": 1
+      },
+      {
+        "id": 20,
+        "question": "Taraweeh prayer during Ramadhan is:",
+        "options": [
+          "Fard",
+          "Wajib",
+          "Makruh",
+          "Sunnah"
+        ],
+        "answer": "Sunnah",
+        "answer_index": 3,
+        "level": 1
+      },
+    {
+        "id": 21,
+        "question": "Laylatul Qadr is found in which part of Ramadhan?",
+        "options": [
+          "First 10 nights",
+          "Middle 10 nights",
+          "Last 10 nights",
+          "First 5 days"
+        ],
+        "answer": "Last 10 nights",
+        "answer_index": 2,
+        "level": 1
+      },
+
+    {
+        "id": 22,
+        "question": "Forgetfully eating while fasting requires what action?",
+        "options": [
+          "Kaffarah",
+          "Qada",
+          "Fidya",
+          "None"
+        ],
+        "answer": "None",
+        "answer_index": 3,
+        "level": 1
+      },
+
+    {
+        "id": 23,
+        "question": "The Qur’an was revealed gradually over how many years?",
+        "options": [
+          "10",
+          "15",
+          "23",
+          "30"
+        ],
+        "answer": "23",
+        "answer_index": 2,
+        "level": 1
+      },
+    {
+      "id": 24,
+      "question": "A voluntary act (Sunnah) in Ramadan equals how many obligatory (fard) acts in reward?",
       "options": [
+        "Ten",
         "One",
-        "Two",
-        "Three",
-        "Four"
+        "Seventy",
+        "Hundred"
       ],
-      "answer": "Two",
-      "answer_index": 1,
-      "level": 1
-    },
-    {
-      "id": 3,
-      "question": "Fidya is given by a person who:",
-      "options": [
-        "Missed one fast",
-        "Is permanently ill",
-        "Forgot to fast",
-        "Slept late"
-      ],
-      "answer": "Is permanently ill",
+      "answer": "One",
       "answer_index": 1,
       "level": 2
     },
     {
-      "id": 4,
-      "question": "Which condition is NOT required for fasting to be obligatory?",
+      "id": 25,
+      "question": "One obligatory act (fard) in Ramadan equals how many obligatory acts at another time (according to the narration)?",
       "options": [
-        "Islam",
-        "Sanity",
-        "Puberty",
-        "Wealth"
+        "Seven",
+        "Seventy",
+        "Hundred",
+        "Ten"
       ],
-      "answer": "Wealth",
-      "answer_index": 3,
-      "level": 2
-    },
-    {
-      "id": 7,
-      "question": "If someone eats forgetfully while fasting, they should:",
-      "options": [
-        "Stop fasting",
-        "Give Kaffarah",
-        "Continue fasting",
-        "Repeat the fast"
-      ],
-      "answer": "Continue fasting",
-      "answer_index": 2,
-      "level": 2
-    },
-    {
-      "id": 8,
-      "question": "If someone breaks a Ramadhan fast thinking Maghrib has started, but it has not, they must:",
-      "options": [
-        "Do nothing",
-        "Give Fidya",
-        "Repeat fast (Qada)",
-        "Give Kaffarah"
-      ],
-      "answer": "Repeat fast (Qada)",
-      "answer_index": 2,
-      "level": 2
-    },
-    {
-      "id": 9,
-      "question": "The main purpose of fasting mentioned in the Qur’an is to gain:",
-      "options": [
-        "Strength",
-        "Wealth",
-        "Knowledge",
-        "Taqwa"
-      ],
-      "answer": "Taqwa",
-      "answer_index": 3,
-      "level": 2
-    },
-    {
-      "id": 17,
-      "question": "The word Qur’an literally means:",
-      "options": [
-        "Book",
-        "Law",
-        "Recitation",
-        "Wisdom"
-      ],
-      "answer": "Recitation",
-      "answer_index": 2,
-      "level": 2
-    },
-    {
-      "id": 21,
-      "question": "The first battle that occurred during Ramadhan was:",
-      "options": [
-        "Uhud",
-        "Badr",
-        "Khandaq",
-        "Hunain"
-      ],
-      "answer": "Badr",
+      "answer": "Seventy",
       "answer_index": 1,
       "level": 2
     },
     {
-      "id": 23,
-      "question": "Which event is NOT associated with Ramadhan?",
+      "id": 26,
+      "question": "Umrah in Ramadan equals the reward of which act?",
       "options": [
-        "Revelation of the Qur’an",
-        "Battle of Badr",
-        "Laylatul Qadr",
-        "Hijrah to Madinah"
+        "Salah",
+        "Zakah",
+        "Hajj",
+        "Sawm"
       ],
-      "answer": "Hijrah to Madinah",
-      "answer_index": 3,
+      "answer": "Hajj",
+      "answer_index": 2,
       "level": 2
     },
     {
       "id": 27,
-      "question": "Who organized Taraweeh in congregation during his caliphate?",
+      "question": "The Conquest of Makkah occurred on which day of Ramadan?",
       "options": [
-        "Abu Bakr (RA)",
-        "Umar ibn Al-Khattab (RA)",
-        "Uthman (RA)",
-        "Ali (RA)"
+        "10th",
+        "17th",
+        "20th",
+        "27th"
       ],
-      "answer": "Umar ibn Al-Khattab (RA)",
-      "answer_index": 1,
+      "answer": "20th",
+      "answer_index": 2,
       "level": 2
     },
+
     {
       "id": 28,
-      "question": "Taraweeh prayer during Ramadhan is:",
+      "question": "I’tikaf (seclusion in the mosque) is especially observed during:",
       "options": [
-        "Fard",
-        "Wajib",
-        "Sunnah",
-        "Makruh"
-      ],
-      "answer": "Sunnah",
-      "answer_index": 2,
-      "level": 2
-    },
+          "First 10 days of Ramadhan",
+          "Last 10 nights of Ramadhan",
+          "First 5 nights of Ramadhan",
+          "Entire month"
+        ],
+        "answer": "Last 10 nights of Ramadhan",
+        "answer_index": 1,
+        "level": 2
+      },
     {
       "id": 29,
-      "question": "What is the recommended act during the last ten nights of Ramadhan?",
+      "question": "Giving Zakat-ul-Fitr purifies the fast from?",
       "options": [
-        "Fasting only",
-        "I’tikaf",
-        "Charity",
-        "Traveling"
-      ],
-      "answer": "I’tikaf",
-      "answer_index": 1,
-      "level": 2
-    },
+          "Hunger",
+          "Sleep",
+          "Mistakes",
+          "Travel"
+        ],
+        "answer": "Mistakes",
+        "answer_index": 2,
+        "level": 2
+      },
+    {
+      "id": 30,
+      "question": "The first battle in Islam was:",
+      "options": [
+          "Uhud",
+          "Khandaq",
+          "Badr",
+          "Hunain"
+        ],
+        "answer": "Badr",
+        "answer_index": 2,
+        "level": 2
+      },
+    {
+      "id": 31,
+      "question": "Fidya is given by a person who:",
+      "options": [
+          "Missed one fast",
+          "Is permanently ill",
+          "Forgot to fast",
+          "Slept late"
+        ],
+        "answer": "Is permanently ill",
+        "answer_index": 1,
+        "level": 2
+      },
     {
       "id": 32,
+      "question": "Which condition is NOT required for fasting to be obligatory?",
+      "options": [
+          "Islam",
+          "Sanity",
+          "Puberty",
+          "Wealth"
+        ],
+        "answer": "Wealth",
+        "answer_index": 3,
+        "level": 2
+      },
+    {
+      "id": 33,
+      "question": "If someone breaks a Ramadhan fast thinking Maghrib has started, but it has not, they must:",
+      "options": [
+          "Do nothing",
+          "Give Fidya",
+          "Repeat fast (Qada)",
+          "Give Kaffarah"
+        ],
+        "answer": "Repeat fast (Qada)",
+        "answer_index": 2,
+        "level": 2
+      },
+    {
+      "id": 34,
+      "question": "The main purpose of fasting mentioned in the Qur’an is to gain:",
+      "options": [
+          "Strength",
+          "Wealth",
+          "Knowledge",
+          "Taqwa"
+        ],
+        "answer": "Taqwa",
+        "answer_index": 3,
+        "level": 2
+      },
+    {
+      "id": 35,
+      "question": "The first battle that occurred during Ramadhan was:",
+      "options": [
+          "Uhud",
+          "Badr",
+          "Khandaq",
+          "Hunain"
+        ],
+        "answer": "Badr",
+        "answer_index": 1,
+        "level": 2
+      },
+    {
+      "id": 36,
+      "question": "Which event is NOT associated with Ramadhan?",
+      "options": [
+          "Revelation of the Qur’an",
+          "Battle of Badr",
+          "Laylatul Qadr",
+          "Hijrah to Madinah"
+        ],
+        "answer": "Hijrah to Madinah",
+        "answer_index": 3,
+        "level": 2
+      },
+    {
+      "id": 37,
+      "question": "Who organized Taraweeh in congregation during his caliphate?",
+      "options": [
+          "Abu Bakr (RA)",
+          "Umar ibn Al-Khattab (RA)",
+          "Uthman (RA)",
+          "Ali (RA)"
+        ],
+        "answer": "Umar ibn Al-Khattab (RA)",
+        "answer_index": 1,
+        "level": 2
+      },
+    {
+      "id": 38,
+      "question": "What is the recommended act during the last ten nights of Ramadhan?",
+      "options": [
+          "Fasting only",
+          "I’tikaf",
+          "Charity",
+          "Traveling"
+        ],
+        "answer": "I’tikaf",
+        "answer_index": 1,
+        "level": 2
+      },
+    {
+      "id": 39,
       "question": "When should Zakat al-Fitr be paid?",
       "options": [
-        "Before Ramadhan",
-        "Before Eid prayer",
-        "After Eid prayer",
-        "Anytime in Shawwal"
-      ],
-      "answer": "Before Eid prayer",
-      "answer_index": 1,
-      "level": 2
-    },
+          "Before Ramadhan",
+          "Before Eid prayer",
+          "After Eid prayer",
+          "Anytime in Shawwal"
+        ],
+        "answer": "Before Eid prayer",
+        "answer_index": 1,
+        "level": 2
+      },
     {
       "id": 40,
-      "question": "Laylatul Qadr is found in which part of Ramadhan?",
-      "options": [
-        "First 10 nights",
-        "Middle 10 nights",
-        "Last 10 nights",
-        "First 5 days"
-      ],
-      "answer": "Last 10 nights",
-      "answer_index": 2,
-      "level": 2
-    },
-    {
-      "id": 42,
       "question": "Charity given to the poor at the end of Ramadhan is called:",
       "options": [
-        "Zakat al-Mal",
-        "Zakat al-Fitr",
-        "Sadaqah",
-        "Kaffarah"
-      ],
-      "answer": "Zakat al-Fitr",
-      "answer_index": 1,
-      "level": 2
-    },
+          "Zakat al-Mal",
+          "Zakat al-Fitr",
+          "Sadaqah",
+          "Kaffarah"
+        ],
+        "answer": "Zakat al-Fitr",
+        "answer_index": 1,
+        "level": 2
+      },
     {
-      "id": 46,
-      "question": "Forgetfully eating while fasting requires what action?",
-      "options": [
-        "Kaffarah",
-        "Qada",
-        "Fidya",
-        "None"
-      ],
-      "answer": "None",
-      "answer_index": 3,
-      "level": 2
-    },
-    {
-      "id": 48,
+      "id": 41,
       "question": "Laylatul Qadr is searched in which category of nights?",
       "options": [
-        "Even",
-        "First",
-        "Odd",
-        "Last"
-      ],
-      "answer": "Odd",
-      "answer_index": 2,
-      "level": 2
-    },
+          "Even",
+          "First",
+          "Odd",
+          "Last"
+        ],
+        "answer": "Odd",
+        "answer_index": 2,
+        "level": 2
+      },
     {
-      "id": 49,
+      "id": 42,
       "question": "The first ten days of Ramadhan are known as the days of?",
       "options": [
-        "Maghfirah",
-        "Najah",
-        "Rahmah",
-        "Itqu minannar"
-      ],
-      "answer": "Rahmah",
-      "answer_index": 2,
-      "level": 2
-    },
+          "Maghfirah",
+          "Najah",
+          "Rahmah",
+          "Itqu minannar"
+        ],
+        "answer": "Rahmah",
+        "answer_index": 2,
+        "level": 2
+      },
     {
-      "id": 50,
+      "id": 43,
       "question": "The last ten days of Ramadhan are associated with freedom from?",
       "options": [
-        "Hunger",
-        "Sin",
-        "Hell Fire",
-        "Fear"
-      ],
-      "answer": "Hell Fire",
-      "answer_index": 2,
-      "level": 2
-    },
+          "Hunger",
+          "Sin",
+          "Hell Fire",
+          "Fear"
+        ],
+        "answer": "Hell Fire",
+        "answer_index": 2,
+        "level": 2
+      },
     {
-      "id": 54,
+      "id": 44,
       "question": "Which act is prohibited on Eid-ul-Fitr?",
       "options": [
-        "Prayer",
-        "Charity",
-        "Fasting",
-        "Takbeer"
+          "Prayer",
+          "Charity",
+          "Fasting",
+          "Takbeer"
+        ],
+        "answer": "Fasting",
+        "answer_index": 2,
+        "level": 2
+      },
+    {
+      "id": 45,
+      "question": "Which Surah mentions fasting as an obligation?",
+      "options": [
+          "Al-Ma’idah",
+          "Al-Baqarah",
+          "Al-Imran",
+          "Al-Nisa"
+        ],
+        "answer": "Al-Baqarah",
+        "answer_index": 1,
+        "level": 2
+      },
+    {
+      "id": 46,
+      "question": "Which group is allowed to miss fasting and make it up later?",
+      "options": [
+          "Children",
+          "Travelers",
+          "Angels",
+          "Teachers"
+        ],
+        "answer": "Travelers",
+        "answer_index": 1,
+        "level": 2
+      },
+    {
+      "id": 47,
+      "question": "Which Surah mentions Ramadhan by name?",
+      "options": [
+          "Al-Qadr",
+          "Al-Baqarah",
+          "Al-Fajr",
+          "Al-Shams"
+        ],
+        "answer": "Al-Baqarah",
+        "answer_index": 1,
+        "level": 2
+      },
+    {
+      "id": 48,
+      "question": "The Battle of Badr took place on which Islamic date?",
+      "options": [
+          "1 Ramadhan",
+          "10 Ramadhan",
+          "17 Ramadhan",
+          "27 Ramadhan"
+        ],
+        "answer": "17 Ramadhan",
+        "answer_index": 2,
+        "level": 2
+      },
+      {
+      "id": 49,
+      "question": "The number of enemies at Badr was about:",
+      "options": [
+          "500",
+          "700",
+          "900",
+          "1000"
+        ],
+        "answer": "1000",
+        "answer_index": 3,
+        "level": 2
+      },
+    {
+      "id": 50,
+      "question": "The second ten days of Ramadhan emphasize seeking:",
+      "options": [
+          "Patience",
+          "Charity",
+          "Maghfirah",
+          "Guidance"
+        ],
+        "answer": "Maghfirah",
+        "answer_index": 2,
+        "level": 2
+      },
+    {
+      "id": 51,
+      "question": "Which Sahabi is known for writing down the Qur'an during the Prophet's life time?",
+      "options": [
+          "Zayd",
+          "Uthman",
+          "Abdullah",
+          "Ali"
+        ],
+        "answer": "Zayd",
+        "answer_index": 0,
+        "level": 2
+      },
+    {
+      "id": 52,
+      "question": "Zakat al-Fitr is obligatory on:",
+      "options": [
+          "Only men",
+          "Only children",
+          "Every Muslim who possesses surplus food",
+          "Only the poor"
+        ],
+        "answer": "Every Muslim who possesses surplus food",
+        "answer_index": 2,
+        "level": 2
+      },
+    {
+      "id": 53,
+      "question": "The gate of Jannah reserved for those who fast is named?",
+      "options": [
+          "Firdaus",
+          "Salam",
+          "Rayyan",
+          "Noor"
+        ],
+        "answer": "Rayyan",
+        "answer_index": 2,
+        "level": 2
+      },
+    {
+      "id": 54,
+      "question": "The Arabic word Itqu-minan-Naar means?",
+      "options": [
+          "Protection from evil",
+          "Forgiveness of sins",
+          "Freedom From Hell Fire",
+          "Guidance"
+        ],
+        "answer": "Freedom From Hell Fire",
+        "answer_index": 2,
+        "level": 2
+      },
+    {
+      "id": 55,
+      "question": "The reward for fasting 6 days in Shawwal equals fasting for:",
+      "options": [
+        "Month",
+        "Year",
+        "Week",
+        "Lifetime"
       ],
-      "answer": "Fasting",
-      "answer_index": 2,
+      "answer": "Year",
+      "answer_index": 1,
       "level": 2
     },
     {
-      "id": 1,
-      "question": "Which Surah mentions fasting as an obligation?",
+      "id": 56,
+      "question": "What is the meaning of Ramadan?",
       "options": [
-        "Al-Ma’idah",
-        "Al-Baqarah",
-        "Al-Imran",
-        "Al-Nisa"
+        "Celebration",
+        "Light",
+        "Intense heat",
+        "Peace"
       ],
-      "answer": "Al-Baqarah",
-      "answer_index": 1,
+      "answer": "Intense heat",
+      "answer_index": 2,
       "level": 3
     },
     {
-      "id": 2,
-      "question": "Which group is allowed to miss fasting and make it up later?",
-      "options": [
-        "Children",
-        "Travelers",
-        "Angels",
-        "Teachers"
-      ],
-      "answer": "Travelers",
-      "answer_index": 1,
-      "level": 3
-    },
-    {
-      "id": 10,
+      "id": 57,
       "question": "The fast of a pregnant or feeding woman who fears harm to child is:",
       "options": [
         "Obligatory",
         "Wajib",
         "Exempt with Qada later",
-        "Exempt with Fidya allowed"
+        "Exempt with Fidya & Qada allowed"
       ],
-      "answer": "Exempt with Fidya allowed",
+      "answer": "Exempt with Fidya & Qada allowed",
       "answer_index": 3,
       "level": 3
     },
     {
-      "id": 12,
-      "question": "Which fast does NOT require Kaffarah if broken?",
-      "options": [
-        "Ramadhan fast",
-        "Qada fast",
-        "Nafl fast",
-        "Vowed fast"
-      ],
-      "answer": "Nafl fast",
-      "answer_index": 2,
-      "level": 3
-    },
-    {
-      "id": 13,
-      "question": "Which Surah mentions Ramadhan by name?",
-      "options": [
-        "Al-Qadr",
-        "Al-Baqarah",
-        "Al-Fajr",
-        "Al-Shams"
-      ],
-      "answer": "Al-Baqarah",
-      "answer_index": 1,
-      "level": 3
-    },
-    {
-      "id": 15,
-      "question": "The Qur’an was revealed gradually over how many years?",
-      "options": [
-        "10",
-        "15",
-        "23",
-        "30"
-      ],
-      "answer": "23",
-      "answer_index": 2,
-      "level": 3
-    },
-    {
-      "id": 18,
-      "question": "The Battle of Badr took place on which Islamic date?",
-      "options": [
-        "1 Ramadhan",
-        "10 Ramadhan",
-        "17 Ramadhan",
-        "27 Ramadhan"
-      ],
-      "answer": "17 Ramadhan",
-      "answer_index": 2,
-      "level": 3
-    },
-    {
-      "id": 19,
-      "question": "Which Companion carried the flag of the Muslims at Badr?",
-      "options": [
-        "Umar ibn Al-Khattab (RA)",
-        "Ali ibn Abi Talib (RA)",
-        "Hamzah ibn Abdul Muttalib (RA)",
-        "Mus‘ab ibn Umair (RA)"
-      ],
-      "answer": "Mus‘ab ibn Umair (RA)",
-      "answer_index": 3,
-      "level": 3
-    },
-    {
-      "id": 20,
-      "question": "The number of enemies at Badr was about:",
-      "options": [
-        "500",
-        "700",
-        "900",
-        "1000"
-      ],
-      "answer": "1000",
-      "answer_index": 3,
-      "level": 3
-    },
-    {
-      "id": 22,
-      "question": "The second ten days of Ramadhan emphasize seeking:",
-      "options": [
-        "Patience",
-        "Charity",
-        "Maghfirah",
-        "Guidance"
-      ],
-      "answer": "Maghfirah",
-      "answer_index": 2,
-      "level": 3
-    },
-    {
-      "id": 24,
-      "question": "During the Hijrah, the Prophet ﷺ stayed in a cave called?",
-      "options": [
-        "Thawr",
-        "Hira",
-        "Uhud",
-        "Safa"
-      ],
-      "answer": "Thawr",
-      "answer_index": 0,
-      "level": 3
-    },
-    {
-      "id": 25,
-      "question": "Which Sahabi is known for writing down the Qur’an during the Prophet ﷺ’s lifetime?",
-      "options": [
-        "Zayd",
-        "Uthman",
-        "Abdullah",
-        "Ali"
-      ],
-      "answer": "Zayd",
-      "answer_index": 0,
-      "level": 3
-    },
-    {
-      "id": 26,
+      "id": 58,
       "question": "Which companion is called “Dhul-Nurayn”?",
       "options": [
-        "Uthman",
-        "Umar",
-        "Ali",
-        "Abu Bakr"
+          "Uthman",
+          "Umar",
+          "Ali",
+          "Abu Bakr"
       ],
       "answer": "Uthman",
       "answer_index": 0,
       "level": 3
     },
     {
-      "id": 31,
-      "question": "Zakat al-Fitr is obligatory on:",
-      "options": [
-        "Only men",
-        "Only children",
-        "Every Muslim who possesses surplus food",
-        "Only the poor"
-      ],
-      "answer": "Every Muslim who possesses surplus food",
-      "answer_index": 2,
-      "level": 3
-    },
-    {
-      "id": 33,
+      "id": 59,
       "question": "How much Zakat al-Fitr is given per person?",
       "options": [
         "One sa‘ of food (approx. 2–3 kg)",
@@ -680,108 +776,43 @@
       "level": 3
     },
     {
-      "id": 45,
-      "question": "The gate of Jannah reserved for those who fast is named?",
-      "options": [
-        "Firdaus",
-        "Salam",
-        "Rayyan",
-        "Noor"
-      ],
-      "answer": "Rayyan",
-      "answer_index": 2,
-      "level": 3
-    },
-    {
-      "id": 51,
-      "question": "The Arabic word Itqu-minan-Naar means?",
-      "options": [
-        "Protection from evil",
-        "Forgiveness of sins",
-        "Freedom From Hell Fire",
-        "Guidance"
-      ],
-      "answer": "Freedom From Hell Fire",
-      "answer_index": 2,
-      "level": 3
-    },
-    {
-      "id": 53,
+      "id": 60,
       "question": "The Takbeer of Eid-ul-Fitr begins from?",
       "options": [
-        "Fajr Of Shawwal",
-        "Sunrise Of Shawwal",
-        "Sunset Of Last Ramadhan",
-        "Before Eid Prayer"
-      ],
-      "answer": "Sunset Of Last Ramadhan",
-      "answer_index": 2,
-      "level": 4
+          "Fajr Of Shawwal",
+          "Sunrise Of Shawwal",
+          "Sunset Of Last Ramadhan Day",
+          "Before Eid Prayer"
+        ],
+        "answer": "Sunset Of Last Ramadhan Day",
+        "answer_index": 2,
+        "level": 3
     },
     {
-      "id": 54,
-      "question": "What is Fidya in the context of fasting?",
-      "options": [
-        "A penalty for intentionally breaking a fast",
-        "Compensation for missing a fast due to valid reasons",
-        "Fasting 60 consecutive days",
-        "Expiation for sins committed outside Ramadan"
-      ],
-      "answer": "Compensation for missing a fast due to valid reasons",
-      "answer_index": 1,
-      "level": 4
-    },
-    {
-      "id": 55,
-      "question": "Which of the following applies to Kaffarah?",
-      "options": [
-        "It is given when someone cannot fast due to old age",
-        "It is a replacement for missed fasts due to illness",
-        "It is required when someone deliberately breaks a fast in Ramadan",
-        "It is optional for missed voluntary fasts"
-      ],
-      "answer": "It is required when someone deliberately breaks a fast in Ramadan",
-      "answer_index": 2,
-      "level": 4
-    },
-    {
-      "id": 56,
-      "question": "Which of the following applies to Kaffarah?",
-      "options": [
-        "It is given when someone cannot fast due to old age",
-        "It is a replacement for missed fasts due to illness",
-        "It is required when someone intentionally breaks a fast in Ramadan",
-        "It is optional for missed voluntary fasts"
-      ],
-      "answer": "It is required when someone intentionally breaks a fast in Ramadan",
-      "answer_index": 2,
-      "level": 4
-    },
-    {
-      "id": 57,
-      "question": "Which of the following is a valid form of Kaffarah if one breaks a fast intentionally?",
-      "options": [
-        "Feeding 60 poor people or fasting 60 consecutive days",
-        "Feeding one poor person per missed day",
-        "Performing two extra rak’ahs of prayer daily",
-        "Donating clothes to the needy"
-      ],
-      "answer": "Feeding 60 poor people or fasting 60 consecutive days",
-      "answer_index": 0,
-      "level": 4
-    },
-    {
-      "id": 58,
+      "id": 61,
       "question": "The main difference between Fidya and Kaffarah is:",
       "options": [
-        "Fidya is optional, Kaffarah is mandatory",
-        "Fidya is compensation for inability, Kaffarah is penalty for deliberate breaking",
-        "Fidya is only for old people, Kaffarah is only for the young",
-        "Fidya is paid in money, Kaffarah is paid in gold"
-      ],
-      "answer": "Fidya is compensation for inability, Kaffarah is penalty for deliberate breaking",
-      "answer_index": 1,
-      "level": 4
+          "Fidya is optional, Kaffarah is mandatory",
+          "Fidya is compensation for inability, Kaffarah is penalty for deliberate breaking",
+          "Fidya is only for old people, Kaffarah is only for the young",
+          "Fidya is paid in money, Kaffarah is paid in gold"
+        ],
+        "answer": "Fidya is compensation for inability, Kaffarah is penalty for deliberate breaking",
+        "answer_index": 1,
+        "level": 3
+    },
+    {
+      "id": 62,
+      "question": "Which of the following applies to Kaffarah?",
+      "options": [
+          "It is given when someone cannot fast due to old age",
+          "It is a replacement for missed fasts due to illness",
+          "It is required when someone deliberately breaks a fast in Ramadan",
+          "It is optional for missed voluntary fasts"
+        ],
+        "answer": "It is required when someone deliberately breaks a fast in Ramadan",
+        "answer_index": 2,
+        "level": 3
     }
   ]
 }
