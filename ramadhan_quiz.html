@@ -520,8 +520,8 @@
       padding: 34px 28px;
       border-radius: 22px;
       border: 1px solid rgba(255,255,255,.14);
-      background: rgba(10,14,34,.72);
-      box-shadow: 0 22px 60px rgba(0,0,0,.55);
+      background: rgba(10,14,34,.78);
+      box-shadow: 0 22px 60px rgba(0,0,0,.45);
       text-align:center;
       backdrop-filter: blur(10px);
     }
@@ -529,7 +529,7 @@
       margin: 0;
       font-weight: 1000;
       letter-spacing: .02em;
-      color: var(--gold2);
+      color: rgba(255,255,255,.98);
       font-size: clamp(30px, 5.4vw, 72px);
       line-height: 1.05;
       text-shadow: 0 18px 60px rgba(0,0,0,.45);
@@ -543,6 +543,38 @@
     }
     .splashActions{margin-top: 22px; display:flex; justify-content:center; gap: 10px; flex-wrap:wrap;}
     .splashStart{font-size: 22px; padding: 12px 18px;}
+
+    .splashRules{
+      margin-top: 18px;
+      text-align:left;
+      color: rgba(255,255,255,.90);
+      font-weight: 800;
+      font-size: clamp(15px, 1.7vw, 18px);
+      line-height: 1.45;
+      max-height: none;
+      overflow: visible;
+      padding-right: 0;
+    }
+    .splashRulesGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items:start;
+    }
+    .splashRules h3{
+      margin: 16px 0 8px;
+      font-size: clamp(18px, 2.2vw, 22px);
+      letter-spacing: .01em;
+      color: rgba(255,255,255,.98);
+    }
+    .splashRules .teams{display:grid; grid-template-columns:1fr; gap: 6px;}
+    .splashRules ul{margin: 8px 0 0 18px; padding:0;}
+    .splashRules li{margin: 6px 0;}
+    .splashRulesHidden{display:none;}
+
+    @media (max-width: 980px){
+      .splashRulesGrid{grid-template-columns: 1fr;}
+    }
 
     #gameRoot{display:none;}
     #gameRoot.show{display:block;}
@@ -561,8 +593,42 @@
     <div class="splashCard">
       <h1 class="splashTitle">Welcome to Ramadhan Quiz</h1>
       <div class="splashSub">Press Start to begin</div>
+
+      <div class="splashRules splashRulesHidden" id="splashRules" aria-label="How to play">
+        <div class="splashRulesGrid">
+          <div>
+            <h3>🌟 Our Teams</h3>
+            <div class="teams">
+              <div>Team A – Leader: Kanza Kiyas</div>
+              <div>Team B – Leader: Mishari Razick</div>
+              <div>Team C – Leader: Salih Ayyub</div>
+              <div>Team D – Leader: Zaim Zakeer</div>
+            </div>
+
+            <h3>Levels</h3>
+            <div>🔹 Level 1: Easy To Medium Questions</div>
+            <div>🔸 Level 2: Medium To Hard Questions</div>
+            <ul>
+              <li>Sit in two lines by level.</li>
+              <li>Each participant sit one behind the other</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>How We Play</h3>
+            <ul>
+              <li>Front person from each team comes forward</li>
+              <li>Answer the question</li>
+              <li>Go back and sit at the end</li>
+              <li>Next person gets ready to play</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div class="splashActions">
-        <button class="btn btnPrimary splashStart" id="btnStart" type="button">Start</button>
+        <button class="btn btnPrimary splashStart" id="btnStart" type="button">Next</button>
+        <button class="btn btnPrimary splashStart hidden" id="btnStartGame" type="button">Start Game</button>
       </div>
     </div>
   </div>
@@ -1498,6 +1564,8 @@
     const els = {
       splash: document.getElementById("splash"),
       btnStart: document.getElementById("btnStart"),
+      btnStartGame: document.getElementById("btnStartGame"),
+      splashRules: document.getElementById("splashRules"),
       gameRoot: document.getElementById("gameRoot"),
       pillPos: document.getElementById("pillPos"),
       levelTag: document.getElementById("levelTag"),
@@ -1819,6 +1887,13 @@
       if (els.gameRoot) els.gameRoot.classList.add("show");
       const target = (!els.btnNext.disabled) ? els.btnNext : els.btnShowChoices;
       target?.focus();
+    }
+
+    function showSplashRules() {
+      if (els.splashRules) els.splashRules.classList.remove("splashRulesHidden");
+      if (els.btnStart) els.btnStart.classList.add("hidden");
+      if (els.btnStartGame) els.btnStartGame.classList.remove("hidden");
+      els.btnStartGame?.focus();
     }
 
     function rebuildLevelIndices() {
@@ -2184,12 +2259,15 @@
       }
     });
 
-    els.btnStart?.addEventListener("click", startGame);
+    els.btnStart?.addEventListener("click", showSplashRules);
+    els.btnStartGame?.addEventListener("click", startGame);
     document.addEventListener("keydown", (e) => {
       if (!els.splash || els.splash.classList.contains("splashHidden")) return;
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        startGame();
+        const showingRules = els.splashRules && !els.splashRules.classList.contains("splashRulesHidden");
+        if (showingRules) startGame();
+        else showSplashRules();
       }
     });
 
@@ -2201,9 +2279,10 @@
         if (embedded) {
           json = embedded;
         } else {
-          const res = await fetch(dataFile, { cache: "no-store" });
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          json = await res.json();
+          // const res = await fetch(dataFile, { cache: "no-store" });
+          // if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          // json = await res.json();
+          throw new Error("Embedded quiz JSON not found. External JSON loading is currently disabled.");
         }
 
         QUIZ = json;
