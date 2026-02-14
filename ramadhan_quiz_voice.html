@@ -120,6 +120,20 @@
       letter-spacing: .02em;
     }
 
+    .voicePill{
+      border: 1px solid var(--line);
+      background: rgba(15,19,48,.75);
+      box-shadow: 0 8px 20px rgba(0,0,0,.25);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .02em;
+      user-select:none;
+      white-space:nowrap;
+    }
+
     .levelWrap{
       display:flex;
       align-items:center;
@@ -658,6 +672,8 @@
 
         <div class="topRight">
           <div class="pill" id="pillPos" role="button" tabindex="0" aria-label="Question count. Click to end the game.">Q 0 / 0</div>
+          <button class="btn" id="btnVoice" type="button">Voice</button>
+          <div class="voicePill" id="voiceStatus" aria-label="Voice status">Voice: Off</div>
           <button class="btn" id="btnScores" type="button">Scores</button>
           <div class="scorePills hidden" id="scorePills" aria-label="Player scores">
             <div class="scorePill" id="scoreA">A: 0</div>
@@ -1600,6 +1616,8 @@
       hint: document.getElementById("hint"),
       btnNext: document.getElementById("btnNext"),
       btnRestart: document.getElementById("btnRestart"),
+      btnVoice: document.getElementById("btnVoice"),
+      voiceStatus: document.getElementById("voiceStatus"),
       btnScores: document.getElementById("btnScores"),
       btnShowChoices: document.getElementById("btnShowChoices"),
       btnShowAnswer: document.getElementById("btnShowAnswer"),
@@ -1912,6 +1930,119 @@
       if (els.btnStart) els.btnStart.classList.add("hidden");
       if (els.btnStartGame) els.btnStartGame.classList.remove("hidden");
       els.btnStartGame?.focus();
+    }
+
+    const Voice = {
+      recognition: null,
+      enabled: false,
+      supported: false,
+      starting: false,
+    };
+
+    function setVoiceStatus(text) {
+      if (els.voiceStatus) els.voiceStatus.textContent = text;
+    }
+
+    function canExecuteVoiceActions() {
+      if (!els.splash || !els.gameRoot) return true;
+      const inSplash = !els.splash.classList.contains("splashHidden");
+      const gameVisible = els.gameRoot.classList.contains("show");
+      return !inSplash && gameVisible;
+    }
+
+    function executeVoiceCommand(command) {
+      if (!canExecuteVoiceActions()) return;
+      if (els.overlay && els.overlay.classList.contains("show")) return;
+
+      if (command === "select next" || command === "next") {
+        els.btnNext?.click();
+        return;
+      }
+      if (command === "show answer" || command === "answer") {
+        if (!els.btnShowAnswer?.disabled) els.btnShowAnswer?.click();
+        return;
+      }
+      if (command === "show answers" || command === "answers" || command === "show choices") {
+        els.btnShowChoices?.click();
+        return;
+      }
+    }
+
+    function parseTranscriptToCommand(t) {
+      const s = String(t || "").toLowerCase().replace(/[^a-z\s]/g, " ").replace(/\s+/g, " ").trim();
+      const i = s.indexOf("computer");
+      if (i < 0) return null;
+      const after = s.slice(i + "computer".length).trim();
+      if (!after) return null;
+      if (after.includes("select next")) return "select next";
+      if (after === "next") return "next";
+      if (after.includes("show answer")) return "show answer";
+      if (after === "answer") return "answer";
+      if (after.includes("show answers")) return "show answers";
+      if (after.includes("show choices")) return "show choices";
+      if (after === "answers") return "answers";
+      return null;
+    }
+
+    function initVoiceControl() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      Voice.supported = Boolean(SR);
+      if (!Voice.supported) {
+        setVoiceStatus("Voice: Unsupported");
+        if (els.btnVoice) els.btnVoice.disabled = true;
+        return;
+      }
+
+      const rec = new SR();
+      Voice.recognition = rec;
+      rec.continuous = true;
+      rec.interimResults = false;
+      rec.lang = "en-US";
+
+      rec.onstart = () => {
+        Voice.starting = false;
+        setVoiceStatus("Voice: Listening");
+      };
+      rec.onend = () => {
+        if (!Voice.enabled) {
+          setVoiceStatus("Voice: Off");
+          return;
+        }
+        setVoiceStatus("Voice: Restarting");
+        window.setTimeout(() => {
+          if (!Voice.enabled) return;
+          try { rec.start(); } catch {}
+        }, 250);
+      };
+      rec.onerror = () => {
+        if (!Voice.enabled) return;
+        setVoiceStatus("Voice: Error");
+      };
+      rec.onresult = (e) => {
+        const last = e.results?.[e.results.length - 1];
+        const txt = last?.[0]?.transcript ?? "";
+        const cmd = parseTranscriptToCommand(txt);
+        if (cmd) executeVoiceCommand(cmd);
+      };
+
+      setVoiceStatus("Voice: Off");
+    }
+
+    function toggleVoice() {
+      if (!Voice.supported || !Voice.recognition) return;
+      Voice.enabled = !Voice.enabled;
+      if (!Voice.enabled) {
+        setVoiceStatus("Voice: Off");
+        try { Voice.recognition.stop(); } catch {}
+        return;
+      }
+      if (Voice.starting) return;
+      Voice.starting = true;
+      setVoiceStatus("Voice: Starting");
+      try { Voice.recognition.start(); } catch {
+        Voice.starting = false;
+        setVoiceStatus("Voice: Error");
+      }
     }
 
     function rebuildLevelIndices() {
@@ -2254,6 +2385,9 @@
     });
     els.btnShowChoices.addEventListener("click", showChoices);
     els.btnShowAnswer.addEventListener("click", showAnswer);
+
+    initVoiceControl();
+    els.btnVoice?.addEventListener("click", toggleVoice);
 
     els.btnScores?.addEventListener("click", () => {
       const isHidden = els.scorePills?.classList.contains("hidden");
