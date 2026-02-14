@@ -287,6 +287,7 @@
 
     .playerCircleActive{
       border-color: rgba(96,165,250,.95);
+      background: radial-gradient(120px 120px at 30% 25%, rgba(96,165,250,.38), rgba(15,19,48,.55));
       box-shadow: 0 0 0 3px rgba(96,165,250,.28), 0 12px 28px rgba(0,0,0,.45);
     }
 
@@ -2002,8 +2003,8 @@
         a.includes("the choices") ||
         a.includes("show choice") ||
         a.includes("show answers") ||
-        a.includes("show options") ||
-        a.includes("show option") ||
+        a.includes("options") ||
+        a.includes("option") ||
         a.includes("choices") ||
         a.includes("choice") ||
         a.includes("chices")
@@ -2165,7 +2166,7 @@
       clearFocusClasses();
       const cards = Array.from(els.answers.querySelectorAll(".ans"));
       cards.forEach((c, i) => {
-        if (stage !== "choices" && i === focused) c.classList.add("ansFocus");
+        if (i === focused) c.classList.add("ansFocus");
         if ((stage === "revealed" || revealed) && chosenIndex === i) c.classList.add("ansSelected");
       });
     }
@@ -2238,6 +2239,8 @@
       els.players.classList.remove("concealed");
       els.btnShowChoices.disabled = true;
       els.btnShowAnswer.disabled = false;
+      activePlayer = 0;
+      focused = 0;
       applyFocus();
       renderPlayers();
       saveState(getDataFile());
