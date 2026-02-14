@@ -736,6 +736,32 @@
   "questions": [
     {
       "id": 1,
+      "question": "Ramadhan begin with sight of the",
+      "options": [
+        "Sun",
+        "Star",
+        "Moon",
+        "Cloud"
+      ],
+      "answer": "Moon",
+      "answer_index": 2,
+      "level": 1
+    },
+    {
+      "id": 1,
+      "question": "If the moon is not sighted, Sha'ban completes",
+      "options": [
+        "31 Days",
+        "30 Days",
+        "29 Days",
+        "28 Days"
+      ],
+      "answer": "30 Days",
+      "answer_index": 1,
+      "level": 2
+    },
+    {
+      "id": 1,
       "question": "What is the Arabic word for fasting?",
       "options": [
         "Salah",
@@ -2166,7 +2192,7 @@
       clearFocusClasses();
       const cards = Array.from(els.answers.querySelectorAll(".ans"));
       cards.forEach((c, i) => {
-        if (i === focused) c.classList.add("ansFocus");
+        if (focused >= 0 && i === focused) c.classList.add("ansFocus");
         if ((stage === "revealed" || revealed) && chosenIndex === i) c.classList.add("ansSelected");
       });
     }
@@ -2215,14 +2241,13 @@
 
         btn.addEventListener("click", () => {
           focused = i;
-          applyFocus();
           chooseFocused();
         });
 
         els.answers.appendChild(btn);
       });
 
-      focused = 0;
+      focused = -1;
       setTop();
       applyFocus();
 
@@ -2240,7 +2265,7 @@
       els.btnShowChoices.disabled = true;
       els.btnShowAnswer.disabled = false;
       activePlayer = 0;
-      focused = 0;
+      focused = -1;
       applyFocus();
       renderPlayers();
       saveState(getDataFile());
@@ -2296,6 +2321,7 @@
       cards.forEach((c) => c.setAttribute("aria-disabled", "false"));
 
       setTop();
+      focused = -1;
       applyFocus();
 
       saveState(getDataFile());
@@ -2388,7 +2414,15 @@
     }
 
     function moveFocus(dir) {
-      if (!QUESTIONS.length) return;
+      if (revealed) return;
+      if (stage !== "choices") return;
+
+      if (focused < 0) {
+        focused = 0;
+        applyFocus();
+        return;
+      }
+
       const row = Math.floor(focused / 2);
       const col = focused % 2;
 
