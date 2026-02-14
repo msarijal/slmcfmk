@@ -423,6 +423,13 @@
       color: var(--gold2);
     }
 
+    .btnVoiceActive{
+      background: rgba(34,197,94,.95);
+      border-color: rgba(34,197,94,1);
+      color: rgba(3,15,8,.95);
+      box-shadow: 0 0 0 3px rgba(34,197,94,.22), 0 14px 30px rgba(0,0,0,.35);
+    }
+
     .btn:disabled{opacity:.5; cursor:default;}
 
     .overlay{
@@ -673,7 +680,7 @@
         <div class="topRight">
           <div class="pill" id="pillPos" role="button" tabindex="0" aria-label="Question count. Click to end the game.">Q 0 / 0</div>
           <button class="btn" id="btnVoice" type="button">Voice</button>
-          <div class="voicePill" id="voiceStatus" aria-label="Voice status">Voice: Off</div>
+          <div class="voicePill hidden" id="voiceStatus" aria-label="Voice status">Voice: Off</div>
           <button class="btn" id="btnScores" type="button">Scores</button>
           <div class="scorePills hidden" id="scorePills" aria-label="Player scores">
             <div class="scorePill" id="scoreA">A: 0</div>
@@ -1940,7 +1947,11 @@
     };
 
     function setVoiceStatus(text) {
-      if (els.voiceStatus) els.voiceStatus.textContent = text;
+      return;
+    }
+
+    function setVoiceHeard(text) {
+      return;
     }
 
     function canExecuteVoiceActions() {
@@ -1958,29 +1969,58 @@
         els.btnNext?.click();
         return;
       }
-      if (command === "show answer" || command === "answer") {
+      if (command === "show answers" || command === "show choices") {
+        els.btnShowChoices?.click();
+        return;
+      }
+      if (command === "show answer" || command === "correct answer") {
         if (!els.btnShowAnswer?.disabled) els.btnShowAnswer?.click();
         return;
       }
-      if (command === "show answers" || command === "answers" || command === "show choices") {
-        els.btnShowChoices?.click();
+      if (command === "show score" || command === "the score") {
+        els.btnScores?.click();
         return;
       }
     }
 
     function parseTranscriptToCommand(t) {
       const s = String(t || "").toLowerCase().replace(/[^a-z\s]/g, " ").replace(/\s+/g, " ").trim();
-      const i = s.indexOf("computer");
+      const i = s.indexOf("computer g");
       if (i < 0) return null;
-      const after = s.slice(i + "computer".length).trim();
+      const after = s.slice(i + "computer g".length).trim();
       if (!after) return null;
-      if (after.includes("select next")) return "select next";
-      if (after === "next") return "next";
-      if (after.includes("show answer")) return "show answer";
-      if (after === "answer") return "answer";
-      if (after.includes("show answers")) return "show answers";
-      if (after.includes("show choices")) return "show choices";
-      if (after === "answers") return "answers";
+
+      // Ignore extra filler words; just look for keywords/phrases anywhere after the wake phrase.
+      const a = after;
+
+      if (a.includes("select next") || a.includes("next please") || a.includes("next question") || a.includes("next")) {
+        return "select next";
+      }
+
+      // Choices / answers list
+      if (
+        a.includes("the choices") ||
+        a.includes("show choice") ||
+        a.includes("show answers") ||
+        a.includes("show options") ||
+        a.includes("show option") ||
+        a.includes("choices") ||
+        a.includes("choice") ||
+        a.includes("chices")
+      ) {
+        return "show choices";
+      }
+
+      // Correct answer
+      if (a.includes("correct answer") || a.includes("show answer") || a.includes("the answer")) {
+        return "correct answer";
+      }
+
+      // Scores
+      if (a.includes("show score") || a.includes("the score") || a.includes("scores")) {
+        return "show score";
+      }
+
       return null;
     }
 
@@ -2001,10 +2041,12 @@
 
       rec.onstart = () => {
         Voice.starting = false;
+        els.btnVoice?.classList.add("btnVoiceActive");
         setVoiceStatus("Voice: Listening");
       };
       rec.onend = () => {
         if (!Voice.enabled) {
+          els.btnVoice?.classList.remove("btnVoiceActive");
           setVoiceStatus("Voice: Off");
           return;
         }
@@ -2021,7 +2063,14 @@
       rec.onresult = (e) => {
         const last = e.results?.[e.results.length - 1];
         const txt = last?.[0]?.transcript ?? "";
+        try {
+          console.log("[Voice] transcript:", txt);
+        } catch {}
+        setVoiceHeard(txt);
         const cmd = parseTranscriptToCommand(txt);
+        try {
+          console.log("[Voice] parsed command:", cmd);
+        } catch {}
         if (cmd) executeVoiceCommand(cmd);
       };
 
@@ -2032,6 +2081,7 @@
       if (!Voice.supported || !Voice.recognition) return;
       Voice.enabled = !Voice.enabled;
       if (!Voice.enabled) {
+        els.btnVoice?.classList.remove("btnVoiceActive");
         setVoiceStatus("Voice: Off");
         try { Voice.recognition.stop(); } catch {}
         return;
