@@ -244,6 +244,7 @@
       position: absolute;
       top: 12px;
       left: 12px;
+      display: none;
     }
 
     .questionText{
@@ -828,7 +829,7 @@
       "options": ["Bismillah", "Goodbye", "Thank you", "Welcome"],
       "answer": "Bismillah",
       "answer_index": 0,
-      "level": 0
+      "level": 1
     },
     {
       "id": 13,
@@ -996,7 +997,7 @@
       "options": ["10th", "17th", "20th", "27th"],
       "answer": "20th",
       "answer_index": 2,
-      "level": 2
+      "level": 3
     },
     {
       "id": 34,
@@ -1912,7 +1913,7 @@
 
       const q = QUESTIONS[idx];
       els.questionText.textContent = q.question;
-      els.levelTag.textContent = `Level ${q.level ?? 1}`;
+      els.levelTag.textContent = "";
 
       const letters = ["1", "2", "3", "4"];
       els.answers.innerHTML = "";
